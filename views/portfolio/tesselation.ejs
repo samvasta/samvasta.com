@@ -1,0 +1,105 @@
+<%include ../partials/header %>
+	<link rel="stylesheet" href="/portfolio.css" />
+<%include ../partials/navbar %>
+	<div class="container-fluid">
+          <div class="row">
+              <%include ../partials/portfolio/wallpapers_nav.ejs%>
+              <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+                  <h2 class="container-header">Tesselation</h2>
+
+									<div>
+										<div class="figure figure-center">
+											<div class="figure-content">
+												<iframe src='https://gfycat.com/ifr/EmotionalSandyChick' frameborder='0' scrolling='no' width='100%' height='100%' allowfullscreen></iframe>
+											</div>
+											<span>Figure 1</span>
+										</div>
+
+										<div>
+												The <b><i>Tesselation</i></b> generator currently has 3 unique patterns, but any tesselation pattern could be added. The three options include:
+												<ul>
+													<li>
+														Regular Hexogons
+													</li>
+													<li>
+														Equalateral Triangles
+													</li>
+													<li>
+														4.6.12 <a href="https://en.wikipedia.org/wiki/Euclidean_tilings_by_convex_regular_polygons#Archimedean,_uniform_or_semiregular_tilings">Archimedean Tiling</a> (See figure 6)
+													</li>
+												</ul>
+												<div>
+													That last one just means there are three types of shapes: a 4-sided regular polygon, a 6-sided regular polygon, and a 12-sided regular polygon.
+													Any linear transformation (rotation, reflection, shear, and scale) could be applied to the entire pattern while maintaining the tessellating properties.
+													Therefore the pattern does not require all polygons to be regular; you could apply a shear.
+												</div>
+
+										</div>
+
+										<p>
+											The <b><i>Tesselation</i></b> generator is currently only capable of applying a scale and rotation to patterns.
+											While shearing is planned, I will not bother with reflection because all three patterns are radially symmetrical so a reflection could be achieved with a rotation.
+										</p>
+
+										<h3>Process</h3>
+										<p>
+											Figure 1 shows a little bit about how the <b><i>Tesselation</i></b> images are generated.<br />
+											Before the main generation process starts, a pattern and palette is chosen and some transformations are applied to the pattern such as rotations or scaling.
+											<ol>
+												<li>
+													First, a single point is chosen as the "seed" location and added to a list of locations to stamp.
+												</li>
+												<li>
+													Next, a copy of the pattern is stamped at every location in the to-stamp list.
+													<ul>
+														<li>
+															Note that the outline of each pattern is shown for demonstration only and is not normally rendered.
+														</li>
+													</ul>
+												</li>
+												<li>
+													For each stamped copy, the possible locations of neighbor copies are added to the to-stamp list.
+												</li>
+												<li>
+													Steps 2 & 3 are repeated until the to-stamp list is empty.
+												</li>
+												<li>
+													Each polygon is filled in with a color slightly different that that used on the previous polygon, with a small chance to use a completely different color.
+													<ul>
+														<li>
+															Polygons are filled in the order in which they were placed, so sometimes a spiral effect can be seen (as in Figure 7).
+														</li>
+													</ul>
+												</li>
+											</ol>
+										</p>
+										<h3>Gallery</h3>
+										<div class="figure pull-right">
+											<img class="figure-content" src="/res/tess_2.png" />
+											<span>Figure 2</span>
+										</div>
+										<div class="figure">
+											<img class="figure-content" src="/res/tess_3.png" />
+											<span>Figure 3</span>
+										</div>
+										<div class="figure">
+											<img class="figure-content" src="/res/tess_4.png" />
+											<span>Figure 4</span>
+										</div>
+										<div class="figure pull-left">
+												<img class="figure-content" src="/res/tess_1.png" />
+												<span>Figure 5</span>
+										</div>
+	                  <div class="figure">
+	                      <img class="figure-content" src="/res/tess_5.png" />
+	                      <span>Figure 6</span>
+	                  </div>
+	                  <div class="figure">
+	                      <img class="figure-content" src="/res/tess_6.png" />
+	                      <span>Figure 7</span>
+	                  </div>
+									</div>
+              </div>
+          </div>
+	</div>
+<%include ../partials/footer %>
