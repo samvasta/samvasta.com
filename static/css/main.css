@@ -71,17 +71,17 @@ h6 {
 }
 
 body {
-    padding-top: 9rem;
+    padding-top: 8.5rem;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     background-color: #eee;
     color: var(--primary-light, #555);
     font-size: 1rem;
 }
-@media (min-width: 992px){
-  body {
-    padding-top: 3.9rem;
-  }
+
+h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]{
+  padding-top: 8.5rem;
+  margin-top: -8.5rem;
 }
 
 .bg-light {
@@ -210,4 +210,23 @@ a.navbar-brand:visited {
 }
 .blue {
     color: var(--blue-dark, #444);
+}
+
+.side-nav {
+  top: 9rem;
+}
+
+@media (min-width: 992px){
+  body {
+    padding-top: 3.9rem;
+  }
+
+  h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]{
+    padding-top: 3.9rem;
+    margin-top: -3.9rem;
+  }
+
+  .side-nav {
+    top: 4rem;
+  }
 }
