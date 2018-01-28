@@ -35,6 +35,7 @@
 .figure-center > .figure-content {
   margin-left: auto;
   margin-right: auto;
+  display: block;
 }
 
 .figure-content {

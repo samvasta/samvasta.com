@@ -3,33 +3,70 @@
 <%include ../partials/navbar %>
 	<div class="container-fluid">
           <div class="row">
-              <%include ../partials/portfolio/wallpapers_nav.ejs%>
-              <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-                  <h2>Landscapes</h2>
-                  <div class="figure">
-                      <img class="figure-content" src="/res/landscape_1.png" />
-                      <span>Image 1</span>
-                  </div>
-                  <div class="figure">
-                      <img class="figure-content" src="/res/landscape_2.png" />
-                      <span>Image 2</span>
-                  </div>
-                  <div class="figure">
-                      <img class="figure-content" src="/res/landscape_3.png" />
-                      <span>Image 3</span>
-                  </div>
-                  <div class="figure">
-                      <img class="figure-content" src="/res/landscape_4.png" />
-                      <span>Image 4</span>
-                  </div>
+            <%include ../partials/portfolio/wallpapers_nav.ejs%>
+            <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+              <h2>Landscapes</h2>
 
-                  <div class="figure">
-										<div class="figure-content">
-											<iframe src='https://gfycat.com/ifr/RecklessValidAustraliancattledog' frameborder='0' scrolling='no' width='100%' height='100%' allowfullscreen></iframe>
-										</div>
-                    <span>Image 5</span>
-                  </div>
+              <div class="figure figure-center">
+								<div class="figure-content">
+									<iframe src='https://gfycat.com/ifr/RecklessValidAustraliancattledog' frameborder='0' scrolling='no' width='100%' height='100%' allowfullscreen></iframe>
+								</div>
+                <span>Figure 1</span>
               </div>
+
+							<p>
+								The <b><i>Landscapes</i></b> generator was the first image generated that I made. Each image presents a series of rolling hills, and an occasional tree, in a two-color scheme.
+								The color gradient of the hills suggests a calm, foggy scene.
+							</p>
+
+							<p>
+								The code has been moved and re-purposed so much that it's	remarkable that it still produces even mildly pleasing results.
+								Although backstage is a horrible mess, I still get the most comments from the landscape images. I think the main reason is that the subject of the images are familiar; they are landscapes.
+								There was once a plan to add several features to the <b><i>Landscapes</i></b> generator such as clouds or more texture/detail. If I were to implement those features in the future,
+								it will be much more relaxing to start a new landscape generator from scratch.
+							</p>
+
+							<h3>Process</h3>
+							<p>
+								Figure 1 shows a little bit about how the <b><i>Landscapes</i></b> images are constructed.<br />
+							</p>
+
+							<p>
+								This image generator makes heavy use of the Midpoint Displacement algorithm. The basic idea of this algorithm is take the midpoint of a line segment and move it at
+								an angle tangent to the original line segment. This creates two new line segments, which you can recursively apply the same algorithm to, as demonstrated in Figure 2.
+								<div class="figure figure-center">
+									<img class="figure-content" src="/res/midpoint_displacement.png" style="height:400px; width:400px;max-height:400px" />
+									<span>Figure 2 - Midpoint Displacement</span>
+								</div>
+							</p>
+
+
+							<p>
+								Before the main generation process starts, a basic two-color palette is chosen and a color gradient is computed to bridge the two colors.
+							</p>
+							<p>
+								Each layer of terrain starts as a single line which stretches across the width of the image. Then the midpoint displacement algorithm is applied to this line several times.
+								Occasinally, a tree will be drawn on a layer of terrain. Trees start as a single branch (the trunk) and then split into two smaller trees (branches), recursively.
+								There is a reason why recursive data structures are called trees!
+							</p>
+							<h3>Gallery</h3>
+							<div class="figure">
+								<img class="figure-content" src="/res/landscape_2.png" />
+								<span>Figure 2</span>
+							</div>
+							<div class="figure">
+								<img class="figure-content" src="/res/landscape_3.png" />
+								<span>Figure 3</span>
+							</div>
+							<div class="figure">
+								<img class="figure-content" src="/res/landscape_4.png" />
+								<span>Figure 4</span>
+							</div>
+							<div class="figure">
+								<img class="figure-content" src="/res/landscape_1.png" />
+								<span>Figure 5</span>
+							</div>
+            </div>
           </div>
 	</div>
 <%include ../partials/footer %>

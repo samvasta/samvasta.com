@@ -23,9 +23,9 @@
     font-size: 16px;
 }
 
-.container-fluid > h1, h2, h3, h4, h5, h6 {
-    margin-left: -15px;
-    margin-right: -15px;
+::selection{
+  background-color: var(--blue-dark);
+  color: var(--yellow-mid);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -37,7 +37,6 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
     border-bottom: 2px solid var(--red-light);
-    width: auto;
     font-size: 2.5rem;
 }
 
@@ -66,6 +65,11 @@ h6 {
     font-size: 1rem;
 }
 
+.container-fluid > h1, h2, h3, h4, h5, h6 {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
 body {
     padding-top: 9rem;
     font-family: 'Open Sans', sans-serif;
@@ -76,8 +80,12 @@ body {
 }
 @media (min-width: 992px){
   body {
-    padding-top: 4.5rem;
+    padding-top: 3.9rem;
   }
+}
+
+.bg-light {
+  background-color: var(--primary-light) !important;
 }
 
 .thin-text {
@@ -93,15 +101,26 @@ a {
     background-color: var(--primary-mid);
 }
 
-li.nav-item,.active > a.nav-link {
+li.nav-item.active > a.nav-link {
   color: var(--yellow-mid);
 }
-li.nav-item,.active > a.nav-link:visited {
+li.nav-item.active > a.nav-link:visited {
   color: var(--yellow-mid);
 }
-li.nav-item,.active > a.nav-link:hover {
+li.nav-item.active > a.nav-link:hover {
   color: var(--yellow-light);
 }
+
+li.nav-item > a.nav-link.active {
+  color: var(--yellow-mid);
+}
+li.nav-item > a.nav-link.active:visited {
+  color: var(--yellow-mid);
+}
+li.nav-item > a.nav-link.active:hover {
+  color: var(--yellow-light);
+}
+
 
 a.nav-link {
     color: #ddd;
@@ -172,7 +191,6 @@ a.navbar-brand:visited {
     text-align: center;
     font-size: 1.3rem;
     color: #eee;
-    z-index: 10000;
 }
 
 .categories-list > div > a > div > span{
@@ -192,9 +210,4 @@ a.navbar-brand:visited {
 }
 .blue {
     color: var(--blue-dark, #444);
-}
-
-.hcenter {
-  margin-left: auto;
-  margin-right: auto;
 }
