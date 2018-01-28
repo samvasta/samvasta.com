@@ -7,6 +7,8 @@
     --primary-mid   : rgb(55,55,87);
     --primary-dark  : rgb(17,17,45);
 
+    --primary-foreground : #ddd;
+
 
     --yellow-light  : rgb(255,242,87);
     --yellow-mid    : rgb(223,192,28);
@@ -33,6 +35,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--primary-light);
     font-weight: 300;
     padding-left: 1rem;
+    margin-top: 1rem;
 }
 
 h1 {
@@ -65,7 +68,7 @@ h6 {
     font-size: 1rem;
 }
 
-.container-fluid > h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
     margin-left: -15px;
     margin-right: -15px;
 }
@@ -79,13 +82,9 @@ body {
     font-size: 1rem;
 }
 
-h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]{
-  padding-top: 8.5rem;
-  margin-top: -8.5rem;
-}
-
 .bg-light {
   background-color: var(--primary-light) !important;
+  color: var(--primary-foreground);
 }
 
 .thin-text {
@@ -213,20 +212,16 @@ a.navbar-brand:visited {
 }
 
 .side-nav {
-  top: 9rem;
+  position:relative;
 }
 
-@media (min-width: 992px){
+@media (min-width: 576px){
   body {
     padding-top: 3.9rem;
   }
 
-  h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]{
-    padding-top: 3.9rem;
-    margin-top: -3.9rem;
-  }
-
   .side-nav {
     top: 4rem;
+    position: fixed;
   }
 }

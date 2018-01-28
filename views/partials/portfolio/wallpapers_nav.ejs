@@ -1,16 +1,16 @@
-<nav class="col-lg-2 col-md-3 col-sm-4 col-xs-6 right-sep">
+<nav class="col-lg-2 col-md-3 col-sm-4 col-xs-6 bg-light">
   <ul class="side-nav nav flex-column">
-    <h4 style="margin-top: 1rem">2013-2014</h4>
-    <li <%if (portfolio_name == "landscapes") { %>class="active"<% } %>><a href="/portfolio/landscapes">Landscapes</a></li>
-    <li <%if (portfolio_name == "triangles") { %>class="active"<% } %>><a href="/portfolio/triangles">Triangles</a></li>
-    <h4 style="margin-top: 1rem">2015-2016</h4>
-    <li <%if (portfolio_name == "geometric") { %>class="active"<% } %>><a href="/portfolio/geometric">Geometric</a></li>
-    <li <%if (portfolio_name == "bezier") { %>class="active"<% } %>><a href="/portfolio/bezier">Bezier</a></li>
-    <li <%if (portfolio_name == "hatching") { %>class="active"<% } %>><a href="/portfolio/hatching">Hatching</a></li>
-    <h4 style="margin-top: 1rem">2017</h4>
-    <li <%if (portfolio_name == "tesselation") { %>class="active"<% } %>><a href="/portfolio/tesselation">Tesselation</a></li>
-    <li <%if (portfolio_name == "delaunay") { %>class="active"<% } %>><a href="/portfolio/delaunay">Triangulation</a></li>
-    <li <%if (portfolio_name == "watercolors") { %>class="active"<% } %>><a href="/portfolio/watercolors">Watercolors</a></li>
-    <li <%if (portfolio_name == "allColors") { %>class="active"<% } %>><a href="/portfolio/allColors">All Colors</a></li>
+    <span class="h4" style="margin-top: 1rem">2013-2014</span>
+    <li class="nav-item<%if (portfolio_name == 'landscapes') { %> active<% } %>"><a class="nav-link" href="/portfolio/landscapes">Landscapes</a></li>
+    <li class="nav-item<%if (portfolio_name == 'triangles') { %> active<% } %>""><a class="nav-link" href="/portfolio/triangles">Triangles</a></li>
+    <span class="h4" style="margin-top: 1rem">2015-2016</span>
+    <li class="nav-item<%if (portfolio_name == 'geometric') { %> active<% } %>"><a class="nav-link" href="/portfolio/geometric">Geometric</a></li>
+    <li class="nav-item<%if (portfolio_name == 'bezier') { %> active<% } %>"><a class="nav-link" href="/portfolio/bezier">Bezier</a></li>
+    <li class="nav-item<%if (portfolio_name == 'hatching') { %> active<% } %>"><a class="nav-link" href="/portfolio/hatching">Hatching</a></li>
+    <span class="h4" style="margin-top: 1rem">2017</span>
+    <li class="nav-item<%if (portfolio_name == 'tesselation') { %> active<% } %>"><a class="nav-link" href="/portfolio/tesselation">Tesselation</a></li>
+    <li class="nav-item<%if (portfolio_name == 'delaunay') { %> active<% } %>"><a class="nav-link" href="/portfolio/delaunay">Triangulation</a></li>
+    <li class="nav-item<%if (portfolio_name == 'watercolors') { %> active<% } %>"><a class="nav-link" href="/portfolio/watercolors">Watercolors</a></li>
+    <li class="nav-item<%if (portfolio_name == 'allColors') { %> active<% } %>"><a class="nav-link" href="/portfolio/allColors">All Colors</a></li>
   </ul>
 </nav>

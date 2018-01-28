@@ -6,28 +6,91 @@
               <%include ../partials/portfolio/wallpapers_nav.ejs%>
               <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
                   <h2>All Colors</h2>
-                  <div class="figure">
-                      <img class="figure-content" src="/res/all_colors_1.png" />
-                      <span>Image 1</span>
-                  </div>
-                  <div class="figure">
-                      <img class="figure-content" src="/res/all_colors_2.png" />
-                      <span>Image 2</span>
-                  </div>
-                  <div class="figure">
-                      <img class="figure-content" src="/res/all_colors_3.png" />
-                      <span>Image 3</span>
-                  </div>
-                  <div class="figure">
-                      <img class="figure-content" src="/res/all_colors_4.png" />
-                      <span>Image 4</span>
-                  </div>
-									<div class="figure">
+									<div class="figure figure-center">
 										<div class="figure-content">
 											<iframe src='https://gfycat.com/ifr/CarefreeUnfitHoneycreeper' frameborder='0' scrolling='no' width='100%' height='100%' allowfullscreen></iframe>
 										</div>
-										<span>Image 5</span>
+										<span>Figure 1</span>
 									</div>
+
+									<p>
+										The <b><i>All Colors</i></b> generator creates an image with a simple goal: create an image which contains every color in a given color space.
+										The inspiration for this generator came from a <a href="https://codegolf.stackexchange.com/q/22144">post of the Code Golf stack exchange</a>, specifically the accepted answer from user <i>fejesjoco</i>.
+										My algorithm is loosely based on fejesjoco's, mainly differing in how colors are sorted and placed, and choosing what colors are available.
+									</p>
+									<p>
+										This generator consumed more of my time than any other generator. It seems like a simple problem at first until you realize that it involves keeping several lists, some sorted,
+										each with lengths in the millions if not billions. Speeding up this generator was a challenge, but I think I found a good balance between cutting corners and optimization.
+									</p>
+
+									<h3>Process</h3>
+									<p>
+										Image generation hapens in three main steps:
+										<ol>
+											<li>
+												Choose and sort colors
+											</li>
+											<li>
+												Place colors
+											</li>
+											<li>
+												Clean up
+											</li>
+										</ol>
+									</p>
+									<p>
+										The first phase, <i>choose and sort colors</i>, involves iterating through the RGB color space and adding these colors to a giant list.
+										The size of each step through the color space is determined by the size of the image. I look for the greatest power of 2 which does not exceed a value.
+										Usually this value is the total number of pixels in the image, but sometimes I set it higher so that the entire image is filled with color (see Figure 4).
+										The list is then sorted according to some criteria. To sort the colors, I first convert the RGB values into HSB values, and then sort with a specific comparison function which
+										prioritizes the hue above saturation and brightness.
+									</p>
+									<p>
+										To place the colors, I first place one or more "seed" pixels. This seed is very intentionally never in the middle of the image, as <i>fejesjoco</i> chose, to follow the rule of thirds.
+										Whenever a pixel is placed, its empty neighbors get added to a list of "available" pixels. Then I take the next color from the list and search over the available pixels for the best match.
+										This repeats until all colors have been placed, or there are no more available pixels.
+									</p>
+									<p>
+										The clean up step is the simplest of the three. The entire image is scanned for small gaps and fills them in with the average color of their surrounding neighbors. The algorithm does not always
+										apply this step, just to add a little bit more variety in the output.
+									</p>
+
+									<h3>Optimizations</h3>
+									<p>
+										Most of the images output by this generator include a lot of negative black space. I think this improves the composition of the images, but it also has the wonderful consequence of less colors to place,
+										and therefore a faster execution time.
+									</p>
+									<p>
+										Sorting the list before placing colors is an extremely important step to improve the performance of this algorithm. Because the colors are already sorted, I can assume that the next color
+										in the list must be very close to at least one color which has already been placed. This assumption means that I do not have to check every best possible color for every available pixel
+										during each loop. Instead, the next color is assumed to be the best possible match for at least one available pixel, and all I have to do is find that pixel.
+									</p>
+									<p>
+										A lot of time was also spent in making this algorithm able to place several colors in parallel. It took a lot of trial and error to figure out the best number of threads to get the quickest execution time
+										while ensuring no color was ever stuck in a limbo trying to find the best location, but always being beat by another thread.
+									</p>
+									<p>
+										Finally, the last major optimization is that the algorithm actually scales down the requested image size before choosing and placing colors, then scales it back up at the end.
+										The effect is that the individual "pixels" are more visible, and, more importantly, the algorithm takes much less time to run.
+									</p>
+									<h3>Gallery</h3>
+
+									<div class="figure">
+										<img class="figure-content" src="/res/all_colors_1.png" />
+										<span>Figure 1</span>
+									</div>
+                  <div class="figure">
+                      <img class="figure-content" src="/res/all_colors_2.png" />
+                      <span>Figure 2</span>
+                  </div>
+                  <div class="figure">
+                      <img class="figure-content" src="/res/all_colors_3.png" />
+                      <span>Figure 3</span>
+                  </div>
+                  <div class="figure">
+                      <img class="figure-content" src="/res/all_colors_4.png" />
+                      <span>Figure 4</span>
+                  </div>
               </div>
           </div>
 	</div>

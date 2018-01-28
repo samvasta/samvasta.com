@@ -5,13 +5,13 @@
     overflow: hidden;
 }
 
-.side-nav > li > a:hover {
-    color: var(--red-mid);
+/* .side-nav > li > a:hover {
+    color: var(--yellow-mid);
     font-weight: bold;
 }
 
 .side-nav > li > a:visited {
-    color: var(--red-dark);
+    color: var(--yellow-mid);
 }
 
 .side-nav > .active > a{
@@ -21,6 +21,11 @@
 .side-nav > .active > a:visited{
     font-weight: bold;
     text-decoration: underline;
+} */
+
+.side-nav > h4 {
+  color: var(--primary-foreground);
+  border-bottom-color: var(--primary-foreground);
 }
 
 
