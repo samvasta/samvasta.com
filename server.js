@@ -6,7 +6,7 @@ var server = express();
 
 //Middleware
 server.set("view engine", "ejs");
-server.set("views", path.join(__dirname, "views"));
+server.set("views", path.join(__dirname, "views"), path.join(__dirname, "views/procgen"));
 
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended: false}));
@@ -26,8 +26,8 @@ server.get("/tinkering", GET_tinkering)
 server.get("/art", GET_art)
 
 //Start server
-server.listen(3000, function(){
-    console.log("server started on port 3000");
+server.listen(80, '0.0.0.0', function(){
+    console.log("server started on port 80");
 });
 
 
@@ -42,7 +42,7 @@ function GET_portfolio(req, res){
 }
 
 function GET_procgen(req, res){
-    res.render("procgen", {pageName: "procgen", title: "Procedural Generation Projects"});
+    res.render("procgenhome", {pageName: "procgen", title: "Procedural Generation Projects"});
 }
 
 function GET_procgen_details(req, res){
