@@ -11,6 +11,7 @@ server.set("views", path.join(__dirname, "views"));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended: false}));
 
+server.use(express.static(__dirname));
 server.use(express.static(path.join(__dirname, "static")));
 server.use(express.static(path.join(__dirname, "static/css")));
 server.use(express.static(path.join(__dirname, "static/js")));
