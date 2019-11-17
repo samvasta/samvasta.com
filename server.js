@@ -25,8 +25,8 @@ server.get("/tinkering", GET_tinkering)
 server.get("/art", GET_art)
 
 //Start server
-server.listen(80, function(){
-    console.log("server started on port 80");
+server.listen(3000, function(){
+    console.log("server started on port 3000");
 });
 
 
