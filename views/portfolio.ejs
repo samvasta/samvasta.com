@@ -1,156 +1,65 @@
 <%include partials/header%>
 <%include partials/navbar%>
-<body data-spy="scroll" data-target="#portfolio-nav" data-offset="100" style="position:relative">
-	<div class="container-fluid">
-		<div class="row">
-			<nav id="portfolio-nav" class="bg-light navbar col-lg-2 col-md-3 col-sm-4 col-xs-6">
-				<ul style="flex-direction:column;" class="nav side-nav">
-					<li class="nav-item">
-						<a class="nav-link" href="#landscape-generator">Wallpaper Generator</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav nav-link ml-3 my-1" href="#2013">2013-2014</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav nav-link ml-3 my-1" href="#2015">2015-2016</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav nav-link ml-3 my-1" href="#2017">2017</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#ideas-techniques">Ideas &amp; Techniques</a>
-					</li>
-				</ul>
-			</nav>
 
-			<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-				<h1 id="landscape-generator">Wallpaper Generator</h1>
+<body data-spy="scroll" data-target="#procgen-nav" data-offset="100" style="position:relative">
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="procgen-nav" class="bg-light navbar col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul style="flex-direction:column;" class="nav side-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#procgen">Procedural Generation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tinkering">Tinkering</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#art">Art</a>
+                    </li>
+                </ul>
+            </nav>
 
-				<p>
-					The <span class="proper-noun blue">Wallpaper Generator</span> project was created to explore different techniques of procedural generation.
-				</p>
-				<p>
-					This project is a Java application which will procedurally generate images in various styles. As the name suggests, the images are intended to be used
-					as the wallpaper for a computer, phone, or tablet. A settings file allows users to choose how many, and which types of images to generate
-				</p>
-				<p>
-					Although each style is unique, they all share a foundation of several ideas and techniques. More about these ideas and techniques can be found at <a href="#ideas&amp;techniques">the bottom of this page</a>.
-				</p>
+            <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+                <h1 id="procgen">Procedural Generation</h1>
 
-				<h2 id="2013">2013-2014</h2>
-				<div class="row categories-list">
-					<div class="col-xs-1">
-						<a href="/portfolio/landscapes">
-							<img src="res/landscape_4.png" />
-							<div>
-								Landscapes
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-1">
-						<a href="/portfolio/triangles">
-							<img src="res/triangles_2.png" />
-							<div>
-								Triangles
-							</div>
-						</a>
-					</div>
-				</div>
+                <div class="categories-list">
+                    <p>
+                        <span class="proper-noun blue">Procedural Generation</span> programs aim to create interesting
+                        content without the need for human input. The designer programs procedures, rules and constraints,
+                        so variation in the output is nearly limitless.
+                    </p>
+                    <p>
+                        I have implemented procedural generation to create all kinds of content including video game
+                        levels, character names, and even fictional periodic tables of elements. Recently, I have
+                        been enjoying creating visual art with procedural generation.
+                    </p>
+
+                    <a href="/procgen">See more</a>
+                </div>
 
 
-				<h2 id="2015">2015-2016</h2>
-				<div class="row categories-list">
-					<div class="col-xs-1">
-						<a href="/portfolio/geometric">
-							<img src="res/shapes_3.png" />
-							<div>
-								Geometric
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-1">
-						<a href="/portfolio/bezier">
-							<img src="res/bezier_1.png" />
-							<div>
-								Bezier
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-1">
-						<a href="/portfolio/hatching">
-							<img src="res/hatched_1.png" />
-							<div>
-								Hatching
-							</div>
-						</a>
-					</div>
-				</div>
+                <h1 id="tinkering">Tinkering</h1>
 
-				<h2 id="2017">2017</h2>
-				<div class="row categories-list">
-					<div class="col-xs-1">
-						<a href="/portfolio/allColors">
-							<img src="res/all_colors_1.png" />
-							<div>
-								All Colors
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-1">
-						<a href="/portfolio/tesselation">
-							<img src="res/tess_5.png" />
-							<div>
-								Tesselation
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-1">
-						<a href="/portfolio/delaunay">
-							<img src="res/delaunay_5.png" />
-							<div>
-								Triangulation
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-1">
-						<a href="/portfolio/watercolors">
-							<img src="res/fog_2.png" />
-							<div>
-								Watercolors
-							</div>
-						</a>
-					</div>
-				</div>
+                <div class="categories-list">
+                    <p>
+                        For lack of a better word, <span class="proper-noun blue">tinkering</span> is a category for all of my projects that attempt to fix
+                        or improve things I use every day, or just practice a skill that I want to learn. These projects
+                        touch on many disciplines including electronics, CAD, and woodworking.
+                    </p>
 
-				<h1 id="ideas-techniques">Ideas &amp; Techniques</h1>
-				<div class="row categories-list">
-					<div class="col-xs-1">
-						<a href="#ideas-techniques">
-							<img src="res/delaunay_5.png" />
-							<div>
-								Randomness
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-1">
-						<a href="#ideas-techniques">
-							<img src="res/tess_5.png" />
-							<div>
-								Color
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-1">
-						<a href="#ideas-techniques">
-							<img src="res/midpoint_displacement.png" />
-							<div>
-								Procedural Techniques
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                    <a href="/tinkering">See more</a>
+                </div>
+
+                <h1 id="art">Traditional Art</h1>
+
+                <div class="categories-list">
+                    <p>
+                        A gallery of the "traditional" art that I create.
+                    </p>
+
+                    <a href="/art">See more</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <%include partials/footer%>

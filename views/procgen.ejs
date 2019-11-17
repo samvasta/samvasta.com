@@ -1,0 +1,162 @@
+<%include partials/header%>
+<%include partials/navbar%>
+
+<body data-spy="scroll" data-target="#procgen-nav" data-offset="100" style="position:relative">
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="procgen-nav" class="bg-light navbar col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul style="flex-direction:column;" class="nav side-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#landscape-generator">Wallpaper Generator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav nav-link ml-3 my-1" href="#2013">2013-2014</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav nav-link ml-3 my-1" href="#2015">2015-2016</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav nav-link ml-3 my-1" href="#2017">2017</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ideas-techniques">Ideas &amp; Techniques</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+                <h1 id="landscape-generator">Wallpaper Generator</h1>
+
+                <p>
+                    The <span class="proper-noun blue">Wallpaper Generator</span> project was created to explore
+                    different techniques of procedural generation.
+                </p>
+                <p>
+                    This project is a Java application which will procedurally generate images in various styles. As the
+                    name suggests, the images are intended to be used
+                    as the wallpaper for a computer, phone, or tablet. A settings file allows users to choose how many,
+                    and which types of images to generate
+                </p>
+                <p>
+                    Although each style is unique, they all share a foundation of several ideas and techniques. More
+                    about these ideas and techniques can be found at <a href="#ideas&amp;techniques">the bottom of this
+                        page</a>.
+                </p>
+
+                <h2 id="2013">2013-2014</h2>
+                <div class="row categories-list">
+                    <div class="col-xs-1">
+                        <a href="/procgen/landscapes">
+                            <img src="res/portfolio/landscapes/landscape_4.png" />
+                            <div>
+                                Landscapes
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-1">
+                        <a href="/procgen/triangles">
+                            <img src="res/portfolio/triangles/triangles_2.png" />
+                            <div>
+                                Triangles
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+                <h2 id="2015">2015-2016</h2>
+                <div class="row categories-list">
+                    <div class="col-xs-1">
+                        <a href="/procgen/geometric">
+                            <img src="res/portfolio/geometric/shapes_3.png" />
+                            <div>
+                                Geometric
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-1">
+                        <a href="/procgen/bezier">
+                            <img src="res/portfolio/bezier/bezier_1.png" />
+                            <div>
+                                Bezier
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-1">
+                        <a href="/procgen/hatching">
+                            <img src="res/portfolio/hatched/hatched_1.png" />
+                            <div>
+                                Hatching
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <h2 id="2017">2017</h2>
+                <div class="row categories-list">
+                    <div class="col-xs-1">
+                        <a href="/procgen/allColors">
+                            <img src="res/portfolio/all_colors/all_colors_1.png" />
+                            <div>
+                                All Colors
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-1">
+                        <a href="/procgen/tesselation">
+                            <img src="res/portfolio/tesselation/tess_5.png" />
+                            <div>
+                                Tesselation
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-1">
+                        <a href="/procgen/delaunay">
+                            <img src="res/portfolio/delaunay/delaunay_5.png" />
+                            <div>
+                                Triangulation
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-1">
+                        <a href="/procgen/watercolors">
+                            <img src="res/portfolio/watercolors/fog_2.png" />
+                            <div>
+                                Watercolors
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <h1 id="ideas-techniques">Ideas &amp; Techniques</h1>
+                <div class="row categories-list">
+                    <div class="col-xs-1">
+                        <a href="#ideas-techniques">
+                            <img src="res/portfolio/delaunay/delaunay_5.png" />
+                            <div>
+                                Randomness
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-1">
+                        <a href="#ideas-techniques">
+                            <img src="res/portfolio/tesselation/tess_5.png" />
+                            <div>
+                                Color
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-1">
+                        <a href="#ideas-techniques">
+                            <img src="res/portfolio/techniques/midpoint_displacement.png" />
+                            <div>
+                                Procedural Techniques
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<%include partials/footer%>

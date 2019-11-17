@@ -19,8 +19,8 @@ server.use(express.static(path.join(__dirname, "static/js")));
 server.get("/", GET_index);
 server.get("/design", GET_design);
 server.get("/portfolio", GET_portfolio);
-server.get("/portfolio/:page", GET_portfolio_details);
-
+server.get("/procgen", GET_procgen)
+server.get("/procgen/:page", GET_procgen_details);
 
 
 //Start server
@@ -40,9 +40,13 @@ function GET_design(req, res){
 }
 
 function GET_portfolio(req, res){
-  res.render("portfolio", {pageName: "portfolio", title:"Sam's Portfolio"});
+  res.render("portfolio", {pageName: "portfolio", title:"Sam's Portfolio Projects"});
 }
 
-function GET_portfolio_details(req, res){
-  res.render("portfolio/" + req.params.page, {pageName: "portfolio", 'portfolio_name':req.params.page, title:"Sam's Portfolio"});
+function GET_procgen(req, res){
+    res.render("procgen", {pageName: "procgen", title: "Procedural Generation Projects"});
+}
+
+function GET_procgen_details(req, res){
+  res.render("procgen/" + req.params.page, {pageName: "procgen", 'procgen_name':req.params.page, title:"Procedural Generation Projects"});
 }
