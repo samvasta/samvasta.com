@@ -17,11 +17,12 @@ server.use(express.static(path.join(__dirname, "static/js")));
 
 //Routes
 server.get("/", GET_index);
-server.get("/design", GET_design);
 server.get("/portfolio", GET_portfolio);
 server.get("/procgen", GET_procgen)
 server.get("/procgen/:page", GET_procgen_details);
 
+server.get("/tinkering", GET_tinkering)
+server.get("/art", GET_art)
 
 //Start server
 server.listen(80, function(){
@@ -35,10 +36,6 @@ function GET_index(req, res){
   res.render("index", {pageName: "home"});
 }
 
-function GET_design(req, res){
-  res.render("design", {pageName: "design"});
-}
-
 function GET_portfolio(req, res){
   res.render("portfolio", {pageName: "portfolio", title:"Sam's Portfolio Projects"});
 }
@@ -49,4 +46,12 @@ function GET_procgen(req, res){
 
 function GET_procgen_details(req, res){
   res.render("procgen/" + req.params.page, {pageName: "procgen", 'procgen_name':req.params.page, title:"Procedural Generation Projects"});
+}
+
+function GET_tinkering(req, res){
+    res.render("tinkering", {pageName: "tinkering", title: "Tinkering Projects"});
+}
+
+function GET_art(req, res){
+    res.render("art", {pageName: "art", title: "Traditional Art"});
 }
