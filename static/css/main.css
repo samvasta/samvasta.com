@@ -3,6 +3,9 @@
     --primary-mid   : #57372d;
     --primary-dark  : #2d1102; */
 
+    --selection-bg : rgb(131,131,162);
+    --selection-fg : #fee;
+
     --primary-light : rgb(80,80,111);
     --primary-mid   : rgb(55,55,87);
     --primary-dark  : rgb(17,17,45);
@@ -26,8 +29,8 @@
 }
 
 ::selection{
-  background-color: var(--blue-dark);
-  color: var(--yellow-mid);
+  background-color: var(--selection-bg);
+  color: var(--primary-foreground);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -45,7 +48,7 @@ h1 {
 
 h2 {
     border-bottom: 2px solid var(--blue-mid);
-    font-size: 2rem;
+    font-size: 2.2rem;
 }
 
 h3 {
@@ -71,6 +74,20 @@ h6 {
 h1, h2, h3, h4, h5, h6 {
     margin-left: -15px;
     margin-right: -15px;
+}
+
+
+.extended-headers > h1,
+.extended-headers > h2,
+.extended-headers > h3,
+.extended-headers > h4,
+.extended-headers > h5,
+.extended-headers > h6 {
+    margin-left: -50vw;
+    padding-left: 51vw;
+    margin-right: -50vw;
+    padding-right: 51vw;
+    z-index: -100;
 }
 
 body {

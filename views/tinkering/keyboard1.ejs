@@ -1,0 +1,193 @@
+<%include ../partials/header%>
+<link rel="stylesheet" href="/gallery.css" />
+<%include ../partials/navbar%>
+<div class="container">
+    <div class="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-xs-10 offset-xs-1 extended-headers">
+        <h1>Hand-Wired Custom Keybaord</h1>
+        <h2>Hardware</h2>
+        <h3>CAD & Prototyping</h3>
+    
+        <div class="figure figure-center figure-medium">
+            <img class="figure-content" src="/res/portfolio/tinkering/keyboard1/cad1.png" />
+            <span>LibreCAD Layout</span>
+        </div>
+        <div class="figure figure-center figure-medium">
+            <img class="figure-content" src="/res/portfolio/tinkering/keyboard1/prototype1.jpg" />
+            <span>Physical Prototype</span>
+        </div>
+        <div class="figure figure-center figure-medium">
+            <img class="figure-content" src="/res/portfolio/tinkering/keyboard1/prototype2.jpg" />
+            <span>Revised Prototype</span>
+        </div>
+        
+        <h3>Assembly</h3>
+        <div class="figure figure-center figure-medium">
+            <img class="figure-content" src="/res/portfolio/tinkering/keyboard1/LaserCutParts.jpg" />
+            <span>Top and Bottom Plate</span>
+        </div>
+        <div class="figure figure-center figure-medium">
+            <img class="figure-content" src="/res/portfolio/tinkering/keyboard1/TopPlateClearCoat.jpg" />
+            <span>Top Plate Finished</span>
+        </div>
+    
+        
+        <div class="figure figure-center figure-medium">
+            <img class="figure-content" src="/res/portfolio/tinkering/keyboard1/TestFit1.jpg" />
+            <span>Test Fit</span>
+        </div>
+        <div class="figure figure-center figure-medium">
+            <img class="figure-content" src="/res/portfolio/tinkering/keyboard1/TestFit2.jpg" />
+            <span>Test Fit</span>
+        </div>
+        
+    
+        <div class="figure figure-center figure-medium">
+            <img class="figure-content" src="/res/portfolio/tinkering/keyboard1/Assembly1.jpg" />
+            <span>Buttons and Joystick Glued</span>
+        </div>
+    
+        <div class="figure figure-center figure-medium">
+            <img class="figure-content" src="/res/portfolio/tinkering/keyboard1/Assembly2.jpg" />
+            <span>Adding Key Switches</span>
+        </div>
+        <p>
+            The rotary encoders turned out to be a big pain. Firstly, the holes in the top plate
+            were designed to fit the shaft. It turned out that the shaft of the encoder was not
+            long enough to go through both the acrylic and bamboo top plates. I ended up using a
+            set of files to expand the acrylic top plate's holes to fit the rectangular footprint
+            of the encoder.
+        </p>
+            
+        <div class="figure figure-center figure-medium">
+            <img class="figure-content" src="/res/portfolio/tinkering/keyboard1/Assembly3.jpg" />
+            <span>Rotary Encoder</span>
+        </div>
+        <p>
+            Next, the encoders had a little nub that prevented them from sitting flush against a
+            top plate. That had to be removed with my flush cutters.
+        </p>
+        
+        <p>
+            With all components in place, I could plan out how to connect everything. Note that
+            the wiring guide says that current goes into columns and comes out of rows, but that
+            was just a helpful way for me to think about it. I'll explain in more detail in the
+            <a href="#switch-matrix">switch matrix</a> section below.
+        </p>
+        <div class="figure figure-center figure-medium">
+            <img class="figure-content" src="/res/portfolio/tinkering/keyboard1/wiring_guide.png" />
+            <span>Wiring Plans</span>
+        </div>
+        <p>
+            Not shown in the plans are the connections from the Teensy to the rows and columns
+            (you can see them marked with colorful dots).
+        </p>
+        
+        <div class="figure figure-center figure-medium">
+            <img class="figure-content" src="/res/portfolio/tinkering/keyboard1/Assembly4.jpg" />
+            <span>Wiring Complete</span>
+        </div>
+        
+        <h2>Software</h2>
+    
+        <h3 id="switch-matrix">Switch Matrix</h3>
+    
+        <h3>Display</h3>
+    
+        <h3>Encoders & Gray Code</h3>
+    
+        <p>
+            Most rotary encoders use <a href="https://en.wikipedia.org/wiki/Gray_code">gray code</a> to
+            communicate when and in which direction they have been rotated. Gray code is an ordered sequence
+            of codes (usually represented as binary) where each code differs from its immediate neighbors by
+            only 1 bit.
+        </p>
+        <p>
+            StackExchange user Spehro Pefhany wrote a great explanation of
+            <a href="https://electronics.stackexchange.com/a/464420">why gray code is better than binary.</a>
+            Essentially, due to mechanical imperfections it is nearly impossible to change multiple bits at the
+            same time. If the encoder used binary, the logic system may not be able to accommodate the "in-between"
+            states when multiple bits are changing. Gray code is preferable because only one bit changes between each
+            state, so each bit is guaranteed to change at the same time.
+        </p>
+        <p>
+            So gray code is awesome because it is inherently robust. The disadvantage is that programming
+            a micro-controller (MCU), or reading code that other people have programmed to interpret it,
+            is way more work than it ought to be. And indeed, there is a standard function that most
+            people just copy/paste.
+        </p>
+        <!--TODO: snippet of gray code code-->
+        <p>
+            I wrote the firmware from scratch and I wanted to really understand how the code works,
+            so I had the pleasure of writing my own gray code code — that is — code for interpreting gray code.
+        </p>
+    
+        <!--TODO: Gray code explanation-->
+    
+        <!--
+        Encoder logic description (because it took me a while to figure out)
+    
+        -------------------------------------------------------------------------------
+        COUNTER-CLOCKWISE diagram
+        
+        Rule 1.a) When A changes, it is equal to B
+        Rule 1.b) When B changes, it is opposite of A
+        
+        A
+                ________      ________      ________
+                |      |      |      |      |      |
+                |      |      |      |      |      |
+        ______|      |______|      |______|      |
+        
+        
+        B
+            ________      ________      ________
+            |      |      |      |      |      |
+            |      |      |      |      |      |
+        ___|      |______|      |______|      |___
+        
+        
+        -------------------------------------------------------------------------------
+        CLOCKWISE diagram
+        
+        Rule 2.a) When A changes, it is opposite of B
+        Rule 2.b) When B changes, it is equal to A
+        
+        A
+                ________      ________      ________
+                |      |      |      |      |      |
+                |      |      |      |      |      |
+        ______|      |______|      |______|      |
+        
+        
+        B
+        ____      ________      ________      ______
+            |      |      |      |      |      |
+            |      |      |      |      |      |
+            |______|      |______|      |______|
+        
+        -------------------------------------------------------------------------------
+        
+        
+            IDX         OLD AB        NEW AB        enc_states    DESCRIPTION                                 REASON FOR ENC_STATE VALUE
+            0  (0x0)    LL            LL             0            (no change from old state, do nothing)
+            1  (0x1)    LL            LH            -1            B changes to opposite of A                  Rule 1.b    (CCW)
+            2  (0x2)    LL            HL             1            A changes to opposite of B                  Rule 2.a    (CW)
+            3  (0x3)    LL            HH             0            (Both change, cannot determine)
+            4  (0x4)    LH            LL             1            B changes to equal A                        Rule 2.b    (CW)
+            5  (0x5)    LH            LH             0            (no change from old state, do nothing)
+            6  (0x6)    LH            HL             0            (Both change, cannot determine)
+            7  (0x7)    LH            HH            -1            A changes to equal B                        Rule 1.a    (CCW)
+            8  (0x8)    HL            LL            -1            A changes to equal B                        Rule 1.a    (CCW)
+            9  (0x9)    HL            LH             0            (Both change, cannot determine)
+            10 (0xA)    HL            HL             0            (no change from old state, do nothing)
+            11 (0xB)    HL            HH             1            B changes to equal A                        Rule 2.b    (CW)
+            12 (0xC)    HH            LL             0            (Both change, cannot determine)
+            13 (0xD)    HH            LH             1            A changes to opposite of B                  Rule 2.a    (CW)
+            14 (0xE)    HH            HL            -1            B changes to opposite of A                  Rule 1.b    (CCW)
+            15 (0xF)    HH            HH             0            (no change from old state, do nothing)
+        
+        Interesting to note: vertical symmetry of the table in the "REASON..."" column
+        -->
+    </div>
+</div>
+<%include ../partials/footer%>

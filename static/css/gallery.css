@@ -34,6 +34,19 @@
     margin-bottom: 1em;
 }
 
+
+.figure-medium {
+    width: 80%;
+    height: auto;
+}
+
+.figure-medium > .figure-content {
+    border: 2px solid var(--red-dark);
+    width: 100%;
+    height: auto;
+    max-height: 999vmin;
+}
+
 .figure-center {
   width: 100%;
 }
