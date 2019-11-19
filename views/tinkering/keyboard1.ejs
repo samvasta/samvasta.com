@@ -121,6 +121,230 @@
             so I had the pleasure of writing my own gray code code — that is — code for interpreting gray code.
         </p>
     
+
+        <pre><code class="c">
+void scan_encoders(){
+    for(int i = 0; i < NUMBER_OF_ENCODERS; i++){
+        //Prev state is still in the left-most 2 bits. Move it over 2 to make room for the next state
+        last_encoder_states[i] <<= 2;
+
+        //Read pin A and B into the 2 left-most bits where B is in the left-most bit and A is in the second-to-left-most bit
+        last_encoder_states[i] |= ((read_pin(encoders_pin_a[i]) << 0) | (read_pin(encoders_pin_b[i]) << 1));
+
+        //look up value using state table (see giant comment above)
+        encoder_values[i] += enc_states[last_encoder_states[i] & 0xf];
+
+        if(encoder_values[i] >= ENCODER_RESOLUTION){
+            on_encoder(i, true);    //Encoder rotated clockwise
+        }
+        else if(encoder_values[i] <= -ENCODER_RESOLUTION){
+            on_encoder(i, false);   //Encoder rotated counter-clockwise
+        }
+
+        encoder_values[i] %= ENCODER_RESOLUTION;
+    }
+}
+        </code></pre>
+
+        <pre><code class="html">
+    Encoder logic description (because it took me a while to figure out)
+
+-------------------------------------------------------------------------------
+COUNTER-CLOCKWISE diagram
+
+Rule 1.a) When A changes, it is equal to B
+Rule 1.b) When B changes, it is opposite of A
+
+A
+        ________      ________      ________
+        |      |      |      |      |      |
+        |      |      |      |      |      |
+______|      |______|      |______|      |
+
+
+B
+    ________      ________      ________
+    |      |      |      |      |      |
+    |      |      |      |      |      |
+___|      |______|      |______|      |___
+
+
+-------------------------------------------------------------------------------
+CLOCKWISE diagram
+
+Rule 2.a) When A changes, it is opposite of B
+Rule 2.b) When B changes, it is equal to A
+
+A
+        ________      ________      ________
+        |      |      |      |      |      |
+        |      |      |      |      |      |
+______|      |______|      |______|      |
+
+
+B
+____      ________      ________      ______
+    |      |      |      |      |      |
+    |      |      |      |      |      |
+    |______|      |______|      |______|
+
+-------------------------------------------------------------------------------
+
+
+    IDX         OLD AB        NEW AB        enc_states    DESCRIPTION                                 REASON FOR ENC_STATE VALUE
+    0  (0x0)    LL            LL             0            (no change from old state, do nothing)
+    1  (0x1)    LL            LH            -1            B changes to opposite of A                  Rule 1.b    (CCW)
+    2  (0x2)    LL            HL             1            A changes to opposite of B                  Rule 2.a    (CW)
+    3  (0x3)    LL            HH             0            (Both change, cannot determine)
+    4  (0x4)    LH            LL             1            B changes to equal A                        Rule 2.b    (CW)
+    5  (0x5)    LH            LH             0            (no change from old state, do nothing)
+    6  (0x6)    LH            HL             0            (Both change, cannot determine)
+    7  (0x7)    LH            HH            -1            A changes to equal B                        Rule 1.a    (CCW)
+    8  (0x8)    HL            LL            -1            A changes to equal B                        Rule 1.a    (CCW)
+    9  (0x9)    HL            LH             0            (Both change, cannot determine)
+    10 (0xA)    HL            HL             0            (no change from old state, do nothing)
+    11 (0xB)    HL            HH             1            B changes to equal A                        Rule 2.b    (CW)
+    12 (0xC)    HH            LL             0            (Both change, cannot determine)
+    13 (0xD)    HH            LH             1            A changes to opposite of B                  Rule 2.a    (CW)
+    14 (0xE)    HH            HL            -1            B changes to opposite of A                  Rule 1.b    (CCW)
+    15 (0xF)    HH            HH             0            (no change from old state, do nothing)
+
+Interesting to note: vertical symmetry of the table in the "REASON..."" column
+        </code></pre>
+        <table>
+            <thead>
+                <tr>
+                    <th>IDX</th>
+                    <th>OLD AB</th>
+                    <th>NEW AB</th>
+                    <th>enc_states</th>
+                    <th>DESCRIPTION</th>
+                    <th>REASON FOR ENC_STATE VALUE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0  (00 00)</td>
+                    <td>LL</td>
+                    <td>LL</td>
+                    <td>0</td>
+                    <td>(no change from old state, do nothing)</td>
+                </tr>
+                <tr>
+                    <td>1  (00 01)</td>
+                    <td>LL</td>
+                    <td>LH</td>
+                    <td>-1</td>
+                    <td>B changes to opposite of A</td>
+                    <td>Rule 1.b (CCW)</td>
+                </tr>
+                <tr>
+                    <td>2  (00 10)</td>
+                    <td>LL</td>
+                    <td>HL</td>
+                    <td>1</td>
+                    <td>A changes to opposite of B</td>
+                    <td>Rule 2.a (CW)</td>
+                </tr>
+                <tr>
+                    <td>3  (00 11)</td>
+                    <td>LL</td>
+                    <td>HH</td>
+                    <td>0</td>
+                    <td>(Both change, cannot determine)</td>
+                </tr>
+                <tr>
+                    <td>4  (01 00)</td>
+                    <td>LH</td>
+                    <td>LL</td>
+                    <td>1</td>
+                    <td>B changes to equal A</td>
+                    <td>Rule 2.b (CW)</td>
+                </tr>
+                <tr>
+                    <td>5  (01 01)</td>
+                    <td>LH</td>
+                    <td>LH</td>
+                    <td>0</td>
+                    <td>(no change from old state, do nothing)</td>
+                </tr>
+                <tr>
+                    <td>6  (01 10)</td>
+                    <td>LH</td>
+                    <td>HL</td>
+                    <td>0</td>
+                    <td>(Both change, cannot determine)</td>
+                </tr>
+                <tr>
+                    <td>7  (01 11)</td>
+                    <td>LH</td>
+                    <td>HH</td>
+                    <td>-1</td>
+                    <td>A changes to equal B</td>
+                    <td>Rule 1.a (CCW)</td>
+                </tr>
+                <tr>
+                    <td>8  (10 00)</td>
+                    <td>HL</td>
+                    <td>LL</td>
+                    <td>-1</td>
+                    <td>A changes to equal B</td>
+                    <td>Rule 1.a (CCW)</td>
+                </tr>
+                <tr>
+                    <td>9  (10 01)</td>
+                    <td>HL</td>
+                    <td>LH</td>
+                    <td>0</td>
+                    <td>(Both change, cannot determine)</td>
+                </tr>
+                <tr>
+                    <td>10 (10 10)</td>
+                    <td>HL</td>
+                    <td>HL</td>
+                    <td>0</td>
+                    <td>(no change from old state, do nothing)</td>
+                </tr>
+                <tr>
+                    <td>11 (10 11)</td>
+                    <td>HL</td>
+                    <td>HH</td>
+                    <td>1</td>
+                    <td>B changes to equal A</td>
+                    <td>Rule 2.b (CW)</td>
+                </tr>
+                <tr>
+                    <td>12 (11 00)</td>
+                    <td>HH</td>
+                    <td>LL</td>
+                    <td>0</td>
+                    <td>(Both change, cannot determine)</td>
+                </tr>
+                <tr>
+                    <td>13 (11 01)</td>
+                    <td>HH</td>
+                    <td>LH</td>
+                    <td>1</td>
+                    <td>A changes to opposite of B</td>
+                    <td>Rule 2.a (CW)</td>
+                </tr>
+                <tr>
+                    <td>14 (11 10)</td>
+                    <td>HH</td>
+                    <td>HL</td>
+                    <td>-1</td>
+                    <td>B changes to opposite of A</td>
+                    <td>Rule 1.b (CCW)</td>
+                </tr>
+                <tr>
+                    <td>15 (11 11)</td>
+                    <td>HH</td>
+                    <td>HH</td>
+                    <td>0</td>
+                    <td>(no change from old state, do nothing)</td>
+                </tr>
+            </tbody>
+        </table>
         <!--TODO: Gray code explanation-->
     
         <!--
@@ -133,16 +357,16 @@
         Rule 1.b) When B changes, it is opposite of A
         
         A
-                ________      ________      ________
-                |      |      |      |      |      |
-                |      |      |      |      |      |
+              ________      ________      ________
+              |      |      |      |      |      |
+              |      |      |      |      |      |
         ______|      |______|      |______|      |
         
         
         B
-            ________      ________      ________
-            |      |      |      |      |      |
-            |      |      |      |      |      |
+           ________      ________      ________
+           |      |      |      |      |      |
+           |      |      |      |      |      |
         ___|      |______|      |______|      |___
         
         
@@ -153,9 +377,9 @@
         Rule 2.b) When B changes, it is equal to A
         
         A
-                ________      ________      ________
-                |      |      |      |      |      |
-                |      |      |      |      |      |
+              ________      ________      ________
+              |      |      |      |      |      |
+              |      |      |      |      |      |
         ______|      |______|      |______|      |
         
         

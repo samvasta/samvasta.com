@@ -10,6 +10,7 @@
     "body-parser": "*",
     "ejs": "^2.5.7",
     "express": "*",
+    "highlightjs": "^9.16.2",
     "nodemon": "^1.19.4"
   },
   "author": "Sam Vasta",

@@ -161,6 +161,11 @@ a.navbar-brand:visited {
     color: var(--yellow-light);
 }
 
+a.navbar-social {
+    float:right;
+    margin: 0.5em;
+    color: var(--yellow-dark)
+}
 
 .categories-list {
     list-style: none;

@@ -26,6 +26,8 @@ server.get("/tinkering", GET_tinkering)
 server.get("/tinkering/:page", GET_tinkering_details);
 server.get("/art", GET_art);
 
+server.get("/resume", GET_resume);
+
 //Start server
 server.listen(80, '0.0.0.0', function(){
     console.log("server started on port 80");
@@ -60,4 +62,8 @@ function GET_tinkering_details(req, res){
 
 function GET_art(req, res){
     res.render("art", {pageName: "art", title: "Traditional Art"});
+}
+
+function GET_resume(req, res) {
+    res.render("resume", {pageName: "resume", title: "Sam Vasta's Resume"});
 }
