@@ -113,16 +113,35 @@
             So gray code is awesome because it is inherently robust. The disadvantage is that programming
             a micro-controller (MCU), or reading code that other people have programmed to interpret it,
             is way more work than it ought to be. And indeed, there is a standard function that most
-            people just copy/paste.
+            people just copy/paste. Here it is:
         </p>
+        
+        <pre><code class="cpp">
+void encoder_read(void) {
+    for (int i = 0; i < NUMBER_OF_ENCODERS; i++) {
+        encoder_state[i] <<= 2;
+        encoder_state[i] |= (readPin(encoders_pad_a[i]) << 0) | (readPin(encoders_pad_b[i]) << 1);
+        encoder_value[i] += encoder_LUT[encoder_state[i] & 0xF];
+        if (encoder_value[i] >= ENCODER_RESOLUTION) {
+            encoder_update_kb(i, COUNTRECLOCKWISE);
+        }
+        if (encoder_value[i] <= -ENCODER_RESOLUTION) { // direction is arbitrary here, but this clockwise
+            encoder_update_kb(i, CLOCKWISE);
+        }
+        encoder_value[i] %= ENCODER_RESOLUTION;
+    }
+}
+        </code></pre>
+
         <!--TODO: snippet of gray code code-->
         <p>
-            I wrote the firmware from scratch and I wanted to really understand how the code works,
-            so I had the pleasure of writing my own gray code code — that is — code for interpreting gray code.
+            Gross. But I had to write the firmware from scratch and I wanted to really understand how the code works,
+            so I had the pleasure of trying to figure out what was going on. I ended up doing some light refactoring,
+            but at the end of the day, this code needs to be as fast as possible, so making it any more readable would
+            probably make it less efficient. Here is what I did:
         </p>
-    
 
-        <pre><code class="c">
+        <pre><code class="cpp">           
 void scan_encoders(){
     for(int i = 0; i < NUMBER_OF_ENCODERS; i++){
         //Prev state is still in the left-most 2 bits. Move it over 2 to make room for the next state
@@ -131,7 +150,7 @@ void scan_encoders(){
         //Read pin A and B into the 2 left-most bits where B is in the left-most bit and A is in the second-to-left-most bit
         last_encoder_states[i] |= ((read_pin(encoders_pin_a[i]) << 0) | (read_pin(encoders_pin_b[i]) << 1));
 
-        //look up value using state table (see giant comment above)
+        //look up value using state table
         encoder_values[i] += enc_states[last_encoder_states[i] & 0xf];
 
         if(encoder_values[i] >= ENCODER_RESOLUTION){
@@ -143,208 +162,273 @@ void scan_encoders(){
 
         encoder_values[i] %= ENCODER_RESOLUTION;
     }
-}
+}    
         </code></pre>
 
-        <pre><code class="html">
-    Encoder logic description (because it took me a while to figure out)
+        <p>
+            The first step to understanding this is to grasp how the states work. Each encoder has two pads (or pins,
+            depending on how you think about the circuit), so the state can be stored as 2 bits (AB). However, we want to
+            know when the state changes, so we need to keep track of the previous state. We're up to 4 bits total (ABAB).
+            The first two bits are the previous state, and the final two are the current state. Now the first line
+            makes sense:
+        </p>
 
--------------------------------------------------------------------------------
+        <pre><code class="cpp">
+//Prev state is still in the left-most 2 bits. Move it over 2 to make room for the next state
+last_encoder_states[i] <<= 2;
+        </code></pre>
+
+        <p>
+            But the real work in this function is done on this line:
+        </p>
+
+        <pre><code class="cpp">
+//look up value using state table
+encoder_values[i] += enc_states[last_encoder_states[i] & 0xf];
+        </code></pre>
+    
+        <p>
+            "enc_states" is a lookup table that translates the gray code into a
+            clockwise (1), counter-clockwise (-1), or no-change (0) value. The lookup
+            table is constructed using a few rules:
+            <br/>
+            <br/>
+            Rule 1: The encoder must have been rotated counter-clockwise if...
+            <ol type="a">
+                <li>A has change and it is equal to B, or</li>
+                <li>B has changed and it is opposite of A</li>
+            </ol>
+            <br/>
+            Rule 2: The encoder must have been rotated clockwise if...
+            <ol type="a">
+                <li>A has changed and it is opposite of B, or</li>
+                <li>B has changed and it is equal to A</li>
+            </ol>
+
+            These rules may be more obvious next to diagrams of A and B while the encoder is rotating.
+            Remember that the encoders were designed with these rules as part of the specification.
+        </p>
+        <pre><code class="plaintext">
 COUNTER-CLOCKWISE diagram
+
+A
+      ________      ________      ________
+      |      |      |      |      |      |
+      |      |      |      |      |      |
+______|      |______|      |______|      |
+---------------------------------------------------> time
+
+B
+   ________      ________      ________
+   |      |      |      |      |      |
+   |      |      |      |      |      |
+___|      |______|      |______|      |___
+---------------------------------------------------> time
 
 Rule 1.a) When A changes, it is equal to B
 Rule 1.b) When B changes, it is opposite of A
-
-A
-        ________      ________      ________
-        |      |      |      |      |      |
-        |      |      |      |      |      |
-______|      |______|      |______|      |
-
-
-B
-    ________      ________      ________
-    |      |      |      |      |      |
-    |      |      |      |      |      |
-___|      |______|      |______|      |___
-
-
--------------------------------------------------------------------------------
+        </code></pre>
+        <pre><code class="plaintext">
 CLOCKWISE diagram
 
-Rule 2.a) When A changes, it is opposite of B
-Rule 2.b) When B changes, it is equal to A
-
 A
-        ________      ________      ________
-        |      |      |      |      |      |
-        |      |      |      |      |      |
+      ________      ________      ________
+      |      |      |      |      |      |
+      |      |      |      |      |      |
 ______|      |______|      |______|      |
+---------------------------------------------------> time
 
 
 B
 ____      ________      ________      ______
-    |      |      |      |      |      |
-    |      |      |      |      |      |
-    |______|      |______|      |______|
+   |      |      |      |      |      |
+   |      |      |      |      |      |
+   |______|      |______|      |______|
+---------------------------------------------------> time
 
--------------------------------------------------------------------------------
-
-
-    IDX         OLD AB        NEW AB        enc_states    DESCRIPTION                                 REASON FOR ENC_STATE VALUE
-    0  (0x0)    LL            LL             0            (no change from old state, do nothing)
-    1  (0x1)    LL            LH            -1            B changes to opposite of A                  Rule 1.b    (CCW)
-    2  (0x2)    LL            HL             1            A changes to opposite of B                  Rule 2.a    (CW)
-    3  (0x3)    LL            HH             0            (Both change, cannot determine)
-    4  (0x4)    LH            LL             1            B changes to equal A                        Rule 2.b    (CW)
-    5  (0x5)    LH            LH             0            (no change from old state, do nothing)
-    6  (0x6)    LH            HL             0            (Both change, cannot determine)
-    7  (0x7)    LH            HH            -1            A changes to equal B                        Rule 1.a    (CCW)
-    8  (0x8)    HL            LL            -1            A changes to equal B                        Rule 1.a    (CCW)
-    9  (0x9)    HL            LH             0            (Both change, cannot determine)
-    10 (0xA)    HL            HL             0            (no change from old state, do nothing)
-    11 (0xB)    HL            HH             1            B changes to equal A                        Rule 2.b    (CW)
-    12 (0xC)    HH            LL             0            (Both change, cannot determine)
-    13 (0xD)    HH            LH             1            A changes to opposite of B                  Rule 2.a    (CW)
-    14 (0xE)    HH            HL            -1            B changes to opposite of A                  Rule 1.b    (CCW)
-    15 (0xF)    HH            HH             0            (no change from old state, do nothing)
-
-Interesting to note: vertical symmetry of the table in the "REASON..."" column
+Rule 2.a) When A changes, it is opposite of B
+Rule 2.b) When B changes, it is equal to A
         </code></pre>
-        <table>
+    
+        <p>
+            On to building the lookup table. Each index is a 4-bit integer and can be split into
+            a previous state and current state (recall the ABAB encoding from before). Then all
+            we have to do is figure out which pads changed from the previous state to the current,
+            and using our rules we can determine if the change was a clockwise or counter-clockwise
+            rotation. Here's the full table, annotated with what changed and which rule applies:
+        </p>
+        
+        <table class="minimalistBlack">
             <thead>
                 <tr>
-                    <th>IDX</th>
-                    <th>OLD AB</th>
-                    <th>NEW AB</th>
+                    <th>Previous AB</th>
+                    <th>Current AB</th>
+                    <th>Index</th>
                     <th>enc_states</th>
-                    <th>DESCRIPTION</th>
-                    <th>REASON FOR ENC_STATE VALUE</th>
+                    <th>Description</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
+                    <td>LL</td>
+                    <td>LL</td>
                     <td>0  (00 00)</td>
-                    <td>LL</td>
-                    <td>LL</td>
                     <td>0</td>
-                    <td>(no change from old state, do nothing)</td>
+                    <td>(no change from old state)</td>
+                    <td></td>
                 </tr>
                 <tr>
+                    <td>LL</td>
+                    <td>LH</td>
                     <td>1  (00 01)</td>
-                    <td>LL</td>
-                    <td>LH</td>
                     <td>-1</td>
                     <td>B changes to opposite of A</td>
                     <td>Rule 1.b (CCW)</td>
                 </tr>
                 <tr>
+                    <td>LL</td>
+                    <td>HL</td>
                     <td>2  (00 10)</td>
-                    <td>LL</td>
-                    <td>HL</td>
                     <td>1</td>
                     <td>A changes to opposite of B</td>
                     <td>Rule 2.a (CW)</td>
                 </tr>
                 <tr>
+                    <td>LL</td>
+                    <td>HH</td>
                     <td>3  (00 11)</td>
-                    <td>LL</td>
-                    <td>HH</td>
                     <td>0</td>
                     <td>(Both change, cannot determine)</td>
+                    <td>Invalid gray code</td>
                 </tr>
                 <tr>
+                    <td>LH</td>
+                    <td>LL</td>
                     <td>4  (01 00)</td>
-                    <td>LH</td>
-                    <td>LL</td>
                     <td>1</td>
                     <td>B changes to equal A</td>
                     <td>Rule 2.b (CW)</td>
                 </tr>
                 <tr>
+                    <td>LH</td>
+                    <td>LH</td>
                     <td>5  (01 01)</td>
-                    <td>LH</td>
-                    <td>LH</td>
                     <td>0</td>
-                    <td>(no change from old state, do nothing)</td>
+                    <td>(no change from old state)</td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td>6  (01 10)</td>
                     <td>LH</td>
                     <td>HL</td>
+                    <td>6  (01 10)</td>
                     <td>0</td>
                     <td>(Both change, cannot determine)</td>
+                    <td>Invalid gray code</td>
                 </tr>
                 <tr>
-                    <td>7  (01 11)</td>
                     <td>LH</td>
                     <td>HH</td>
+                    <td>7  (01 11)</td>
                     <td>-1</td>
                     <td>A changes to equal B</td>
                     <td>Rule 1.a (CCW)</td>
                 </tr>
                 <tr>
-                    <td>8  (10 00)</td>
                     <td>HL</td>
                     <td>LL</td>
+                    <td>8  (10 00)</td>
                     <td>-1</td>
                     <td>A changes to equal B</td>
                     <td>Rule 1.a (CCW)</td>
                 </tr>
                 <tr>
-                    <td>9  (10 01)</td>
                     <td>HL</td>
                     <td>LH</td>
+                    <td>9  (10 01)</td>
                     <td>0</td>
                     <td>(Both change, cannot determine)</td>
+                    <td>Invalid gray code</td>
                 </tr>
                 <tr>
+                    <td>HL</td>
+                    <td>HL</td>
                     <td>10 (10 10)</td>
-                    <td>HL</td>
-                    <td>HL</td>
                     <td>0</td>
-                    <td>(no change from old state, do nothing)</td>
+                    <td>(no change from old state)</td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td>11 (10 11)</td>
                     <td>HL</td>
                     <td>HH</td>
+                    <td>11 (10 11)</td>
                     <td>1</td>
                     <td>B changes to equal A</td>
                     <td>Rule 2.b (CW)</td>
                 </tr>
                 <tr>
-                    <td>12 (11 00)</td>
                     <td>HH</td>
                     <td>LL</td>
+                    <td>12 (11 00)</td>
                     <td>0</td>
                     <td>(Both change, cannot determine)</td>
+                    <td>Invalid gray code</td>
                 </tr>
                 <tr>
-                    <td>13 (11 01)</td>
                     <td>HH</td>
                     <td>LH</td>
+                    <td>13 (11 01)</td>
                     <td>1</td>
                     <td>A changes to opposite of B</td>
                     <td>Rule 2.a (CW)</td>
                 </tr>
                 <tr>
-                    <td>14 (11 10)</td>
                     <td>HH</td>
                     <td>HL</td>
+                    <td>14 (11 10)</td>
                     <td>-1</td>
                     <td>B changes to opposite of A</td>
                     <td>Rule 1.b (CCW)</td>
                 </tr>
                 <tr>
+                    <td>HH</td>
+                    <td>HH</td>
                     <td>15 (11 11)</td>
-                    <td>HH</td>
-                    <td>HH</td>
                     <td>0</td>
-                    <td>(no change from old state, do nothing)</td>
+                    <td>(no change from old state)</td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>
+
+
+        <p>
+            So after all of that, the rest is easy. We now know the direction of rotation,
+            so we can call some other function accordingly.
+        </p>
+
+        <pre><code class="cpp">
+//look up value using state table
+encoder_values[i] += enc_states[last_encoder_states[i] & 0xf];
+
+if(encoder_values[i] >= ENCODER_RESOLUTION){
+    on_encoder(i, true);    //Encoder rotated clockwise
+}
+else if(encoder_values[i] <= -ENCODER_RESOLUTION){
+    on_encoder(i, false);   //Encoder rotated counter-clockwise
+}
+
+encoder_values[i] %= ENCODER_RESOLUTION;
+        </code></pre>
+        
+        <p>
+            The ENCODER_RESOLUTION is used to slow down and sort of "smooth" the result.
+            It is usually set to 2 or 4.
+            If we read one clockwise rotation, did it really rotate or did the encoder
+            just get nudged a little bit? If we read four rotations, we can be reasonably
+            sure that the encoder did actually rotate.
+             
+        </p>
         <!--TODO: Gray code explanation-->
     
         <!--
