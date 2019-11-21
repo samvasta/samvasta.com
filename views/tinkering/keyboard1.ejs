@@ -133,7 +133,6 @@ void encoder_read(void) {
 }
         </code></pre>
 
-        <!--TODO: snippet of gray code code-->
         <p>
             Gross. But I had to write the firmware from scratch and I wanted to really understand how the code works,
             so I had the pleasure of trying to figure out what was going on. I ended up doing some light refactoring,
@@ -429,73 +428,6 @@ encoder_values[i] %= ENCODER_RESOLUTION;
             sure that the encoder did actually rotate.
              
         </p>
-        <!--TODO: Gray code explanation-->
-    
-        <!--
-        Encoder logic description (because it took me a while to figure out)
-    
-        -------------------------------------------------------------------------------
-        COUNTER-CLOCKWISE diagram
-        
-        Rule 1.a) When A changes, it is equal to B
-        Rule 1.b) When B changes, it is opposite of A
-        
-        A
-              ________      ________      ________
-              |      |      |      |      |      |
-              |      |      |      |      |      |
-        ______|      |______|      |______|      |
-        
-        
-        B
-           ________      ________      ________
-           |      |      |      |      |      |
-           |      |      |      |      |      |
-        ___|      |______|      |______|      |___
-        
-        
-        -------------------------------------------------------------------------------
-        CLOCKWISE diagram
-        
-        Rule 2.a) When A changes, it is opposite of B
-        Rule 2.b) When B changes, it is equal to A
-        
-        A
-              ________      ________      ________
-              |      |      |      |      |      |
-              |      |      |      |      |      |
-        ______|      |______|      |______|      |
-        
-        
-        B
-        ____      ________      ________      ______
-            |      |      |      |      |      |
-            |      |      |      |      |      |
-            |______|      |______|      |______|
-        
-        -------------------------------------------------------------------------------
-        
-        
-            IDX         OLD AB        NEW AB        enc_states    DESCRIPTION                                 REASON FOR ENC_STATE VALUE
-            0  (0x0)    LL            LL             0            (no change from old state, do nothing)
-            1  (0x1)    LL            LH            -1            B changes to opposite of A                  Rule 1.b    (CCW)
-            2  (0x2)    LL            HL             1            A changes to opposite of B                  Rule 2.a    (CW)
-            3  (0x3)    LL            HH             0            (Both change, cannot determine)
-            4  (0x4)    LH            LL             1            B changes to equal A                        Rule 2.b    (CW)
-            5  (0x5)    LH            LH             0            (no change from old state, do nothing)
-            6  (0x6)    LH            HL             0            (Both change, cannot determine)
-            7  (0x7)    LH            HH            -1            A changes to equal B                        Rule 1.a    (CCW)
-            8  (0x8)    HL            LL            -1            A changes to equal B                        Rule 1.a    (CCW)
-            9  (0x9)    HL            LH             0            (Both change, cannot determine)
-            10 (0xA)    HL            HL             0            (no change from old state, do nothing)
-            11 (0xB)    HL            HH             1            B changes to equal A                        Rule 2.b    (CW)
-            12 (0xC)    HH            LL             0            (Both change, cannot determine)
-            13 (0xD)    HH            LH             1            A changes to opposite of B                  Rule 2.a    (CW)
-            14 (0xE)    HH            HL            -1            B changes to opposite of A                  Rule 1.b    (CCW)
-            15 (0xF)    HH            HH             0            (no change from old state, do nothing)
-        
-        Interesting to note: vertical symmetry of the table in the "REASON..."" column
-        -->
     </div>
 </div>
 <%include ../partials/footer%>
