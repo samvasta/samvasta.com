@@ -1,12 +1,11 @@
 .dosis {
     font-family: 'Dosis', sans-serif;
-    font-size: 4em;
     font-weight: 800;
+    font-size: 10vmin;
 }
 
 .dosis > div {
     align-content: stretch;
-    text-align: right;
     background-color: var(--blue-mid);
     padding-left: 0.5em;
     padding-right: 0.5em;
@@ -15,8 +14,8 @@
 .bebas {
     font-family: 'Nunito', sans-serif;
     font-weight: 300;
-    font-size: 3em;
     vertical-align: bottom;
+    font-size: 5vmin;
 }
 
 .bebas > div {
@@ -25,11 +24,13 @@
 
 .row {
     background-color: var(--primary-light);
-    padding: 5em;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
 }
 
 body {
     background-color: var(--primary-dark);
+    padding-top: 1rem;
 }
 
 span {
@@ -71,11 +72,60 @@ footer > a {
 
 .description span {
     overflow: hidden;
-    opacity: 0;
     position: inherit;
     display: grid;
     grid-column: 1;
     grid-row: 1;
+}
+
+@media (min-height: 300px){
+    body {
+        padding-top: 0;
+    }
+}
+
+@media (min-height: 400px) {
+    .row {
+        padding-top: 5em;
+        padding-bottom: 5em;
+    }
+}
+
+@media (min-width: 400px) {
+    .dosis {
+        font-size: 10vmin;
+    }
+    .bebas {
+        font-size: 5vmin;
+    }
+}
+
+@media (min-width: 800px) {
+    .dosis {
+        font-size: 8vw;
+    }
+    .bebas {
+        font-size: 4vw;
+    }
+}
+
+@media (min-width: 1200px){
+    .dosis {
+        font-size: 4em;
+    }
+
+    .dosis > div {
+        text-align: right;
+    }
+    
+    .bebas {
+        font-size: 3em;
+    }
+
+    .row {
+        padding: 5em;
+    }
+    
 }
 
 .description span:not(:last-child) {
@@ -84,6 +134,54 @@ footer > a {
 
 .description span:last-child {
     animation: animatelast 0.25s linear 1 forwards;
+}
+
+
+.description span {
+    opacity: 0;
+}
+
+#desc-develop span:nth-child(1) {
+    animation-delay: 0s;
+}
+#desc-develop span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+#desc-develop span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+#desc-develop span:nth-child(4) {
+    animation-delay: 0.6s;
+}
+#desc-develop span:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+#desc-tinker span:nth-child(1) {
+    animation-delay: 1.0s;
+}
+#desc-tinker span:nth-child(2) {
+    animation-delay: 1.2s;
+}
+#desc-tinker span:nth-child(3) {
+    animation-delay: 1.4s;
+}
+
+#desc-art span:nth-child(1) {
+    animation-delay: 1.6s;
+}
+#desc-art span:nth-child(2) {
+    animation-delay: 1.8s;
+}
+#desc-art span:nth-child(3) {
+    animation-delay: 2.0s;
+}
+#desc-art span:nth-child(4) {
+    animation-delay: 2.2s;
+}
+
+#desc-name span:nth-child(1) {
+    animation-delay: 2.4s;
 }
 
 @keyframes animate {
@@ -131,47 +229,4 @@ footer > a {
         opacity: 1;
         transform: translateY(0px);
     }
-}
-
-#desc-develop span:nth-child(1) {
-    animation-delay: 0.5s;
-}
-#desc-develop span:nth-child(2) {
-    animation-delay: 0.7s;
-}
-#desc-develop span:nth-child(3) {
-    animation-delay: 0.9s;
-}
-#desc-develop span:nth-child(4) {
-    animation-delay: 1.1s;
-}
-#desc-develop span:nth-child(5) {
-    animation-delay: 1.3s;
-}
-
-#desc-tinker span:nth-child(1) {
-    animation-delay: 1.5s;
-}
-#desc-tinker span:nth-child(2) {
-    animation-delay: 1.7s;
-}
-#desc-tinker span:nth-child(3) {
-    animation-delay: 1.9s;
-}
-
-#desc-art span:nth-child(1) {
-    animation-delay: 2.1s;
-}
-#desc-art span:nth-child(2) {
-    animation-delay: 2.3s;
-}
-#desc-art span:nth-child(3) {
-    animation-delay: 2.5s;
-}
-#desc-art span:nth-child(4) {
-    animation-delay: 2.7s;
-}
-
-#desc-name span:nth-child(1) {
-    animation-delay: 2.9s;
 }
