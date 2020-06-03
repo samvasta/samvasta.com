@@ -29,8 +29,10 @@ server.get("/art", GET_art);
 server.get("/resume", GET_resume);
 
 //Start server
-server.listen(80, '0.0.0.0', function(){
-    console.log("server started on port 80");
+
+const PORT = process.env.PORT || 8080;
+server.listen(PORT, '0.0.0.0', function(){
+    console.log("server started on port " + PORT);
 });
 
 
