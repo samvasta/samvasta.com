@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "allowUnreachableCode": false,
+        "alwaysStrict": true,
+        "baseUrl": "./src",
+        "forceConsistentCasingInFileNames": true,
+        "esModuleInterop": true,
+        "importHelpers": true,
+        "jsx": "react",
+        "lib": ["es2015", "DOM.Iterable", "ES2016.Array.Include", "ES2017.Object", "DOM"],
+        "module": "ES6",
+        "moduleResolution": "Node",
+        "noEmit": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedParameters": true,
+        "removeComments": true,
+        "strict": true,
+        "strictNullChecks": true,
+        "target": "ESNext",
+    },
+    "include": [
+        "./src/**/*.ts",
+        "./src/**/*.tsx",
+        "./.eslintrc.js",
+        "./prettierrc.js"
+    ],
+    "exclude": [
+    ]
+}

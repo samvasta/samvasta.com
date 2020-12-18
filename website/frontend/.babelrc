@@ -1,0 +1,25 @@
+{
+    "presets": [
+        "@babel/preset-env",
+        "@babel/preset-typescript",
+        "@babel/preset-react"
+    ],
+    "plugins": [
+        "relay",
+        ["@babel/plugin-proposal-class-properties", { "loose": true }],
+        "@babel/proposal-object-rest-spread",
+        "@babel/plugin-transform-runtime"
+    ],
+    "env": {
+        "development": {
+            "plugins": [
+                "react-hot-loader/babel"
+            ]
+        },
+        "production": {
+            "plugins": [
+                ["react-remove-properties", {"properties": ["data-testid"]}]
+            ]
+        }
+    }
+}
