@@ -5,6 +5,9 @@ const variantNoUnderline = {
 }
 
 export default {
+  baseStyle: {
+    color: "blue.400"
+  },
   variants: {
     noUnderline: variantNoUnderline
   }
