@@ -6,74 +6,62 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 export interface ILinkButtonProps {
   to: string;
   texts: string[];
-}
-const transitions = {
-  enter: {
-    duration: 0.2,
-    ease: EASINGS.easeOut,
-  },
-  exit: {
-    duration: 0.1,
-    ease: EASINGS.easeIn,
-  },
-}
-
-const FadeInText = (props: { text: string }) => {
-  const { text } = props;
-  return (
-    <motion.div 
-      exit={(props) => ({
-        opacity: 0,
-        transition: transitions.exit,
-        ...(props.reverse && {
-          x: props.offsetX,
-          y: props.offsetY,
-        }),
-        ...(!props.reverse && {
-          transitionEnd: {
-            x: props.offsetX,
-            y: props.offsetY,
-          },
-        }),
-      })}
-      enter={{
-        opacity: 1,
-        x: 0,
-        y: 0,
-        transition: transitions.enter,
-      }}>
-      <Heading textAlign="left" size="3xl">
-        {text}
-      </Heading>
-    </motion.div>
-  );
+  start: boolean;
+  onFinished?: () => void;
+  hoverBackgroundImg?: string;
 }
 
 const LinkButton = (props: ILinkButtonProps) => {
-  const { to, texts } = props;
+  const { to, texts, start, onFinished, hoverBackgroundImg } = props;
 
-  const [index, setIndex] = useState(0);
-  const [startAnimation, setStartAnimation] = useState(false);
+  const [index, setIndex] = useState(-1);
+  
+  const onAnimationEnded = () => {
+    if(index < texts.length-1) {
+      setTimeout(() => {
+        setIndex(index+1);
+      }, 200);
+    }
+    else if(onFinished){
+      onFinished();
+    }
+  }
 
   useEffect(() => {
-    if (index >= texts.length - 1) {
-      return;
+    if(start){
+      onAnimationEnded();
     }
-
-    const timeout = setTimeout(() => {
-      setIndex(index + 1);
-      setStartAnimation(true);
-    }, 300);
-
-    return () => clearTimeout(timeout);
-  }, [index]);
+  });
 
   const text = texts[index];
 
+  if(!start){
+    return null;
+  }
+
+  const hover = hoverBackgroundImg ?
+      {
+        bgImage: hoverBackgroundImg,
+        bgSize: "cover",
+        bgPosition: "center",
+        color: "white",
+        textShadow: "3px 3px rgba(0,0,0,0.7)"
+      } :
+      {
+        bg: "yellow.600"
+      };
+
   return (
-    <Link to={to} as={ReactRouterLink} width="full" variant="noUnderline">
-      <Box bg="yellow.500" color="gray.900" p={8} width="full" _hover={{ bg: "yellow.600" }}>
-        <FadeInText text={text} />
+    <Link to={to} as={ReactRouterLink} width="full" variant="noUnderline" >
+      <Box bg="yellow.500" color="gray.900" px={8} py={4} width="full" _hover={hover}  >
+        {index >= 0 && 
+          <SlideFade key={text} in={start} 
+                     onAnimationComplete={onAnimationEnded}>
+            <Heading textAlign="left" size="2xl" >
+              {text}
+            </Heading>
+          </SlideFade>
+        }
       </Box>
     </Link>);
 }
