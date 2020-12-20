@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Image, Link, List, ListItem, OrderedList, SimpleGrid, Table, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react';
+import { Box, Container, Grid, Link, ListItem, OrderedList, SimpleGrid, Table, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react';
 import React from 'react';
 import Code from 'react-syntax-highlighter';
 import {obsidian as codeStyle} from 'react-syntax-highlighter/dist/esm/styles/hljs'

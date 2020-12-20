@@ -6,18 +6,18 @@ import { useHistory } from 'react-router';
 
 
 const Home = () => {
-  const [fullstack, setFullstack] = useState(false);
+  const [fullstack, setFullstack] = useState(true);
   const [tinkering, setTinkering] = useState(false);
   const [art, setArt] = useState(false);
   const [name, setName] = useState(false);
 
-  useEffect(() => {
-    if(!fullstack){
-      setTimeout(() => {
-        setFullstack(true);
-      }, 200);
-    }
-  });
+  // useEffect(() => {
+  //   if(!fullstack){
+  //     setTimeout(() => {
+  //       setFullstack(true);
+  //     }, 000);
+  //   }
+  // });
 
   return <Box bg="black" h="100vh" w="100vw" justifyContent="center">
     <SimpleGrid columns={{base: 1, lg: 2}} columnGap={10} rowGap={0} mx="auto" pt="15vh" pb={48} bg="gray.900">
@@ -33,36 +33,20 @@ const Home = () => {
                     start={fullstack}
                     onFinished={() => setTinkering(true)}
                     hoverBackgroundImg='url("/images/fullstack.png")'
-                    texts={[
-          "fascinated by UX",
-          "a software architect",
-          "stuck in vi :q!?",
-          "a problem solver",
-          "a fullstack developer"
-        ]}/>
+                    text="a fullstack developer"/>
         <LinkButton to="/tinkering"
                     start={tinkering}
                     onFinished={() => setArt(true)}
                     hoverBackgroundImg='url("/images/tinkering/keyboard2/bms2.jpg")'
-                    texts={[
-          "doing geometry for fun",
-          "building cool stuff",
-          "an electronics hobbyist",
-          "a tinkerer"
-        ]} />
+                    text="a tinkerer" />
         <LinkButton to="/art"
                     start={art}
                     onFinished={() => setName(true)}
                     hoverBackgroundImg='url("/images/art/all_colors/all_colors_4.png")'
-                    texts={[
-          "comfortable in museums",
-          "passionate about colors",
-          "learning to paint",
-          "an algorithm artist"
-        ]} />
+                    text="an algorithm artist"/>
         <LinkButton to="/resume"
                     start={name}
-                    texts={["a leader", "self-motivated", "passionate", "sam vasta"]} />
+                    text="sam vasta"/>
       </VStack>
     </SimpleGrid>
 

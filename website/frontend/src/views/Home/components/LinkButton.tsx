@@ -5,35 +5,14 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 
 export interface ILinkButtonProps {
   to: string;
-  texts: string[];
+  text: string;
   start: boolean;
   onFinished?: () => void;
   hoverBackgroundImg?: string;
 }
 
 const LinkButton = (props: ILinkButtonProps) => {
-  const { to, texts, start, onFinished, hoverBackgroundImg } = props;
-
-  const [index, setIndex] = useState(-1);
-  
-  const onAnimationEnded = () => {
-    if(index < texts.length-1) {
-      setTimeout(() => {
-        setIndex(index+1);
-      }, 200);
-    }
-    else if(onFinished){
-      onFinished();
-    }
-  }
-
-  useEffect(() => {
-    if(start){
-      onAnimationEnded();
-    }
-  });
-
-  const text = texts[index];
+  const { to, text, start, onFinished, hoverBackgroundImg } = props;
 
   if(!start){
     return null;
@@ -54,9 +33,9 @@ const LinkButton = (props: ILinkButtonProps) => {
   return (
     <Link to={to} as={ReactRouterLink} width="full" variant="noUnderline" >
       <Box bg="yellow.500" color="gray.900" px={8} py={4} width="full" _hover={hover}  >
-        {index >= 0 && 
-          <SlideFade key={text} in={start} 
-                     onAnimationComplete={onAnimationEnded}>
+        {start && 
+          <SlideFade in
+                     onAnimationComplete={onFinished}>
             <Heading textAlign="left" size="2xl" >
               {text}
             </Heading>
