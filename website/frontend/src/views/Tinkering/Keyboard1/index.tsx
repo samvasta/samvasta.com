@@ -3,15 +3,16 @@ import React from 'react';
 import Code from 'react-syntax-highlighter';
 import {obsidian as codeStyle} from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
-import DocumentHeading from 'components/DocumentHeading';
+import ArticleHeading from 'components/ArticleHeading';
 import CaptionedImage from 'components/CaptionedImage';
 import QuoteText from 'components/QuoteText';
+import { decorateWithNavBar } from 'components/NavigationBar';
 
 const Keyboard1 = () => {
 
   return (
     <Container variant="article">
-      <DocumentHeading level={1}>Hand-Wired Custom Keybaord</DocumentHeading>
+      <ArticleHeading level={1}>Hand-Wired Custom Keybaord</ArticleHeading>
 
       <Text variant="para">
         Building my own keyboard was the biggest "tinkering" project I had attempted at the time.
@@ -25,7 +26,7 @@ const Keyboard1 = () => {
         and software development. These skills are split between the hardware and software parts of the project.
       </Text>
     
-      <DocumentHeading level={2}>Hardware</DocumentHeading>
+      <ArticleHeading level={2}>Hardware</ArticleHeading>
       <Text variant="para">
         For my first keyboard, I decided to use a hand-wired approach to connect the components,
         as opposed to using a printed circuit boad (PCB). Other than an easier learning curve and
@@ -33,7 +34,7 @@ const Keyboard1 = () => {
         step was finding a layout that I liked.
       </Text>
 
-      <DocumentHeading level={3}>CAD &amp; Prototyping</DocumentHeading>
+      <ArticleHeading level={3}>CAD &amp; Prototyping</ArticleHeading>
       <CaptionedImage src="/images/tinkering/keyboard1/cad1.png" caption="LibreCAD Layout" />
       <Text variant="para">
         I used a 2D CAD program called LibreCAD to lay out the key switches and other components
@@ -50,7 +51,7 @@ const Keyboard1 = () => {
       <CaptionedImage src="/images/tinkering/keyboard1/Prototype2.jpg" caption="Revised Prototype" />
 
 
-      <DocumentHeading level={3}>Assembly</DocumentHeading>
+      <ArticleHeading level={3}>Assembly</ArticleHeading>
 
       <Text variant="para">
         Parts were easy to order because I had already created the vector files required for laser
@@ -133,7 +134,7 @@ const Keyboard1 = () => {
       
       <CaptionedImage src="/images/tinkering/keyboard1/Assembly4.jpg" caption="Wiring Complete"/>
 
-      <DocumentHeading level={2}>Software</DocumentHeading>
+      <ArticleHeading level={2}>Software</ArticleHeading>
 
       <Text variant="para">
         Most people crafting their own keyboards use an open-source tool called{' '}
@@ -156,7 +157,7 @@ const Keyboard1 = () => {
         cycle.
       </Text>
 
-      <DocumentHeading level={3} id="switch-matrix">Switch Matrix</DocumentHeading>
+      <ArticleHeading level={3} id="switch-matrix">Switch Matrix</ArticleHeading>
 
       <Text variant="para">
         The most important feature of the keyboard is the switch matrix. The switches are arranged in a
@@ -175,7 +176,7 @@ const Keyboard1 = () => {
         </div>
       </Grid>
 
-      <DocumentHeading level={3}>Display</DocumentHeading>
+      <ArticleHeading level={3}>Display</ArticleHeading>
 
       <Text variant="para">
         The display was not very difficult to get working. The hardware was sourced from Adafruit who
@@ -183,7 +184,7 @@ const Keyboard1 = () => {
         display code on a different thread from the switch matrix, encoder and thumbstick code.
       </Text>
 
-      <DocumentHeading level={3}>Encoders &amp; Gray Code</DocumentHeading>
+      <ArticleHeading level={3}>Encoders &amp; Gray Code</ArticleHeading>
       <Text variant="para">
         Most rotary encoders use <Link href="https://en.wikipedia.org/wiki/Gray_code">gray code</Link> to
         communicate when and in which direction they have been rotated. Gray code is an ordered sequence
@@ -283,14 +284,14 @@ encoder_values[i] += enc_states[last_encoder_states[i] & 0xf];`}
       <QuoteText>
         <Text variant="para">
           <b>Rule 1:</b> The encoder must have been rotated counter-clockwise if...
-          <OrderedList ml={8}>
+          <OrderedList ml={8} listStyleType="lower-alpha">
               <ListItem>A has change and it is equal to B, or</ListItem>
               <ListItem>B has changed and it is opposite of A</ListItem>
           </OrderedList>
         </Text>
         <Text variant="para">
           <b>Rule 2:</b> The encoder must have been rotated clockwise if...
-          <OrderedList ml={8}>
+          <OrderedList ml={8} listStyleType="lower-alpha">
               <ListItem>A has changed and it is opposite of B, or</ListItem>
               <ListItem>B has changed and it is equal to A</ListItem>
           </OrderedList>
@@ -522,7 +523,7 @@ encoder_values[i] %= ENCODER_RESOLUTION;`}
         sure that the encoder did actually rotate.
       </Text>
 
-      <DocumentHeading level={2}>Final Result</DocumentHeading>
+      <ArticleHeading level={2}>Final Result</ArticleHeading>
       
       <CaptionedImage src="/images/tinkering/keyboard1/ItsAlive.jpg" caption="It's Alive!"/>
       
@@ -541,4 +542,4 @@ encoder_values[i] %= ENCODER_RESOLUTION;`}
   )
 }
 
-export default Keyboard1;
+export default decorateWithNavBar(Keyboard1);

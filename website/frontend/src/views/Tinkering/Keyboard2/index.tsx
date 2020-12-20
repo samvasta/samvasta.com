@@ -3,16 +3,17 @@ import React from 'react';
 import Code from 'react-syntax-highlighter';
 import {obsidian as codeStyle} from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
-import DocumentHeading from 'components/DocumentHeading';
+import ArticleHeading from 'components/ArticleHeading';
 import CaptionedImage from 'components/CaptionedImage';
 import QuoteText from 'components/QuoteText';
+import { decorateWithNavBar } from 'components/NavigationBar';
 
 const Keyboard2 = () => {
 
   return (
     <Container variant="article">
-      <DocumentHeading level={1}>Custom Keyboard Mk.II</DocumentHeading>
-      <DocumentHeading level={2}>Improving on the Original</DocumentHeading>
+      <ArticleHeading level={1}>Custom Keyboard Mk.II</ArticleHeading>
+      <ArticleHeading level={2}>Improving on the Original</ArticleHeading>
 
       <Text variant="para">
         The original <code>Wing_it!</code> was a surprising success, but there is always
@@ -20,29 +21,29 @@ const Keyboard2 = () => {
         the deficiencies of my original design and got me thinking of an even better keyboard.
       </Text>
 
-      <DocumentHeading level={3}>Keeping the Good</DocumentHeading>
-      <DocumentHeading level={4}>Layout</DocumentHeading>
+      <ArticleHeading level={3}>Keeping the Good</ArticleHeading>
+      <ArticleHeading level={4}>Layout</ArticleHeading>
       <Text variant="para">
         The general layout of the original <code>Wing_it!</code> fit my hands well. This wasn't
         a big surprise considering the amount of time I spent prototyping and refining the layout.
         The Mk. II fits in the exact same footprint as the Mk. I.
       </Text>
 
-      <DocumentHeading level={4}>Vertical Scrolling</DocumentHeading>
+      <ArticleHeading level={4}>Vertical Scrolling</ArticleHeading>
       <Text variant="para">
         The rotary encoder used for vertical scrolling in the original <code>Wing_it!</code> was
         effective and helpful. Plans for the Mk. II includes a rotary encoder in an optional module.
       </Text>
 
-      <DocumentHeading level={3}>Improving the Bad</DocumentHeading>
-      <DocumentHeading level={4}>Horizontal Scrolling</DocumentHeading>
+      <ArticleHeading level={3}>Improving the Bad</ArticleHeading>
+      <ArticleHeading level={4}>Horizontal Scrolling</ArticleHeading>
       <Text variant="para">
         The 2nd rotary encoder used for horizontal scrolling had one fatal flaw. Almost no
         applications actually support horizontal scrolling. The dedicated horizontal scroll
         wheel was awesome when it worked, but I don't think it worth keeping for Mk. II.
       </Text>
 
-      <DocumentHeading level={4}>Analog Thumbstick Mouse Controller</DocumentHeading>
+      <ArticleHeading level={4}>Analog Thumbstick Mouse Controller</ArticleHeading>
       <Text variant="para">
         The thumbstick in the middle of the original <code>Wing_it!</code> design was one of
         those "because I can" features. There were three main issues, all hardware limitations.
@@ -70,14 +71,14 @@ const Keyboard2 = () => {
         but I am giving up on that particular component, and the ADC embedded in the microcontroller.
       </Text>
 
-      <DocumentHeading level={4}>LCD Screen</DocumentHeading>
+      <ArticleHeading level={4}>LCD Screen</ArticleHeading>
       <Text variant="para">
         The LCD Screen actually worked really well. I did not end up using it to its fullest
         potential and it became a glorified num/caps lock indicator. So I decided the Mk. II
         would not feature a display.
       </Text>
 
-      <DocumentHeading level={3}>New Features</DocumentHeading>
+      <ArticleHeading level={3}>New Features</ArticleHeading>
       <Text variant="para">
         Refining a successful design is nice but I enjoy inventing even more. There was a
         long list of new features I considered but here is what I settled on:
@@ -90,29 +91,29 @@ const Keyboard2 = () => {
         <ListItem>Not hand-wired</ListItem>
       </UnorderedList>
 
-      <DocumentHeading level={2}>PCB Design</DocumentHeading>
+      <ArticleHeading level={2}>PCB Design</ArticleHeading>
       <Text variant="para">
         A non-hand-wired custom layout keyboard requires designing a custom PCB. Luckily
         there is an excellent{' '}
         <Link href="https://github.com/ruiqimao/keyboard-pcb-guide">guide written by github user Ruiqi Mao</Link>.
       </Text>
 
-      <DocumentHeading level={2}>Hardware Design</DocumentHeading>
+      <ArticleHeading level={2}>Hardware Design</ArticleHeading>
       <Text variant="para">
         The main focus of the Mk. II was the PCB design, so I chose to reuse the form-factor of
         the original, including the outline and layout.
       </Text>
 
-      <DocumentHeading level={2}>Executing the Plan*</DocumentHeading>
+      <ArticleHeading level={2}>Executing the Plan*</ArticleHeading>
       <Text as="sup">*consider the keyboard was named 'wing it' for a reason</Text>
 
-      <DocumentHeading level={2}>Outcome</DocumentHeading>
-      <DocumentHeading level={3}>What Went Wrong</DocumentHeading>
-      <DocumentHeading level={3}>Lessons Learned</DocumentHeading>
+      <ArticleHeading level={2}>Outcome</ArticleHeading>
+      <ArticleHeading level={3}>What Went Wrong</ArticleHeading>
+      <ArticleHeading level={3}>Lessons Learned</ArticleHeading>
       
-      <DocumentHeading level={2}>Future Keyboard(s)</DocumentHeading>
+      <ArticleHeading level={2}>Future Keyboard(s)</ArticleHeading>
     </Container>
   )
 }
 
-export default Keyboard2;
+export default decorateWithNavBar(Keyboard2);
