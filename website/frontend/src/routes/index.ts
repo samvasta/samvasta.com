@@ -1,11 +1,9 @@
-import {Routes as TinkeringRoutes, GoTo as GoToTinkering} from './tinkering';
-
-export const Routes = {
-  Home: '/',
-  Tinkering: TinkeringRoutes
-};
+import Home from 'views/Home';
+import {GoTo as GoToTinkering} from './tinkering';
+import {GoTo as GoToArt} from './art';
 
 export const GoTo = {
   Home: '/',
-  Tinkering: GoToTinkering
+  Tinkering: GoToTinkering,
+  Art: GoToArt
 }

@@ -1,17 +1,19 @@
-import { Flex, HStack, Icon, Link } from '@chakra-ui/react';
+import { Flex, HStack, Icon, Link, Text } from '@chakra-ui/react';
 import React from 'react';
 import { Link as ReactRouterLink} from 'react-router-dom';
 import {GoTo} from 'routes';
 import icons from 'theme/icons';
 
+const fontSize = {base: "2xl", md: "lg", lg: "md"};
+
 const NavigationBar = () => {
   return (
     <Flex dir="row" justifyContent="space-between" bg="gray.700" mb={4}>
-      <HStack spacing={4} p={4}>
+      <HStack spacing={4} p={4} fontSize={fontSize}>
         <Link as={ReactRouterLink} to={GoTo.Home} color="gray.100">Home</Link>
         <Link as={ReactRouterLink} to={GoTo.Home} color="gray.100">Software</Link>
         <Link as={ReactRouterLink} to={GoTo.Tinkering.Home} color="gray.100">Tinkering</Link>
-        <Link as={ReactRouterLink} to={GoTo.Home} color="gray.100">Art</Link>
+        <Link as={ReactRouterLink} to={GoTo.Art.Home} color="gray.100">Art</Link>
         <Link as={ReactRouterLink} to={GoTo.Home} color="gray.100">Resume</Link>
       </HStack>
       
