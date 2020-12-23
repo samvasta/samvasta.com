@@ -88,4 +88,4 @@ const TinkeringHome = () => {
   );
 };
 
-export default decorateWithNavBar(TinkeringHome);
+export default decorateWithNavBar(TinkeringHome, {bg: "yellow.700", color: "black"});

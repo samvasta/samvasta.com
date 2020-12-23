@@ -1,5 +1,6 @@
 import { Container } from '@chakra-ui/react';
 import ArticleHeading from 'components/ArticleHeading';
+import { decorateWithNavBar } from 'components/NavigationBar';
 import React from 'react';
 
 const AlgorithmsHome = () => {
@@ -8,4 +9,4 @@ const AlgorithmsHome = () => {
   </Container>
 }
 
-export default AlgorithmsHome;
+export default decorateWithNavBar(AlgorithmsHome);

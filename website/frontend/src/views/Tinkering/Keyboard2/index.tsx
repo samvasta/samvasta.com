@@ -116,4 +116,4 @@ const Keyboard2 = () => {
   )
 }
 
-export default decorateWithNavBar(Keyboard2);
+export default decorateWithNavBar(Keyboard2, {bg: "yellow.700", color: "black"});

@@ -6,11 +6,11 @@ const colors = ["blue.500", "yellow.500", "red.500", "blue.500", "yellow.500", "
 
 export type HeadingSize = 1 | 2 | 3 | 4 | 5 | 6;
 export interface DocumentHeadingProps extends HeadingProps {
-  level: HeadingSize;
+  level?: HeadingSize;
 }
 
 const DocumentHeading = (props: DocumentHeadingProps) => {
-  const { level, children, ...headingProps} = props;
+  const { level = 1, children, ...headingProps} = props;
 
   const size = sizes[level-1];
   const color = colors[level-1];

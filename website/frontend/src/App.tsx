@@ -9,6 +9,7 @@ import Keyboard1 from 'views/Tinkering/Keyboard1';
 import Keyboard2 from 'views/Tinkering/Keyboard2';
 import ArtHome from 'views/Art/ArtHome';
 import AlgorithmsHome from 'views/Art/Algorithms/AlgorithmsHome';
+import Resume from 'views/Personal/Resume';
 
 export interface RouteInfo {
   path: string;
@@ -25,7 +26,10 @@ const routes: RouteInfo[] = [
 
   //Art
   {path: GoTo.Art.Home, component: ArtHome},
-  {path: GoTo.Art.AlgorithmsHome, component: AlgorithmsHome}
+  {path: GoTo.Art.AlgorithmsHome, component: AlgorithmsHome},
+
+  //Personal
+  {path: GoTo.Personal.Resume, component: Resume}
 ]
 
 const App = () => {

@@ -542,4 +542,4 @@ encoder_values[i] %= ENCODER_RESOLUTION;`}
   )
 }
 
-export default decorateWithNavBar(Keyboard1);
+export default decorateWithNavBar(Keyboard1, {bg: "yellow.700", color: "black"});
