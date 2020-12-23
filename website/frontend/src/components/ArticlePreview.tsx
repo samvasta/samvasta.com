@@ -1,4 +1,4 @@
-import { AspectRatio, Box, BoxProps, Heading, Image, Link, Square, Text } from '@chakra-ui/react';
+import { Box, BoxProps, Heading, Image, Link, Square } from '@chakra-ui/react';
 import React from 'react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 

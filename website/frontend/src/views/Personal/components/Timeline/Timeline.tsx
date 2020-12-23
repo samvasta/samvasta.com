@@ -7,26 +7,27 @@ export interface TimelineProps extends TimelineStyle {
 }
 
 const Timeline = (props: TimelineProps) => {
-  const {items, ...style} = props;
+  const { items, ...style } = props;
 
   const [activeIndex, setActiveIndex] = useState(-1);
-  
+
   return (
-    <Grid templateColumns={{base: "1fr", md: "auto auto 1fr"}} my={12}>
+    <Grid templateColumns={{ base: '1fr', md: 'auto auto 1fr' }} my={12}>
       {items.map((item, index) => {
         const onToggle = () => {
-          if(activeIndex === index){
+          if (activeIndex === index) {
             setActiveIndex(-1);
-          }
-          else {
+          } else {
             setActiveIndex(index);
           }
-        }
+        };
 
-        return <TimelineItem {...item} {...style} active={index===activeIndex} onToggle={onToggle}/>;
+        return (
+          <TimelineItem {...item} {...style} active={index === activeIndex} onToggle={onToggle} />
+        );
       })}
-    </Grid> 
-  )
+    </Grid>
+  );
 };
 
 export default Timeline;

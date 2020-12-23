@@ -4,9 +4,11 @@ import { decorateWithNavBar } from 'components/NavigationBar';
 import React from 'react';
 
 const AlgorithmsHome = () => {
-  return <Container variant="article">
-    <ArticleHeading level={1}>Procedural Generation</ArticleHeading>
-  </Container>
-}
+  return (
+    <Container variant="article">
+      <ArticleHeading level={1}>Procedural Generation</ArticleHeading>
+    </Container>
+  );
+};
 
 export default decorateWithNavBar(AlgorithmsHome);

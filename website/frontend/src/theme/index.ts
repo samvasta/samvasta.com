@@ -17,8 +17,8 @@ const theme = extendTheme({
     Container,
     Link,
     Text,
-    Table
-  }
+    Table,
+  },
 });
 
 export default theme;

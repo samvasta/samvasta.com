@@ -13,33 +13,34 @@ export interface ILinkButtonProps {
 const LinkButton = (props: ILinkButtonProps) => {
   const { to, text, start, onFinished, hoverBackgroundImg } = props;
 
-  if(!start){
+  if (!start) {
     return null;
   }
 
-  const hover = hoverBackgroundImg ?
-      {
+  const hover = hoverBackgroundImg
+    ? {
         bgImage: hoverBackgroundImg,
-        bgSize: "cover",
-        bgPosition: "center",
-        color: "white",
-        textShadow: "3px 3px rgba(0,0,0,0.7)"
-      } :
-      {
-        bg: "yellow.600"
+        bgSize: 'cover',
+        bgPosition: 'center',
+        color: 'white',
+        textShadow: '3px 3px rgba(0,0,0,0.7)',
+      }
+    : {
+        bg: 'yellow.600',
       };
 
   return (
-    <Link to={to} as={ReactRouterLink} width="full" variant="noUnderline" >
-      <Box bg="yellow.500" color="gray.900" px={8} py={4} width="full" _hover={hover}  >
-        {start && 
+    <Link to={to} as={ReactRouterLink} width="full" variant="noUnderline">
+      <Box bg="yellow.500" color="gray.900" px={8} py={4} width="full" _hover={hover}>
+        {start && (
           <SlideFade in onAnimationComplete={onFinished}>
-            <Heading textAlign="left" size="2xl" >
+            <Heading textAlign="left" size="2xl">
               {text}
             </Heading>
           </SlideFade>
-        }
+        )}
       </Box>
-    </Link>);
-}
+    </Link>
+  );
+};
 export default LinkButton;

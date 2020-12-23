@@ -1,4 +1,4 @@
-import { Box, Container, Wrap, WrapItem } from '@chakra-ui/react';
+import { Container, Wrap, WrapItem } from '@chakra-ui/react';
 import ArticlePreview from 'components/ArticlePreview';
 import ArticleHeading from 'components/ArticleHeading';
 import { decorateWithNavBar } from 'components/NavigationBar';
@@ -65,27 +65,23 @@ const data: ArticleGroup[] = [
 
 const TinkeringHome = () => {
   return (
-      <Container variant="article">
-        <ArticleHeading level={1}>Tinkering</ArticleHeading>
+    <Container variant="article">
+      <ArticleHeading level={1}>Tinkering</ArticleHeading>
 
-        {data.map((group) => (
-          <>
-            <ArticleHeading level={3}>{group.groupTitle}</ArticleHeading>
-            <Wrap my={8} spacing={8}>
-              {group.articles.map((article) => (
-                <WrapItem>
-                  <ArticlePreview
-                    title={article.title}
-                    imageSrc={article.imageSrc}
-                    to={article.to}
-                    />
-                </WrapItem>
-              ))}
-            </Wrap>
-          </>
-        ))}
-      </Container>
+      {data.map((group) => (
+        <>
+          <ArticleHeading level={3}>{group.groupTitle}</ArticleHeading>
+          <Wrap my={8} spacing={8}>
+            {group.articles.map((article) => (
+              <WrapItem>
+                <ArticlePreview title={article.title} imageSrc={article.imageSrc} to={article.to} />
+              </WrapItem>
+            ))}
+          </Wrap>
+        </>
+      ))}
+    </Container>
   );
 };
 
-export default decorateWithNavBar(TinkeringHome, {bg: "yellow.700", color: "black"});
+export default decorateWithNavBar(TinkeringHome, { bg: 'yellow.700', color: 'black' });

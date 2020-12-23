@@ -1,14 +1,14 @@
 const variantNoUnderline = {
   _hover: {
-    textDecoration: "none",
+    textDecoration: 'none',
   },
-}
+};
 
 export default {
   baseStyle: {
-    color: "blue.400"
+    color: 'blue.400',
   },
   variants: {
-    noUnderline: variantNoUnderline
-  }
-}
+    noUnderline: variantNoUnderline,
+  },
+};

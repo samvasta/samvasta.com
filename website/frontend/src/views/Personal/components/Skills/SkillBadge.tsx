@@ -1,4 +1,4 @@
-import { Box, useRadio } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import React from 'react';
 
 export interface SkillBadgeProps {
@@ -6,8 +6,7 @@ export interface SkillBadgeProps {
 }
 
 const SkillBadge = (props: any) => {
-
-  const {onToggle, children} = props;
+  const { onToggle, children } = props;
 
   return (
     <Box
@@ -18,10 +17,10 @@ const SkillBadge = (props: any) => {
       color="red.900"
       borderColor="red.400"
       _checked={{
-        bg: "black",
-        color: "white",
+        bg: 'black',
+        color: 'white',
         borderWidth: 2,
-        boxShadow: "md"
+        boxShadow: 'md',
       }}
       px={2}
       py={1}
@@ -29,7 +28,7 @@ const SkillBadge = (props: any) => {
     >
       {children}
     </Box>
-  )
-}
+  );
+};
 
 export default SkillBadge;

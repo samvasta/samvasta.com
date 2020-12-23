@@ -5,11 +5,7 @@ import theme from 'theme';
 const Providers: React.FC = (props: any) => {
   const { children } = props;
 
-  return (
-    <ChakraProvider theme={theme}>
-        {children}
-    </ChakraProvider>
-  );
+  return <ChakraProvider theme={theme}>{children}</ChakraProvider>;
 };
 
 export default Providers;

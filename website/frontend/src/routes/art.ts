@@ -1,6 +1,6 @@
-import ArtHome from "views/Art/ArtHome";
+/* eslint-disable import/prefer-default-export */
 
 export const GoTo = {
   Home: '/art',
-  AlgorithmsHome: '/art/procgen'
-}
+  AlgorithmsHome: '/art/procgen',
+};
