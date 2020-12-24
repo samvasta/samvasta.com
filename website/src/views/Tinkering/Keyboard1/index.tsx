@@ -20,7 +20,6 @@ import Code from 'components/Code';
 import ArticleHeading from 'components/ArticleHeading';
 import CaptionedImage from 'components/CaptionedImage';
 import QuoteText from 'components/QuoteText';
-import { decorateWithNavBar } from 'components/NavigationBar';
 
 const Keyboard1 = () => {
   return (
@@ -588,4 +587,4 @@ encoder_values[i] %= ENCODER_RESOLUTION;`}
   );
 };
 
-export default decorateWithNavBar(Keyboard1, { bg: 'yellow.700', color: 'black' });
+export default Keyboard1;

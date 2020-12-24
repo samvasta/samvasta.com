@@ -60,13 +60,4 @@ const NavigationBar = (props: NavigationBarProps) => {
   );
 };
 
-export const decorateWithNavBar = (component: React.FC, navProps?: NavigationBarProps) => {
-  return (props: any) => (
-    <>
-      <NavigationBar {...navProps} />
-      {component(props)}
-    </>
-  );
-};
-
 export default NavigationBar;

@@ -9,7 +9,7 @@
         "importHelpers": true,
         "jsx": "react",
         "lib": ["es2015", "DOM.Iterable", "ES2016.Array.Include", "ES2017.Object", "DOM"],
-        "module": "ES6",
+        "module": "esnext",
         "moduleResolution": "Node",
         "noEmit": true,
         "noFallthroughCasesInSwitch": true,

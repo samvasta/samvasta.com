@@ -9,7 +9,7 @@ const compiler = webpack(webpackConfigDev);
 
 const middlewares = [
   webpackDevMiddleware(compiler, {
-    publicPath: webpackConfigDev.output.publicPath,
+    publicPath: webpackConfigDev.output.publicPath
   }),
   WebpackHotMiddleware(compiler),
 ];

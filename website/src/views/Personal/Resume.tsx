@@ -11,11 +11,11 @@ import {
   Wrap,
   WrapItem,
 } from '@chakra-ui/react';
-import { find } from 'lodash';
+import find from 'lodash/find';
 
 import icons from 'theme/icons';
-import { decorateWithNavBar } from 'components/NavigationBar';
 import React, { useState } from 'react';
+import { useNavBarProps } from 'context/navigation';
 import ResumeSection from './components/ResumeSection';
 import Timeline from './components/Timeline/Timeline';
 import SkillBadge from './components/Skills/SkillBadge';
@@ -26,6 +26,10 @@ import { skillList, Skill } from './data/skills';
 import SkillDetail from './components/Skills/SkillDetail';
 
 const Resume = () => {
+  const setNavProps = useNavBarProps();
+
+  setNavProps({ bg: 'black', color: 'gray.400', mb: 0 });
+
   const [selectedSkill, setSelectedSkill] = useState<Skill | undefined>(undefined);
 
   const toggleSkill = (skill: Skill) => {
@@ -125,4 +129,4 @@ const Resume = () => {
   );
 };
 
-export default decorateWithNavBar(Resume, { bg: 'black', color: 'gray.100', mb: 0 });
+export default Resume;

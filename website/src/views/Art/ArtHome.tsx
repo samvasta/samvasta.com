@@ -1,6 +1,5 @@
 import { Container, Image, Link, SimpleGrid, Text } from '@chakra-ui/react';
 import ArticleHeading from 'components/ArticleHeading';
-import { decorateWithNavBar } from 'components/NavigationBar';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import React from 'react';
 import { GoTo } from 'routes';
@@ -53,4 +52,4 @@ const ArtHome = () => {
   );
 };
 
-export default decorateWithNavBar(ArtHome);
+export default ArtHome;

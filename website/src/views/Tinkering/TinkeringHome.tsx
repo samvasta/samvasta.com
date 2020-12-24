@@ -1,9 +1,9 @@
 import { Container, Wrap, WrapItem } from '@chakra-ui/react';
 import ArticlePreview from 'components/ArticlePreview';
 import ArticleHeading from 'components/ArticleHeading';
-import { decorateWithNavBar } from 'components/NavigationBar';
 import React from 'react';
 import { GoTo } from 'routes';
+import { useNavBarProps } from 'context/navigation';
 
 interface ArticleGroup {
   groupTitle: string;
@@ -64,6 +64,10 @@ const data: ArticleGroup[] = [
 ];
 
 const TinkeringHome = () => {
+  const setNavProps = useNavBarProps();
+
+  setNavProps({ bg: 'blue.900', color: 'white' });
+
   return (
     <Container variant="article">
       <ArticleHeading level={1}>Tinkering</ArticleHeading>
@@ -84,4 +88,4 @@ const TinkeringHome = () => {
   );
 };
 
-export default decorateWithNavBar(TinkeringHome, { bg: 'yellow.700', color: 'black' });
+export default TinkeringHome;

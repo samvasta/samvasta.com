@@ -2,7 +2,6 @@ import { Container, Link, ListItem, Text, UnorderedList } from '@chakra-ui/react
 import React from 'react';
 
 import ArticleHeading from 'components/ArticleHeading';
-import { decorateWithNavBar } from 'components/NavigationBar';
 
 const Keyboard2 = () => {
   return (
@@ -114,4 +113,4 @@ const Keyboard2 = () => {
   );
 };
 
-export default decorateWithNavBar(Keyboard2, { bg: 'yellow.700', color: 'black' });
+export default Keyboard2;

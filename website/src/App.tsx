@@ -1,47 +1,56 @@
-import React from 'react';
+import NavigationBar from 'components/NavigationBar';
+import NavigationProvider from 'context/navigation';
+import React, { lazy, Suspense } from 'react';
 import { hot } from 'react-hot-loader/root';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { GoTo } from 'routes';
-import Home from 'views/Home';
-import TinkeringHome from 'views/Tinkering/TinkeringHome';
-import Keyboard1 from 'views/Tinkering/Keyboard1';
-import Keyboard2 from 'views/Tinkering/Keyboard2';
-import ArtHome from 'views/Art/ArtHome';
-import AlgorithmsHome from 'views/Art/Algorithms/AlgorithmsHome';
-import Resume from 'views/Personal/Resume';
+
 import Providers from './context';
 
-export interface RouteInfo {
-  path: string;
-  component: (props: any) => JSX.Element;
-}
+const Home = lazy(() => import('views/Home'));
 
-const routes: RouteInfo[] = [
-  { path: GoTo.Home, component: Home },
+// Tinkering Pages
+const TinkeringHome = lazy(() => import('views/Tinkering/TinkeringHome'));
+const Keyboard1 = lazy(() => import('views/Tinkering/Keyboard1'));
+const Keyboard2 = lazy(() => import('views/Tinkering/Keyboard2'));
 
-  // Tinkering
-  { path: GoTo.Tinkering.Home, component: TinkeringHome },
-  { path: GoTo.Tinkering.Keyboard1, component: Keyboard1 },
-  { path: GoTo.Tinkering.Keyboard2, component: Keyboard2 },
+// Art Pages
+const ArtHome = lazy(() => import('views/Art/ArtHome'));
+const AlgorithmsHome = lazy(() => import('views/Art/Algorithms/AlgorithmsHome'));
 
-  // Art
-  { path: GoTo.Art.Home, component: ArtHome },
-  { path: GoTo.Art.AlgorithmsHome, component: AlgorithmsHome },
+// Personal Pages
+const Resume = lazy(() => import('views/Personal/Resume'));
 
-  // Personal
-  { path: GoTo.Personal.Resume, component: Resume },
-];
+const RoutesWithNavBar = () => (
+  <NavigationProvider>
+    <Switch>
+      {/* Tinkering */}
+      <Route path={GoTo.Tinkering.Home} exact component={TinkeringHome} />
+      <Route path={GoTo.Tinkering.Keyboard1} exact component={Keyboard1} />
+      <Route path={GoTo.Tinkering.Keyboard2} exact component={Keyboard2} />
+
+      {/* Art */}
+      <Route path={GoTo.Art.Home} exact component={ArtHome} />
+      <Route path={GoTo.Art.AlgorithmsHome} exact component={AlgorithmsHome} />
+
+      {/* Personal */}
+      <Route path={GoTo.Personal.Resume} exact component={Resume} />
+    </Switch>
+  </NavigationProvider>
+);
 
 const App = () => {
   return (
     <Providers>
       <Router>
-        <Switch>
-          {routes.map((route) => (
-            <Route path={route.path} exact component={route.component} key={route.path} />
-          ))}
-        </Switch>
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <Switch>
+            <Route path={GoTo.Home} exact component={Home} />
+
+            <Route component={RoutesWithNavBar} />
+          </Switch>
+        </Suspense>
       </Router>
     </Providers>
   );

@@ -14,23 +14,27 @@ const skillList: SkillGroup[] = [
     skills: [
       {
         name: 'C#/.NET core',
-        description: `I have been using C# to develop and maintain enterprise applications for my entire career. I have used
-          C# personally to create many smaller projects including a command-line budgeting tool.`,
+        description:
+          'I have been using C# to develop and maintain enterprise applications for my entire career. I have used' +
+          'C# personally to create many smaller projects including a command-line budgeting tool.',
       },
       {
         name: 'Java',
-        description: `Java was the first OOP language I learned in highschool. I have since used it personally to create video games,
-           procedural image generators, and professionally for enterprise IoT software.`,
+        description:
+          'Java was the first OOP language I learned in highschool. I have since used it personally to create video games,' +
+          'procedural image generators, and professionally for enterprise IoT software.',
       },
       {
         name: 'JavaScript/TypeScript',
-        description: `I wrote this website using Typescript! I also use Javascript and Typescript professionally to develop and
-          maintain SaaS products. I primarily use it on the frontend (React), but this website also uses TypeScript on the backend (Express).`,
+        description:
+          'I wrote this website using Typescript! I also use Javascript and Typescript professionally to develop and' +
+          'maintain SaaS products. I primarily use it on the frontend (React), but this website also uses TypeScript on the backend (Express).',
       },
       {
         name: 'Python',
-        description: `I learned python while developing the backend of a SaaS product. I think it is an excellent fit to build REST APIs
-          because of the repetitive nature of REST servers. We relied on Django and Django REST Framework.`,
+        description:
+          'I learned python while developing the backend of a SaaS product. I think it is an excellent fit to build REST APIs' +
+          'because of the repetitive nature of REST servers. We relied on Django and Django REST Framework.',
       },
     ],
   },
@@ -39,13 +43,15 @@ const skillList: SkillGroup[] = [
     skills: [
       {
         name: 'React',
-        description: `This website is written with React at the core. I also use React professionally to develop and maintain SaaS products.`,
+        description:
+          'This website is written with React at the core. I also use React professionally to develop and maintain SaaS products.',
       },
       {
         name: 'WPF & Winforms',
-        description: `As an intern at Lone Star Analysis, I helped maintain and develop a mature Winforms application.
-           As a full-time employee a few years later, I lead development for an enterprise application using WPF. I have dug into
-           the internals of WPF and have written many custom controls and behaviors.`,
+        description:
+          'As an intern at Lone Star Analysis, I helped maintain and develop a mature Winforms application.' +
+          'As a full-time employee a few years later, I lead development for an enterprise application using WPF. I have dug into' +
+          'the internals of WPF and have written many custom controls and behaviors.',
       },
       {
         name: 'Bootstrap',
@@ -154,9 +160,10 @@ const skillList: SkillGroup[] = [
       },
       {
         name: 'Rapid Prototyping',
-        description: `I have learned through experience that good ideas should be captured quickly to test the concept before the excitement expires.
-          I know which corners to cut and where to take on technical debt to quickly achieve a proof-of-concept while also setting up the project to
-          transition to an MVP and beyond.`,
+        description:
+          'I have learned through experience that good ideas should be captured quickly to test the concept before the excitement expires.' +
+          'I know which corners to cut and where to take on technical debt to quickly achieve a proof-of-concept while also setting up the project to' +
+          'transition to an MVP and beyond.',
       },
       {
         name: 'Scrum',
@@ -165,13 +172,15 @@ const skillList: SkillGroup[] = [
       },
       {
         name: 'Graphic Design',
-        description: `I have studied the concepts of art and graphic design throughout grade school and college with a special interest in color
-          theory. I am probably not as skilled as a full-time designer but I like to think I can hold my own.`,
+        description:
+          'I have studied the concepts of art and graphic design throughout grade school and college with a special interest in color' +
+          'theory. I am probably not as skilled as a full-time designer but I like to think I can hold my own.',
       },
       {
         name: 'Statistics & Math',
-        description: `Working at Lone Star Analysis, I embraced statistics and learned how to apply stochastic concepts in
-          programming and data science. I also solve geometry problems for fun.`,
+        description:
+          'Working at Lone Star Analysis, I embraced statistics and learned how to apply stochastic concepts in' +
+          'programming and data science. I also solve geometry problems for fun.',
       },
       {
         name: 'CAD',
