@@ -9,8 +9,7 @@
         "source.organizeImports": false
     },
     "eslint.workingDirectories": [
-        "./website/frontend",
-        "./website/server"
+        "./website"
     ],
     "eslint.validate": [
         "typescript",

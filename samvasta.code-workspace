@@ -11,6 +11,7 @@
 			"adafruit",
 			"keycaps",
 			"microcontroller",
+			"middlewares",
 			"thumbstick"
 		]
 	}
