@@ -4,7 +4,9 @@ const path = require('path');
 function startApp(port, middlewares) {
   const app = express();
 
-  middlewares.forEach((middleware) => app.use(middleware));
+  if(middlewares && middlewares.length > 0) {
+    middlewares.forEach((middleware) => app.use(middleware));
+  }
 
   app.use(express.static('public'));
 

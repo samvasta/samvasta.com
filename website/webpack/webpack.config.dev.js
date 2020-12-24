@@ -20,9 +20,11 @@ module.exports = merge(
     watch: false,
 
     output: {
-      path: path.resolve(__dirname, 'public/js'),
+      path: path.join(__dirname, '../public/js'),
       filename: '[name].bundle.js',
       publicPath: '/js/',
+      hotUpdateChunkFilename: '.hot/[id].[hash].hot-update.js',
+      hotUpdateMainFilename: '.hot/[hash].hot-update.json',
     },
 
     plugins: [new webpack.HotModuleReplacementPlugin()],

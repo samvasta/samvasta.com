@@ -10,7 +10,7 @@ const Home = () => {
   const [name, setName] = useState(false);
 
   return (
-    <Box bg="gray.900" h="100vh" w="100vw" justifyContent="center">
+    <Box bg="black" h="100vh" w="100vw" justifyContent="center">
       <SimpleGrid
         columns={{ base: 1, lg: 2 }}
         columnGap={10}
@@ -18,7 +18,7 @@ const Home = () => {
         mx="auto"
         pt="15vh"
         pb={48}
-        bg="black"
+        bg="gray.900"
       >
         <Box bg="blue.400" color="gray.900" px={8} py={4} width="full" h="auto" alignSelf="start">
           <Heading textAlign={{ base: 'left', lg: 'right' }} size="2xl">
@@ -52,15 +52,15 @@ const Home = () => {
         </VStack>
       </SimpleGrid>
 
-      <HStack spacing={3} m={3}>
-        <Link href="https://github.com/samvasta">
-          <Icon as={icons.Github} color="yellow.700" w={6} h={6} />
+      <HStack spacing={3} m={3} color="gray.700">
+        <Link href="https://github.com/samvasta" color="inherit">
+          <Icon as={icons.Github} w={6} h={6} />
         </Link>
-        <Link href="mailto:hello@samvasta.com">
-          <Icon as={icons.Email} color="red.700" w={6} h={6} />
+        <Link href="mailto:hello@samvasta.com" color="inherit">
+          <Icon as={icons.Email} w={6} h={6} />
         </Link>
-        <Link href="https://linkedin.com/in/sam-vasta-b82470123">
-          <Icon as={icons.Linkedin} color="blue.700" w={6} h={6} />
+        <Link href="https://linkedin.com/in/sam-vasta-b82470123" color="inherit">
+          <Icon as={icons.Linkedin} w={6} h={6} />
         </Link>
       </HStack>
     </Box>

@@ -70,6 +70,7 @@
   },
   "scripts": {
     "dev": "node ./server/development/index.js",
+    "prod": "node ./server/production/index.js",
     "build": "webpack --config ./webpack/webpack.config.prod.js",
     "lint": "eslint --fix --quiet"
   },
