@@ -7,6 +7,7 @@ import {
   Link,
   SimpleGrid,
   Text,
+  useToken,
   VStack,
   Wrap,
   WrapItem,
@@ -14,7 +15,7 @@ import {
 import find from 'lodash/find';
 
 import icons from 'theme/icons';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavBarProps } from 'context/navigation';
 import ResumeSection from './components/ResumeSection';
 import Timeline from './components/Timeline/Timeline';
@@ -27,8 +28,16 @@ import SkillDetail from './components/Skills/SkillDetail';
 
 const Resume = () => {
   const setNavProps = useNavBarProps();
+  const [white] = useToken('colors', ['white']);
 
-  setNavProps({ bg: 'black', color: 'gray.400', mb: 0 });
+  useEffect(() => {
+    setNavProps({
+      bg: 'black',
+      color: 'gray.400',
+      mb: 0,
+      activeStyle: { color: white },
+    });
+  });
 
   const [selectedSkill, setSelectedSkill] = useState<Skill | undefined>(undefined);
 
@@ -73,7 +82,7 @@ const Resume = () => {
         <VStack alignItems="flex-start">
           {skillList &&
             skillList.map((group) => (
-              <>
+              <Box key={group.name}>
                 <Heading size="md" my={4}>
                   {group.name}
                 </Heading>
@@ -91,7 +100,7 @@ const Resume = () => {
                   !!selectedSkill.description && (
                     <SkillDetail skill={selectedSkill} onClose={deselectSkill} />
                   )}
-              </>
+              </Box>
             ))}
         </VStack>
       </ResumeSection>

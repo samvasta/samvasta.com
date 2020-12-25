@@ -1,7 +1,7 @@
-import { Container, Wrap, WrapItem } from '@chakra-ui/react';
+import { Box, Container, useToken, Wrap, WrapItem } from '@chakra-ui/react';
 import ArticlePreview from 'components/ArticlePreview';
 import ArticleHeading from 'components/ArticleHeading';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GoTo } from 'routes';
 import { useNavBarProps } from 'context/navigation';
 
@@ -64,25 +64,21 @@ const data: ArticleGroup[] = [
 ];
 
 const TinkeringHome = () => {
-  const setNavProps = useNavBarProps();
-
-  setNavProps({ bg: 'blue.900', color: 'white' });
-
   return (
     <Container variant="article">
       <ArticleHeading level={1}>Tinkering</ArticleHeading>
 
       {data.map((group) => (
-        <>
+        <Box key={group.groupTitle}>
           <ArticleHeading level={3}>{group.groupTitle}</ArticleHeading>
           <Wrap my={8} spacing={8}>
             {group.articles.map((article) => (
-              <WrapItem>
+              <WrapItem key={article.title}>
                 <ArticlePreview title={article.title} imageSrc={article.imageSrc} to={article.to} />
               </WrapItem>
             ))}
           </Wrap>
-        </>
+        </Box>
       ))}
     </Container>
   );

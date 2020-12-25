@@ -1,51 +1,62 @@
-import { Flex, HStack, Icon, Link, Wrap, WrapItem } from '@chakra-ui/react';
+import { Flex, HStack, Icon, Link, useToken, Wrap, WrapItem } from '@chakra-ui/react';
 import React from 'react';
-import { Link as ReactRouterLink } from 'react-router-dom';
+import { NavLink as ReactRouterLink } from 'react-router-dom';
 import { GoTo } from 'routes';
 import icons from 'theme/icons';
 
 const fontSize = { base: '2xl', md: 'lg', lg: 'md' };
 
 export interface NavigationBarProps {
-  bg?: string;
-  color?: string;
-  mb?: number | string;
+  bg: string;
+  color: string;
+  mb: number | string;
+  activeStyle: any;
 }
 
 const NavigationBar = (props: NavigationBarProps) => {
-  const { bg = 'gray.700', color = 'gray.100', mb = 4 } = props;
+  const { bg, color, mb, activeStyle } = props;
 
   return (
     <Flex dir="row" flexWrap="wrap" justifyContent="space-between" bg={bg} mb={mb}>
       <Wrap spacing={4} p={4} fontSize={fontSize}>
         <WrapItem>
-          <Link as={ReactRouterLink} to={GoTo.Home} color={color}>
+          <Link as={ReactRouterLink} to={GoTo.Home} color={color} activeStyle={activeStyle} exact>
             Home
           </Link>
         </WrapItem>
         <WrapItem>
-          <Link as={ReactRouterLink} to={GoTo.Home} color={color}>
+          <Link as={ReactRouterLink} to={GoTo.Home} color={color} activeStyle={activeStyle} exact>
             Software
           </Link>
         </WrapItem>
         <WrapItem>
-          <Link as={ReactRouterLink} to={GoTo.Tinkering.Home} color={color}>
+          <Link
+            as={ReactRouterLink}
+            to={GoTo.Tinkering.Home}
+            color={color}
+            activeStyle={activeStyle}
+          >
             Tinkering
           </Link>
         </WrapItem>
         <WrapItem>
-          <Link as={ReactRouterLink} to={GoTo.Art.Home} color={color}>
+          <Link as={ReactRouterLink} to={GoTo.Art.Home} color={color} activeStyle={activeStyle}>
             Art
           </Link>
         </WrapItem>
         <WrapItem>
-          <Link as={ReactRouterLink} to={GoTo.Personal.Resume} color={color}>
+          <Link
+            as={ReactRouterLink}
+            to={GoTo.Personal.Resume}
+            color={color}
+            activeStyle={activeStyle}
+          >
             Resume
           </Link>
         </WrapItem>
       </Wrap>
 
-      <HStack spacing={4} p={4}>
+      <HStack spacing={4} p={4} display={{ base: 'none', md: 'inherit' }}>
         <Link href="https://github.com/samvasta">
           <Icon as={icons.Github} color={color} w={6} h={6} />
         </Link>

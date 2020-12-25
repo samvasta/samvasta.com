@@ -1,4 +1,5 @@
 import NavigationBar from 'components/NavigationBar';
+import ScrollToTop from 'components/ScrollToTop';
 import NavigationProvider from 'context/navigation';
 import React, { lazy, Suspense } from 'react';
 import { hot } from 'react-hot-loader/root';
@@ -44,13 +45,15 @@ const App = () => {
   return (
     <Providers>
       <Router>
-        <Suspense fallback={<h1>Loading...</h1>}>
-          <Switch>
-            <Route path={GoTo.Home} exact component={Home} />
+        <ScrollToTop>
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Switch>
+              <Route path={GoTo.Home} exact component={Home} />
 
-            <Route component={RoutesWithNavBar} />
-          </Switch>
-        </Suspense>
+              <Route component={RoutesWithNavBar} />
+            </Switch>
+          </Suspense>
+        </ScrollToTop>
       </Router>
     </Providers>
   );

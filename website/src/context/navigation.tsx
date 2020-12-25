@@ -1,10 +1,14 @@
+import { useToken } from '@chakra-ui/react';
 import NavigationBar, { NavigationBarProps } from 'components/NavigationBar';
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
+import { withRouter } from 'react-router';
+import merge from 'lodash/merge';
 
 export const defaultProps = {
-  bg: 'red.900',
-  color: 'white',
+  bg: 'gray.100',
+  color: 'gray.700',
   mb: 4,
+  activeStyle: {},
 };
 
 const reducer = (currentState: NavigationBarProps, nextState: Partial<NavigationBarProps>) => ({
@@ -18,13 +22,30 @@ const NavigationContext = React.createContext<React.Dispatch<Partial<NavigationB
 NavigationContext.displayName = 'Navigation';
 
 const NavigationProvider: React.FC = (props: any) => {
-  const { children } = props;
+  const { children, history } = props;
+  const [black] = useToken('colors', ['black']);
+  const defaultActiveStyle = {
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    color: black,
+  };
 
   const [navProps, setNavProps] = useReducer(reducer, defaultProps);
 
+  useEffect(() => {
+    const unlisten = history.listen(() => {
+      setNavProps(defaultProps);
+    });
+    return () => {
+      unlisten();
+    };
+  }, []);
+
+  const activeStyle = merge(defaultActiveStyle, navProps.activeStyle);
+
   return (
     <NavigationContext.Provider value={setNavProps}>
-      <NavigationBar {...navProps} />
+      <NavigationBar {...navProps} activeStyle={activeStyle} />
       {children}
     </NavigationContext.Provider>
   );
@@ -40,4 +61,4 @@ export function useNavBarProps() {
   return ctx;
 }
 
-export default NavigationProvider;
+export default withRouter(NavigationProvider);

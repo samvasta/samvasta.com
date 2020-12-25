@@ -25,7 +25,13 @@ const Timeline = (props: TimelineProps) => {
         };
 
         return (
-          <TimelineItem {...item} {...style} active={index === activeIndex} onToggle={onToggle} />
+          <TimelineItem
+            {...item}
+            {...style}
+            active={index === activeIndex}
+            onToggle={onToggle}
+            key={item.date}
+          />
         );
       })}
     </Grid>

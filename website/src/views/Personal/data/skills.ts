@@ -69,15 +69,17 @@ const skillList: SkillGroup[] = [
     skills: [
       {
         name: 'Django',
-        description: '',
+        description:
+          'I choose to use django professionally to support UI-heavy applications because of' +
+          'the familiarity of python and the speed that django allows developers to build standard CRUD features.',
       },
       {
         name: 'Django REST Framework',
-        description: '',
+        description: 'I use DRF professionally to support several products.',
       },
       {
         name: 'ExpressJs',
-        description: '',
+        description: 'This website uses express as its backend.',
       },
       {
         name: 'ASP.NET',
@@ -85,7 +87,9 @@ const skillList: SkillGroup[] = [
       },
       {
         name: 'Entity Framework',
-        description: '',
+        description:
+          'EF is the go-to ORM for .NET developers. I have even jumped into the rabbit hole of ' +
+          "creating and modifying T4 files to leverage EF's code generation to reduce redundant hand-written code.",
       },
     ],
   },
@@ -94,15 +98,22 @@ const skillList: SkillGroup[] = [
     skills: [
       {
         name: 'Docker',
-        description: '',
+        description:
+          'Docker has been pivotal in adopting the 12 Factor App methodology. ' +
+          'I have become comfortable navigating docker and docker-compose workflows, and seen ' +
+          'how it effects productivity when developing, testing, and deploying code.',
       },
       {
         name: 'Azure',
-        description: '',
+        description:
+          "In professional projects I have experience with Azure's App Service, Functions, B2C, " +
+          'KeyVault, Blob Storage/Storage Account and other services.',
       },
       {
         name: 'Google Cloud Platform',
-        description: '',
+        description:
+          'This website is hosted on App Engine, and also uses Cloud Functions, Cloud Storage, ' +
+          'and the Cloud Scheduler services.',
       },
     ],
   },

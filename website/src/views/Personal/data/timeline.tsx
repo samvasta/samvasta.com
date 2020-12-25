@@ -8,7 +8,7 @@ const timelineItems: TimelineData[] = [
     date: 'May 2015',
     icon: icons.Briefcase,
     title: 'Software Developer Internship',
-    subtitle: ['@ Lone Star Analysis', <br />, 'May 2015 - December 2016'],
+    subtitle: ['@ Lone Star Analysis', 'May 2015 - December 2016'],
     alwaysActive: true,
     activeContent: (
       <UnorderedList>
@@ -33,19 +33,19 @@ const timelineItems: TimelineData[] = [
     date: 'December 2016',
     icon: icons.School,
     title: 'Graduation from University of Texas at Dallas',
-    subtitle: "Computer Science, Dean's list, 3.73GPA",
+    subtitle: ["Computer Science, Dean's list, 3.73GPA"],
   },
   {
     date: 'January 2017',
     icon: icons.Briefcase,
     title: 'Hired: Fullstack Software Engineer',
-    subtitle: '@ Lone Star Analysis',
+    subtitle: ['@ Lone Star Analysis'],
   },
   {
     date: 'February 2017',
     icon: icons.Briefcase,
     title: 'Independent Contractor',
-    subtitle: 'Gramercy Extremity Orthopedics',
+    subtitle: ['Gramercy Extremity Orthopedics'],
     activeContent: (
       <UnorderedList>
         <ListItem>
@@ -67,7 +67,7 @@ const timelineItems: TimelineData[] = [
     date: 'August 2019',
     icon: icons.Rocket,
     title: 'Product Launch: TruPredict',
-    subtitle: '@ Lone Star Analysis',
+    subtitle: ['@ Lone Star Analysis'],
     activeContent: (
       <>
         <Text>
@@ -89,7 +89,7 @@ const timelineItems: TimelineData[] = [
     date: 'December 2020',
     icon: icons.Rocket,
     title: 'Product Launch: TruPredict Essentials',
-    subtitle: '@ Lone Star Analysis',
+    subtitle: ['@ Lone Star Analysis'],
     activeContent: (
       <>
         <Text>
@@ -111,7 +111,7 @@ const timelineItems: TimelineData[] = [
     date: 'Present',
     icon: icons.Briefcase,
     title: 'Software Engineer & Team Lead',
-    subtitle: ['@ Lone Star Analysis', <br />, 'January 2017 - Present'],
+    subtitle: ['@ Lone Star Analysis', 'January 2017 - Present'],
     alwaysActive: true,
     activeContent: (
       <>

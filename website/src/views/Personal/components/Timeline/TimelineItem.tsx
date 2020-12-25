@@ -15,7 +15,7 @@ export interface TimelineData {
   date: string;
   icon: any;
   title: any;
-  subtitle?: any;
+  subtitle?: any[];
   activeContent?: any;
   alwaysActive?: boolean;
 }
@@ -113,11 +113,12 @@ const TimelineItem = (props: TimelineItemProps) => {
           rounded="lg"
         >
           <Heading size="md">{title}</Heading>
-          {subtitle && (
-            <Text opacity="0.67" size="sm">
-              {subtitle}
-            </Text>
-          )}
+          {subtitle &&
+            subtitle.map((item: any) => (
+              <Text opacity="0.67" size="sm" key={item}>
+                {item}
+              </Text>
+            ))}
           {activeContent && (
             <>
               {!alwaysActive && (

@@ -11,7 +11,6 @@ function startApp(port, middlewares) {
   app.use(express.static('public'));
   
   app.get('/*', (_req, res) => {
-    console.log("getting /")
     res.sendFile(path.resolve(__dirname, '../../public/index.html'));
   });
 
