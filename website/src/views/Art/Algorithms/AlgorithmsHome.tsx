@@ -3,6 +3,7 @@ import { HashLink } from 'react-router-hash-link';
 import ArticleHeading from 'components/ArticleHeading';
 import React from 'react';
 import ArticlePreview from 'components/ArticlePreview';
+import { GoTo } from 'routes';
 
 const AlgorithmsHome = () => {
   return (
@@ -33,14 +34,14 @@ const AlgorithmsHome = () => {
           <ArticlePreview
             title="Landscapes"
             imageSrc="/images/art/landscapes/landscape_1.png"
-            to="/art/procgen/landscapes"
+            to={GoTo.Art.Algorithms.Landscapes}
           />
         </WrapItem>
         <WrapItem>
           <ArticlePreview
             title="Triangles"
             imageSrc="/images/art/triangles/triangles_1.png"
-            to="/art/procgen/triangles"
+            to={GoTo.Art.Algorithms.Triangles}
           />
         </WrapItem>
       </Wrap>
@@ -51,21 +52,21 @@ const AlgorithmsHome = () => {
           <ArticlePreview
             title="Geometric"
             imageSrc="/images/art/geometric/shapes_1.png"
-            to="/art/procgen/geometric"
+            to={GoTo.Art.Algorithms.Geometric}
           />
         </WrapItem>
         <WrapItem>
           <ArticlePreview
             title="Bezier"
             imageSrc="/images/art/bezier/bezier_1.png"
-            to="/art/procgen/bezier"
+            to={GoTo.Art.Algorithms.Bezier}
           />
         </WrapItem>
         <WrapItem>
           <ArticlePreview
             title="Hatching"
             imageSrc="/images/art/hatched/hatched_1.png"
-            to="/art/procgen/hatched"
+            to={GoTo.Art.Algorithms.Hatched}
           />
         </WrapItem>
       </Wrap>
@@ -76,28 +77,28 @@ const AlgorithmsHome = () => {
           <ArticlePreview
             title="All Colors"
             imageSrc="/images/art/all_colors/all_colors_1.png"
-            to="/art/procgen/all-colors"
+            to={GoTo.Art.Algorithms.AllColors}
           />
         </WrapItem>
         <WrapItem>
           <ArticlePreview
             title="Tesselation"
             imageSrc="/images/art/tesselation/tess_1.png"
-            to="/art/procgen/tesselation"
+            to={GoTo.Art.Algorithms.Tesselation}
           />
         </WrapItem>
         <WrapItem>
           <ArticlePreview
             title="Triangulation"
             imageSrc="/images/art/delaunay/delaunay_1.png"
-            to="/art/procgen/delaunay"
+            to={GoTo.Art.Algorithms.Delaunay}
           />
         </WrapItem>
         <WrapItem>
           <ArticlePreview
             title="Watercolors"
             imageSrc="/images/art/watercolors/fog_1.png"
-            to="/art/procgen/watercolors"
+            to={GoTo.Art.Algorithms.Watercolors}
           />
         </WrapItem>
       </Wrap>
@@ -110,21 +111,21 @@ const AlgorithmsHome = () => {
           <ArticlePreview
             title="Randomness"
             imageSrc="/images/art/geometric/shapes_1.png"
-            to="/art/procgen/geometric"
+            to={GoTo.Art.Techniques.Randomness}
           />
         </WrapItem>
         <WrapItem>
           <ArticlePreview
             title="Color"
             imageSrc="/images/art/bezier/bezier_1.png"
-            to="/art/procgen/bezier"
+            to={GoTo.Art.Techniques.Color}
           />
         </WrapItem>
         <WrapItem>
           <ArticlePreview
             title="Midpoint Displacement"
             imageSrc="/images/art/techniques/midpoint_displacement.png"
-            to="/art/procgen/techniques/midpoint-displacement"
+            to={GoTo.Art.Techniques.MidpointDisplacement}
           />
         </WrapItem>
       </Wrap>

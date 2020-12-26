@@ -6,6 +6,7 @@ import { hot } from 'react-hot-loader/root';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { GoTo } from 'routes';
+import ArtAlgLandscapes from 'views/Art/Algorithms/Landscapes';
 
 import Providers from './context';
 
@@ -34,6 +35,7 @@ const RoutesWithNavBar = () => (
       {/* Art */}
       <Route path={GoTo.Art.Home} exact component={ArtHome} />
       <Route path={GoTo.Art.AlgorithmsHome} exact component={AlgorithmsHome} />
+      <Route path={GoTo.Art.Algorithms.Landscapes} exact component={ArtAlgLandscapes} />
 
       {/* Personal */}
       <Route path={GoTo.Personal.Resume} exact component={Resume} />

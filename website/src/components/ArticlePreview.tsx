@@ -25,18 +25,20 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
       <Box
         {...boxProps}
         boxShadow="md"
-        p={4}
-        w={{ base: 64, md: 56, lg: 48 }}
+        // p={4}
+        w={{ base: 72, md: 64, lg: 56 }}
         _hover={{
           boxShadow: 'xl',
         }}
       >
-        <Square size={{ base: 56, md: 48, lg: 40 }}>
+        <Square size={{ base: 72, md: 64, lg: 56 }}>
           <Image alt={title} w="100%" h="100%" src={imageSrc} fit="cover" />
         </Square>
-        <Heading size="lg" mt={2} textAlign="center" overflowWrap="break-word" color="black">
-          {title}
-        </Heading>
+        <Box position="absolute" transform="translateY(-100%)" width="inherit" bg="blackAlpha.600">
+          <Heading size="md" my={2} textAlign="center" overflowWrap="break-word" color="white">
+            {title}
+          </Heading>
+        </Box>
       </Box>
     </Link>
   );
