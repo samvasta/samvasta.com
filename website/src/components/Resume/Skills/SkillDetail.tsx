@@ -1,6 +1,6 @@
 import { Box, CloseButton, Heading, ScaleFade, Text } from '@chakra-ui/react';
 import React from 'react';
-import { Skill } from 'views/Personal/data/skills';
+import { Skill } from 'data/Resume/skills';
 
 export interface SkillDetailProps {
   skill: Skill;

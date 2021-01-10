@@ -3,6 +3,7 @@ import {
   IoLogoGithub,
   IoLogoLinkedin,
   IoColorPalette,
+  IoMenu,
   IoSchool,
   IoRocket,
   IoBriefcase,
@@ -25,4 +26,5 @@ export default {
   Briefcase: IoBriefcase,
   Levelup: FaLevelUpAlt,
   Home: IoHomeSharp,
+  HamburgerMenu: IoMenu,
 };

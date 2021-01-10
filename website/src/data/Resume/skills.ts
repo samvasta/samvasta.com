@@ -1,14 +1,14 @@
-interface Skill {
+export interface Skill {
   name: string;
   description?: any;
 }
 
-interface SkillGroup {
+export interface SkillGroup {
   name: string;
   skills: Skill[];
 }
 
-const skillList: SkillGroup[] = [
+export const skillList: SkillGroup[] = [
   {
     name: 'Languages',
     skills: [
@@ -220,5 +220,3 @@ const skillList: SkillGroup[] = [
     ],
   },
 ];
-
-export { Skill, SkillGroup, skillList };

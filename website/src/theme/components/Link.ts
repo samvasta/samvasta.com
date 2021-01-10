@@ -6,7 +6,7 @@ const variantNoUnderline = {
 
 export default {
   baseStyle: {
-    color: 'blue.400',
+    color: 'red.400',
     _active: {
       boxShadow: 'none',
     },

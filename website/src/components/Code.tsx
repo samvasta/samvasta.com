@@ -1,9 +1,9 @@
 import React from 'react';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { obsidian as codeStyle } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { obsidian as codeStyle } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
-import plaintext from 'react-syntax-highlighter/dist/esm/languages/hljs/plaintext';
-import cpp from 'react-syntax-highlighter/dist/esm/languages/hljs/cpp';
+import plaintext from 'react-syntax-highlighter/dist/cjs/languages/hljs/plaintext';
+import cpp from 'react-syntax-highlighter/dist/cjs/languages/hljs/cpp';
 
 SyntaxHighlighter.registerLanguage('plaintext', plaintext);
 SyntaxHighlighter.registerLanguage('cpp', cpp);

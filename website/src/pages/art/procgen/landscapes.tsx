@@ -1,5 +1,6 @@
 import { Container, Text } from '@chakra-ui/react';
 import ArticleHeading from 'components/ArticleHeading';
+import BasePage from 'components/BasePage';
 import React from 'react';
 
 const ArtAlgLandscapes = () => {
@@ -24,4 +25,8 @@ const ArtAlgLandscapes = () => {
   );
 };
 
-export default ArtAlgLandscapes;
+export default BasePage(ArtAlgLandscapes, {
+  meta: {
+    title: 'Landscapes',
+  },
+});

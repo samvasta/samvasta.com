@@ -1,9 +1,9 @@
-import { Box, Container, useToken, Wrap, WrapItem } from '@chakra-ui/react';
+import { Box, Container, Wrap, WrapItem } from '@chakra-ui/react';
 import ArticlePreview from 'components/ArticlePreview';
 import ArticleHeading from 'components/ArticleHeading';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { GoTo } from 'routes';
-import { useNavBarProps } from 'context/navigation';
+import BasePage from 'components/BasePage';
 
 interface ArticleGroup {
   groupTitle: string;
@@ -84,4 +84,8 @@ const TinkeringHome = () => {
   );
 };
 
-export default TinkeringHome;
+export default BasePage(TinkeringHome, {
+  meta: {
+    title: 'Tinkering',
+  },
+});

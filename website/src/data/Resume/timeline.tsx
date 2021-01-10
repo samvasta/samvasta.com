@@ -1,7 +1,7 @@
 import { ListItem, Text, UnorderedList } from '@chakra-ui/react';
 import React from 'react';
 import icons from 'theme/icons';
-import { TimelineData } from '../components/Timeline/TimelineItem';
+import { TimelineData } from 'components/Resume/Timeline/TimelineItem';
 
 const timelineItems: TimelineData[] = [
   {

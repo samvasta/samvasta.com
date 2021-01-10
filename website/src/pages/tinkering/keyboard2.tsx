@@ -2,6 +2,7 @@ import { Container, Link, ListItem, Text, UnorderedList } from '@chakra-ui/react
 import React from 'react';
 
 import ArticleHeading from 'components/ArticleHeading';
+import BasePage from 'components/BasePage';
 
 const Keyboard2 = () => {
   return (
@@ -113,4 +114,8 @@ const Keyboard2 = () => {
   );
 };
 
-export default Keyboard2;
+export default BasePage(Keyboard2, {
+  meta: {
+    title: 'Custom Keyboard v2',
+  },
+});

@@ -2,7 +2,9 @@ import { Box, Heading, HStack, Icon, Link, SimpleGrid, VStack } from '@chakra-ui
 import React from 'react';
 import icons from 'theme/icons';
 import { GoTo } from 'routes';
-import LinkButton from './components/LinkButton';
+import LinkButton from 'components/Home/LinkButton';
+import BasePage from 'components/BasePage';
+import SocialLinks from 'components/SocialLinks';
 
 const Home = () => {
   return (
@@ -42,19 +44,11 @@ const Home = () => {
         </VStack>
       </SimpleGrid>
 
-      <HStack spacing={3} m={3} color="gray.700">
-        <Link href="https://github.com/samvasta" color="inherit">
-          <Icon as={icons.Github} w={6} h={6} />
-        </Link>
-        <Link href="mailto:hello@samvasta.com" color="inherit">
-          <Icon as={icons.Email} w={6} h={6} />
-        </Link>
-        <Link href="https://linkedin.com/in/sam-vasta-b82470123" color="inherit">
-          <Icon as={icons.Linkedin} w={6} h={6} />
-        </Link>
-      </HStack>
+      <SocialLinks color="gray.700" />
     </Box>
   );
 };
 
-export default Home;
+export default BasePage(Home, {
+  nav: 'no-nav',
+});

@@ -1,9 +1,10 @@
-import { Container, Link, Text, Wrap, WrapItem } from '@chakra-ui/react';
-import { HashLink } from 'react-router-hash-link';
+import { Container, Text, Wrap, WrapItem } from '@chakra-ui/react';
 import ArticleHeading from 'components/ArticleHeading';
 import React from 'react';
 import ArticlePreview from 'components/ArticlePreview';
 import { GoTo } from 'routes';
+import Link from 'components/Link';
+import BasePage from 'components/BasePage';
 
 const AlgorithmsHome = () => {
   return (
@@ -22,10 +23,7 @@ const AlgorithmsHome = () => {
       <Text variant="para">
         Although each style is unique, they all share a foundation of several ideas and techniques.
         More about these ideas and techniques can be found in the{' '}
-        <Link as={HashLink} to="#techniques">
-          techniques
-        </Link>{' '}
-        section at the bottom of this page.
+        <Link to="#techniques">techniques</Link> section at the bottom of this page.
       </Text>
 
       <ArticleHeading level={3}>2013-2014</ArticleHeading>
@@ -133,4 +131,8 @@ const AlgorithmsHome = () => {
   );
 };
 
-export default AlgorithmsHome;
+export default BasePage(AlgorithmsHome, {
+  meta: {
+    title: 'Procedural Generation',
+  },
+});

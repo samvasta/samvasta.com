@@ -3,42 +3,30 @@ import {
   Flex,
   Heading,
   Icon,
-  Image,
   Link,
   SimpleGrid,
   Text,
-  useToken,
   VStack,
   Wrap,
   WrapItem,
 } from '@chakra-ui/react';
+import Image from 'components/Image';
 import find from 'lodash/find';
 
 import icons from 'theme/icons';
-import React, { useEffect, useState } from 'react';
-import { useNavBarProps } from 'context/navigation';
-import ResumeSection from './components/ResumeSection';
-import Timeline from './components/Timeline/Timeline';
-import SkillBadge from './components/Skills/SkillBadge';
-import HobbyItem from './components/HobbyItem';
+import React, { useState } from 'react';
+import ResumeSection from 'components/Resume/ResumeSection';
+import Timeline from 'components/Resume/Timeline/Timeline';
+import SkillBadge from 'components/Resume/Skills/SkillBadge';
+import HobbyItem from 'components/Resume/HobbyItem';
 
-import timelineItems from './data/timeline';
-import { skillList, Skill } from './data/skills';
-import SkillDetail from './components/Skills/SkillDetail';
+import timelineItems from 'data/Resume/timeline';
+import { skillList, Skill } from 'data/Resume/skills';
+import SkillDetail from 'components/Resume/Skills/SkillDetail';
+import BasePage from 'components/BasePage';
+import SocialLinks from 'components/SocialLinks';
 
 const Resume = () => {
-  const setNavProps = useNavBarProps();
-  const [white] = useToken('colors', ['white']);
-
-  useEffect(() => {
-    setNavProps({
-      bg: 'black',
-      color: 'gray.400',
-      mb: 0,
-      activeStyle: { color: white },
-    });
-  });
-
   const [selectedSkill, setSelectedSkill] = useState<Skill | undefined>(undefined);
 
   const toggleSkill = (skill: Skill) => {
@@ -67,7 +55,16 @@ const Resume = () => {
               </Link>
             </Text>
           </Box>
-          <Image src="/images/headshot.jpg" rounded="full" h={40} />
+          <Image
+            box={{ w: 40, h: 40, rounded: 'full' }}
+            img={{
+              src: '/images/headshot.jpg',
+              layout: 'fill',
+              objectFit: 'cover',
+              quality: 100,
+              alt: 'Sam Vasta',
+            }}
+          />
         </Flex>
       </ResumeSection>
       <ResumeSection bg="blue.700" color="white">
@@ -133,9 +130,21 @@ const Resume = () => {
         </SimpleGrid>
       </ResumeSection>
 
-      <ResumeSection bg="black" color="gray.300" minH="xs" />
+      <ResumeSection bg="black" color="gray.300" minH="xs">
+        <SocialLinks color="gray.700" />
+      </ResumeSection>
     </>
   );
 };
 
-export default Resume;
+export default BasePage(Resume, {
+  nav: {
+    bg: 'black',
+    color: 'gray.400',
+    mb: 0,
+    activeStyle: { color: 'white' },
+  },
+  meta: {
+    title: 'Resume',
+  },
+});

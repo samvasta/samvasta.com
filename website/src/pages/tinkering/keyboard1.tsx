@@ -20,6 +20,7 @@ import Code from 'components/Code';
 import ArticleHeading from 'components/ArticleHeading';
 import CaptionedImage from 'components/CaptionedImage';
 import QuoteText from 'components/QuoteText';
+import BasePage from 'components/BasePage';
 
 const Keyboard1 = () => {
   return (
@@ -587,4 +588,8 @@ encoder_values[i] %= ENCODER_RESOLUTION;`}
   );
 };
 
-export default Keyboard1;
+export default BasePage(Keyboard1, {
+  meta: {
+    title: 'Custom Keyboard',
+  },
+});

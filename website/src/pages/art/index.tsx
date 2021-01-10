@@ -1,8 +1,9 @@
-import { Container, Image, Link, SimpleGrid, Text } from '@chakra-ui/react';
+import { Container, Image, SimpleGrid, Text } from '@chakra-ui/react';
 import ArticleHeading from 'components/ArticleHeading';
-import { Link as ReactRouterLink } from 'react-router-dom';
 import React from 'react';
 import { GoTo } from 'routes';
+import Link from 'components/Link';
+import BasePage from 'components/BasePage';
 
 const ArtHome = () => {
   return (
@@ -36,7 +37,7 @@ const ArtHome = () => {
         make the creation of new generators more fun (at least it&apos;s fun for me).
       </Text>
 
-      <Link as={ReactRouterLink} to={GoTo.Art.AlgorithmsHome} display="inherit">
+      <Link to={GoTo.Art.AlgorithmsHome} display="inherit">
         See more
       </Link>
 
@@ -45,11 +46,15 @@ const ArtHome = () => {
       </ArticleHeading>
 
       <Text variant="para">Sometimes I like to paint with guache or watercolors.</Text>
-      <Link as={ReactRouterLink} to={GoTo.Art.Home} mb={16} display="inherit">
+      <Link to={GoTo.Art.Home} mb={16} display="inherit">
         See more
       </Link>
     </Container>
   );
 };
 
-export default ArtHome;
+export default BasePage(ArtHome, {
+  meta: {
+    title: 'Art',
+  },
+});

@@ -1,6 +1,7 @@
-import { Box, BoxProps, Heading, Image, Link, Square } from '@chakra-ui/react';
+import { Box, BoxProps, Heading, Square } from '@chakra-ui/react';
 import React from 'react';
-import { Link as ReactRouterLink } from 'react-router-dom';
+import Link from './Link';
+import Image from './Image';
 
 export interface ArticlePreviewProps extends BoxProps {
   title: string;
@@ -14,7 +15,6 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
   return (
     <Link
       to={to}
-      as={ReactRouterLink}
       _hover={{
         textDecoration: 'none',
       }}
@@ -32,7 +32,16 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
         }}
       >
         <Square size={{ base: 72, md: 64, lg: 56 }}>
-          <Image alt={title} w="100%" h="100%" src={imageSrc} fit="cover" />
+          <Image
+            box={{ w: '100%', h: '100%' }}
+            img={{
+              src: imageSrc,
+              layout: 'fill',
+              objectFit: 'cover',
+              quality: 100,
+              alt: title,
+            }}
+          />
         </Square>
         <Box position="absolute" transform="translateY(-100%)" width="inherit" bg="blackAlpha.600">
           <Heading size="md" my={2} textAlign="center" overflowWrap="break-word" color="white">

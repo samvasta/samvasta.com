@@ -1,6 +1,6 @@
-import { Box, Heading, Link } from '@chakra-ui/react';
+import { Box, Heading } from '@chakra-ui/react';
 import React from 'react';
-import { Link as ReactRouterLink } from 'react-router-dom';
+import NextLink from 'next/link';
 
 export interface ILinkButtonProps {
   to: string;
@@ -24,13 +24,21 @@ const LinkButton = (props: ILinkButtonProps) => {
       };
 
   return (
-    <Link to={to} as={ReactRouterLink} width="full" variant="noUnderline">
-      <Box bg="yellow.500" color="gray.900" px={8} py={4} width="full" _hover={hover}>
-        <Heading textAlign="left" size="2xl">
+    <NextLink href={to}>
+      <Box
+        bg="yellow.500"
+        color="gray.900"
+        px={8}
+        py={4}
+        width="full"
+        _hover={hover}
+        cursor="pointer"
+      >
+        <Heading textAlign="left" size="2xl" cursor="pointer">
           {text}
         </Heading>
       </Box>
-    </Link>
+    </NextLink>
   );
 };
 export default LinkButton;
