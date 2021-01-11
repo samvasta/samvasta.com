@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import { NextComponentType } from 'next';
 import Meta, { MetaProps } from './Meta';
 import NavigationBar, { NavigationBarProps } from './NavigationBar';
 
@@ -46,7 +47,10 @@ export interface BasePageProps {
   meta?: Partial<MetaProps>;
 }
 
-const BasePage = (Component: React.FC, pageProps?: BasePageProps): React.FC => {
+function BasePage<T>(
+  Component: React.ComponentType<T>,
+  pageProps?: BasePageProps,
+): React.ComponentType<T> {
   const { nav, meta } = pageProps ?? {
     nav: defaultNavProps,
     meta: defaultMetaProps,
@@ -56,7 +60,7 @@ const BasePage = (Component: React.FC, pageProps?: BasePageProps): React.FC => {
   const finalNavProps = toNavProps(nav);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return (componentProps: any) => {
+  return (componentProps: T) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const router = useRouter();
     return (
@@ -71,6 +75,6 @@ const BasePage = (Component: React.FC, pageProps?: BasePageProps): React.FC => {
       </>
     );
   };
-};
+}
 
 export default BasePage;

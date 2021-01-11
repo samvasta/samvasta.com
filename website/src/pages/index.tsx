@@ -1,6 +1,5 @@
-import { Box, Heading, HStack, Icon, Link, SimpleGrid, VStack } from '@chakra-ui/react';
+import { Box, Heading, SimpleGrid, VStack } from '@chakra-ui/react';
 import React from 'react';
-import icons from 'theme/icons';
 import { GoTo } from 'routes';
 import LinkButton from 'components/Home/LinkButton';
 import BasePage from 'components/BasePage';

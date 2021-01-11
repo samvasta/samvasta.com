@@ -1,9 +1,21 @@
 import { Container, Text } from '@chakra-ui/react';
 import ArticleHeading from 'components/ArticleHeading';
 import BasePage from 'components/BasePage';
+import Gallery, { GalleryProps } from 'components/Gallery';
+import getGalleryUrls from 'data/gcp';
+import { GetStaticProps } from 'next';
 import React from 'react';
 
-const ArtAlgLandscapes = () => {
+export const getStaticProps: GetStaticProps = async () => {
+  const galleryUrls = await getGalleryUrls('landscape');
+
+  return {
+    props: galleryUrls,
+    revalidate: 60 * 60 * 2, // In seconds => 60 sec/min * 60 min/hr * 2hr
+  };
+};
+
+const ArtAlgLandscapes = (props: GalleryProps) => {
   return (
     <Container variant="article">
       <ArticleHeading>Landscapes</ArticleHeading>
@@ -29,7 +41,6 @@ const ArtAlgLandscapes = () => {
           <i>Landscapes</i>
         </b>{' '}
         images are constructed.
-        <br />
       </Text>
 
       <Text variant="para">
@@ -50,6 +61,13 @@ const ArtAlgLandscapes = () => {
         then split into two smaller trees (branches), recursively. There is a reason why recursive
         data structures are called trees!
       </Text>
+
+      {props && (
+        <>
+          <ArticleHeading level={3}>Gallery</ArticleHeading>
+          <Gallery {...props} />
+        </>
+      )}
     </Container>
   );
 };

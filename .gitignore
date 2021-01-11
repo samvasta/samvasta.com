@@ -9,3 +9,5 @@ Thumbs.db
 *.png~
 
 .next
+
+.env.local
