@@ -21,6 +21,35 @@ const ArtAlgLandscapes = () => {
         those features in the future, it will be much more relaxing to start a new landscape
         generator from scratch.
       </Text>
+
+      <ArticleHeading level={3}>Process</ArticleHeading>
+      <Text variant="para">
+        Figure 1 shows a little bit about how the{' '}
+        <b>
+          <i>Landscapes</i>
+        </b>{' '}
+        images are constructed.
+        <br />
+      </Text>
+
+      <Text variant="para">
+        This image generator makes heavy use of the Midpoint Displacement algorithm. The basic idea
+        of this algorithm is take the midpoint of a line segment and move it at an angle tangent to
+        the original line segment. This creates two new line segments, which you can recursively
+        apply the same algorithm to, as demonstrated in Figure 2.
+      </Text>
+
+      <Text variant="para">
+        Before the main generation process starts, a basic two-color palette is chosen and a color
+        gradient is computed to bridge the two colors.
+      </Text>
+      <Text variant="para">
+        Each layer of terrain starts as a single line which stretches across the width of the image.
+        Then the midpoint displacement algorithm is applied to this line several times. Occasinally,
+        a tree will be drawn on a layer of terrain. Trees start as a single branch (the trunk) and
+        then split into two smaller trees (branches), recursively. There is a reason why recursive
+        data structures are called trees!
+      </Text>
     </Container>
   );
 };

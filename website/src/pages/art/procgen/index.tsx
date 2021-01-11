@@ -75,14 +75,14 @@ const AlgorithmsHome = () => {
           <ArticlePreview
             title="All Colors"
             imageSrc="/images/art/all_colors/all_colors_1.png"
-            to={GoTo.Art.Algorithms.AllColors}
+            to="/art/procgen/allColors"
           />
         </WrapItem>
         <WrapItem>
           <ArticlePreview
             title="Tesselation"
             imageSrc="/images/art/tesselation/tess_1.png"
-            to={GoTo.Art.Algorithms.Tesselation}
+            to="/art/procgen/tessellation"
           />
         </WrapItem>
         <WrapItem>

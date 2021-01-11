@@ -12,6 +12,7 @@
 			"keycaps",
 			"microcontroller",
 			"middlewares",
+			"procgen",
 			"thumbstick"
 		]
 	}
