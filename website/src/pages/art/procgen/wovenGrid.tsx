@@ -2,6 +2,7 @@ import { Container, Text } from '@chakra-ui/react';
 import ArticleHeading from 'components/ArticleHeading';
 import BasePage from 'components/BasePage';
 import Gallery, { GalleryProps } from 'components/Gallery';
+import { GenWovenGrid } from 'data/Art/procgen';
 import getGalleryUrls from 'data/gcp';
 import { GetStaticProps } from 'next';
 import React from 'react';
@@ -20,7 +21,7 @@ const ArtAlgWovenGrid = (props: GalleryProps) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const galleryUrls = await getGalleryUrls('wovengrid');
+  const galleryUrls = await getGalleryUrls(GenWovenGrid);
 
   return {
     props: galleryUrls,

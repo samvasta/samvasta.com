@@ -2,6 +2,7 @@ import { Container, Link, ListItem, OrderedList, Text, UnorderedList } from '@ch
 import ArticleHeading from 'components/ArticleHeading';
 import BasePage from 'components/BasePage';
 import Gallery, { GalleryProps } from 'components/Gallery';
+import { GenTessellation } from 'data/Art/procgen';
 import getGalleryUrls from 'data/gcp';
 import { GetStaticProps } from 'next';
 import React from 'react';
@@ -101,7 +102,7 @@ const ArtAlgTessellation = (props: GalleryProps) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const galleryUrls = await getGalleryUrls('tessellation');
+  const galleryUrls = await getGalleryUrls(GenTessellation);
 
   return {
     props: galleryUrls,
