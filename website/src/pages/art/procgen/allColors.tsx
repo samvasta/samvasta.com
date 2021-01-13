@@ -30,14 +30,12 @@ const ArtAlgAllColors = () => {
       </Text>
 
       <ArticleHeading level={3}>Process</ArticleHeading>
-      <Text variant="para">
-        Image generation happens in three main steps:
-        <OrderedList>
-          <ListItem>Chose and sort colors</ListItem>
-          <ListItem>Place colors</ListItem>
-          <ListItem>Clean up</ListItem>
-        </OrderedList>
-      </Text>
+      <Text variant="para">Image generation happens in three main steps:</Text>
+      <OrderedList>
+        <ListItem>Chose and sort colors</ListItem>
+        <ListItem>Place colors</ListItem>
+        <ListItem>Clean up</ListItem>
+      </OrderedList>
       <Text variant="para">
         The first phase, <i>choose and sort colors</i>, involves iterating through the RGB color
         space and adding these colors to a giant list. The size of each step through the color space

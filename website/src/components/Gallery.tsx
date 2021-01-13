@@ -4,38 +4,27 @@ import PhotoGallery from 'react-photo-gallery';
 import { Image, Modal, ModalContent, ModalOverlay, useDisclosure } from '@chakra-ui/react';
 
 export interface GalleryProps {
-  landscapeUrls: string[];
-  portraitUrls: string[];
-  squareUrls: string[];
+  landscapeUrls: GalleryItem[];
+  portraitUrls: GalleryItem[];
+  squareUrls: GalleryItem[];
 }
 
-interface GalleryItem {
+export interface GalleryItem {
   src: string;
   width: number;
   height: number;
-  rand: number;
 }
 
-const urlToPhoto = (url: string): GalleryItem => {
-  const regex = /\d+-\d+-\d+_\d+-\d+-\d+-\d+_(\d+)x(\d+)_([a-fA-F0-9-]*)/;
-  const match = url.match(regex);
+interface KeyedGalleryItem extends GalleryItem {
+  id: number;
+}
 
-  if (match) {
-    const photo: GalleryItem = {
-      width: Number.parseInt(match[1], 10),
-      height: Number.parseInt(match[2], 10),
-      src: url,
-      rand: Number.parseInt(match[3], 16),
-    };
-    return photo;
-  }
-
-  return {
-    width: 1,
-    height: 1,
-    src: url,
-    rand: -1,
+const urlToPhoto = (item: GalleryItem, index: number): KeyedGalleryItem => {
+  const photo: KeyedGalleryItem = {
+    ...item,
+    id: index,
   };
+  return photo;
 };
 
 const Gallery = (props: GalleryProps): JSX.Element => {
@@ -49,16 +38,21 @@ const Gallery = (props: GalleryProps): JSX.Element => {
     onOpen();
   };
 
-  const photos: GalleryItem[] = sortBy(
+  const photos: KeyedGalleryItem[] = sortBy(
     [...landscapeUrls, ...portraitUrls, ...squareUrls].map(urlToPhoto),
     ['rand'],
   );
 
   return (
     <>
-      <PhotoGallery photos={photos} onClick={(_, { index }) => openLightbox(index)} />
+      <PhotoGallery
+        photos={photos}
+        direction="row"
+        margin={10}
+        onClick={(_, { index }) => openLightbox(index)}
+      />
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
-        <ModalOverlay />
+        <ModalOverlay bg="#000000BB" />
         <ModalContent maxH="80vh" maxW="80vw" bg="transparent" boxShadow="none" width="unset">
           <Image src={photos[currentImage].src} fit="contain" maxH="80vh" maxW="100%" />
         </ModalContent>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { NextComponentType } from 'next';
 import Meta, { MetaProps } from './Meta';
 import NavigationBar, { NavigationBarProps } from './NavigationBar';
 

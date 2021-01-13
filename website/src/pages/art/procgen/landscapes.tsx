@@ -6,15 +6,6 @@ import getGalleryUrls from 'data/gcp';
 import { GetStaticProps } from 'next';
 import React from 'react';
 
-export const getStaticProps: GetStaticProps = async () => {
-  const galleryUrls = await getGalleryUrls('landscape');
-
-  return {
-    props: galleryUrls,
-    revalidate: 60 * 60 * 2, // In seconds => 60 sec/min * 60 min/hr * 2hr
-  };
-};
-
 const ArtAlgLandscapes = (props: GalleryProps) => {
   return (
     <Container variant="article">
@@ -62,14 +53,19 @@ const ArtAlgLandscapes = (props: GalleryProps) => {
         data structures are called trees!
       </Text>
 
-      {props && (
-        <>
-          <ArticleHeading level={3}>Gallery</ArticleHeading>
-          <Gallery {...props} />
-        </>
-      )}
+      <ArticleHeading level={3}>Gallery</ArticleHeading>
+      <Gallery {...props} />
     </Container>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const galleryUrls = await getGalleryUrls('landscape');
+
+  return {
+    props: galleryUrls,
+    revalidate: 60 * 60 * 2, // In seconds => 60 sec/min * 60 min/hr * 2hr
+  };
 };
 
 export default BasePage(ArtAlgLandscapes, {

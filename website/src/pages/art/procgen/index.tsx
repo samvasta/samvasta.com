@@ -1,12 +1,31 @@
 import { Container, Text, Wrap, WrapItem } from '@chakra-ui/react';
+import fromPairs from 'lodash/fromPairs';
 import ArticleHeading from 'components/ArticleHeading';
 import React from 'react';
 import ArticlePreview from 'components/ArticlePreview';
 import { GoTo } from 'routes';
 import Link from 'components/Link';
 import BasePage from 'components/BasePage';
+import { getThumbnailUrl } from 'data/gcp';
+import { AlgorithmNames } from 'data/Art/procgen';
 
-const AlgorithmsHome = () => {
+interface IGeneratorThumbs {
+  [generatorName: string]: string;
+}
+
+const AlgorithmsHome = (props: IGeneratorThumbs) => {
+  const {
+    landscape,
+    bezier,
+    tessellation,
+    triangulation,
+    circlewave,
+    flowfield,
+    tangles,
+    wovengrid,
+    amoebas,
+  } = props;
+
   return (
     <Container variant="article">
       <ArticleHeading level={1}>Procedural Generation</ArticleHeading>
@@ -29,11 +48,7 @@ const AlgorithmsHome = () => {
       <ArticleHeading level={3}>2013-2014</ArticleHeading>
       <Wrap my={8} spacing={8}>
         <WrapItem>
-          <ArticlePreview
-            title="Landscapes"
-            imageSrc="/images/art/landscapes/landscape_1.png"
-            to={GoTo.Art.Algorithms.Landscapes}
-          />
+          <ArticlePreview title="Landscapes" imageSrc={landscape} to="/art/procgen/landscapes" />
         </WrapItem>
         <WrapItem>
           <ArticlePreview
@@ -54,11 +69,7 @@ const AlgorithmsHome = () => {
           />
         </WrapItem>
         <WrapItem>
-          <ArticlePreview
-            title="Bezier"
-            imageSrc="/images/art/bezier/bezier_1.png"
-            to={GoTo.Art.Algorithms.Bezier}
-          />
+          <ArticlePreview title="Bezier" imageSrc={bezier} to="/art/procgen/bezier" />
         </WrapItem>
         <WrapItem>
           <ArticlePreview
@@ -81,15 +92,15 @@ const AlgorithmsHome = () => {
         <WrapItem>
           <ArticlePreview
             title="Tesselation"
-            imageSrc="/images/art/tesselation/tess_1.png"
+            imageSrc={tessellation}
             to="/art/procgen/tessellation"
           />
         </WrapItem>
         <WrapItem>
           <ArticlePreview
             title="Triangulation"
-            imageSrc="/images/art/delaunay/delaunay_1.png"
-            to={GoTo.Art.Algorithms.Delaunay}
+            imageSrc={triangulation}
+            to="/art/procgen/delaunay"
           />
         </WrapItem>
         <WrapItem>
@@ -98,6 +109,33 @@ const AlgorithmsHome = () => {
             imageSrc="/images/art/watercolors/fog_1.png"
             to={GoTo.Art.Algorithms.Watercolors}
           />
+        </WrapItem>
+      </Wrap>
+
+      <ArticleHeading level={3}>2018</ArticleHeading>
+      <Wrap my={8} spacing={8}>
+        <WrapItem>
+          <ArticlePreview title="Circle Waves" imageSrc={circlewave} to="/art/procgen/circleWave" />
+        </WrapItem>
+      </Wrap>
+
+      <ArticleHeading level={3}>2019</ArticleHeading>
+      <Wrap my={8} spacing={8}>
+        <WrapItem>
+          <ArticlePreview title="Flow Field" imageSrc={flowfield} to="/art/procgen/flowfield" />
+        </WrapItem>
+        <WrapItem>
+          <ArticlePreview title="Tangles" imageSrc={tangles} to="/art/procgen/tangles" />
+        </WrapItem>
+      </Wrap>
+
+      <ArticleHeading level={3}>2020</ArticleHeading>
+      <Wrap my={8} spacing={8}>
+        <WrapItem>
+          <ArticlePreview title="Woven Grid" imageSrc={wovengrid} to="/art/procgen/wovenGrid" />
+        </WrapItem>
+        <WrapItem>
+          <ArticlePreview title="Amoebas" imageSrc={amoebas} to="/art/procgen/amoebas" />
         </WrapItem>
       </Wrap>
 
@@ -129,6 +167,20 @@ const AlgorithmsHome = () => {
       </Wrap>
     </Container>
   );
+};
+
+export const getStaticProps = async () => {
+  const algorithmThumbsPromises = AlgorithmNames.map(async (name) => {
+    return [name, await getThumbnailUrl(name)];
+  });
+
+  const algorithmThumbs = await Promise.all(algorithmThumbsPromises);
+
+  return {
+    props: {
+      ...fromPairs(algorithmThumbs),
+    },
+  };
 };
 
 export default BasePage(AlgorithmsHome, {

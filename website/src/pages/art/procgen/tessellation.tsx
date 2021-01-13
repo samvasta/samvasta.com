@@ -1,9 +1,12 @@
 import { Container, Link, ListItem, OrderedList, Text, UnorderedList } from '@chakra-ui/react';
 import ArticleHeading from 'components/ArticleHeading';
 import BasePage from 'components/BasePage';
+import Gallery, { GalleryProps } from 'components/Gallery';
+import getGalleryUrls from 'data/gcp';
+import { GetStaticProps } from 'next';
 import React from 'react';
 
-const ArtAlgTessellation = () => {
+const ArtAlgTessellation = (props: GalleryProps) => {
   return (
     <Container variant="article">
       <ArticleHeading>Tessellation</ArticleHeading>
@@ -61,44 +64,53 @@ const ArtAlgTessellation = () => {
         the pattern can be duplicated to continue the tessellation. Patterns often contain just one
         tile, for example the regular hexagons.
       </Text>
-      <Text variant="para">
-        <OrderedList>
-          <ListItem>
-            First, a single point is chosen as the &quot;seed&quot; location and added to a list of
-            locations to stamp.
-          </ListItem>
-          <ListItem>
-            Next, a copy of the pattern is stamped at every location in the to-stamp list.
-            <UnorderedList>
-              <ListItem>
-                Note that the outline of each pattern is shown for demonstration only and is
-                actually rendered in a single pass at the end.
-              </ListItem>
-            </UnorderedList>
-          </ListItem>
-          <ListItem>
-            For each stamped copy, the possible locations of neighbor copies are added to the
-            to-stamp list.
-          </ListItem>
-          <ListItem>Steps 2 &amp; 3 are repeated until the to-stamp list is empty.</ListItem>
-          <ListItem>
-            Each polygon is filled in with a color slightly different that that used on the previous
-            polygon, with a small chance to use a completely different color.
-            <UnorderedList>
-              <ListItem>
-                Polygons are filled in the order in which they were placed, so sometimes a spiral
-                effect can be seen (as in Figure 7).
-              </ListItem>
-            </UnorderedList>
-          </ListItem>
-        </OrderedList>
-      </Text>
+      <OrderedList>
+        <ListItem>
+          First, a single point is chosen as the &quot;seed&quot; location and added to a list of
+          locations to stamp.
+        </ListItem>
+        <ListItem>
+          Next, a copy of the pattern is stamped at every location in the to-stamp list.
+          <UnorderedList>
+            <ListItem>
+              Note that the outline of each pattern is shown for demonstration only and is actually
+              rendered in a single pass at the end.
+            </ListItem>
+          </UnorderedList>
+        </ListItem>
+        <ListItem>
+          For each stamped copy, the possible locations of neighbor copies are added to the to-stamp
+          list.
+        </ListItem>
+        <ListItem>Steps 2 &amp; 3 are repeated until the to-stamp list is empty.</ListItem>
+        <ListItem>
+          Each polygon is filled in with a color slightly different that that used on the previous
+          polygon, with a small chance to use a completely different color.
+          <UnorderedList>
+            <ListItem>
+              Polygons are filled in the order in which they were placed, so sometimes a spiral
+              effect can be seen (as in Figure 7).
+            </ListItem>
+          </UnorderedList>
+        </ListItem>
+      </OrderedList>
+      <ArticleHeading level={3}>Gallery</ArticleHeading>
+      {props && <Gallery {...props} />}
     </Container>
   );
 };
 
+export const getStaticProps: GetStaticProps = async () => {
+  const galleryUrls = await getGalleryUrls('tessellation');
+
+  return {
+    props: galleryUrls,
+    revalidate: 60 * 60 * 2, // In seconds => 60 sec/min * 60 min/hr * 2hr
+  };
+};
+
 export default BasePage(ArtAlgTessellation, {
   meta: {
-    title: 'Tessellation',
+    title: 'Tessellations',
   },
 });
