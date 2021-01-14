@@ -79,7 +79,12 @@ export const skillList: SkillGroup[] = [
       },
       {
         name: 'ExpressJs',
-        description: 'This website uses express as its backend.',
+        description: 'This website used to use express as its backend.',
+      },
+      {
+        name: 'Next.js',
+        description:
+          'This website uses Next.js as its backend. I use their dynamic SSG to update the galleries in the Procedural Generation pages.',
       },
       {
         name: 'ASP.NET',

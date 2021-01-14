@@ -2,15 +2,15 @@ import { Container, Text } from '@chakra-ui/react';
 import ArticleHeading from 'components/ArticleHeading';
 import BasePage from 'components/BasePage';
 import Gallery, { GalleryProps } from 'components/Gallery';
-import { GenLandscape } from 'data/Art/procgen';
+import { GenClippedHatching } from 'data/Art/procgen';
 import getGalleryUrls from 'data/gcp';
 import { GetStaticProps } from 'next';
 import React from 'react';
 
-const ArtAlgLandscapes = (props: GalleryProps) => {
+const ArtAlgClippedHatching = (props: GalleryProps) => {
   return (
     <Container variant="article">
-      <ArticleHeading>Landscapes</ArticleHeading>
+      <ArticleHeading>Clipped Hatching</ArticleHeading>
 
       <ArticleHeading level={3}>Process</ArticleHeading>
 
@@ -21,7 +21,7 @@ const ArtAlgLandscapes = (props: GalleryProps) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const galleryUrls = await getGalleryUrls(GenLandscape);
+  const galleryUrls = await getGalleryUrls(GenClippedHatching);
 
   return {
     props: galleryUrls,
@@ -29,8 +29,8 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default BasePage(ArtAlgLandscapes, {
+export default BasePage(ArtAlgClippedHatching, {
   meta: {
-    title: 'Landscapes',
+    title: 'Clipped Hatching',
   },
 });

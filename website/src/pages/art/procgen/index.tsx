@@ -8,6 +8,7 @@ import Link from 'components/Link';
 import BasePage from 'components/BasePage';
 import { getThumbnailUrl } from 'data/gcp';
 import { AlgorithmNames } from 'data/Art/procgen';
+import radialpolygons from './radialpolygons';
 
 interface IGeneratorThumbs {
   [generatorName: string]: string;
@@ -16,14 +17,19 @@ interface IGeneratorThumbs {
 const AlgorithmsHome = (props: IGeneratorThumbs) => {
   const {
     landscape,
+    landscapelegacy,
     bezier,
     tessellation,
     triangulation,
     circlewave,
     flowfield,
+    fog,
     tangles,
     wovengrid,
     amoebas,
+    clippedhatching,
+    radialpolygons,
+    minspanningtree,
   } = props;
 
   return (
@@ -48,7 +54,11 @@ const AlgorithmsHome = (props: IGeneratorThumbs) => {
       <ArticleHeading level={3}>2013-2014</ArticleHeading>
       <Wrap my={8} spacing={8}>
         <WrapItem>
-          <ArticlePreview title="Landscapes" imageSrc={landscape} to="/art/procgen/landscapes" />
+          <ArticlePreview
+            title="Landscapes (Original)"
+            imageSrc={landscapelegacy}
+            to="/art/procgen/landscapeslegacy"
+          />
         </WrapItem>
         <WrapItem>
           <ArticlePreview
@@ -63,9 +73,9 @@ const AlgorithmsHome = (props: IGeneratorThumbs) => {
       <Wrap my={8} spacing={8}>
         <WrapItem>
           <ArticlePreview
-            title="Geometric"
-            imageSrc="/images/art/geometric/shapes_1.png"
-            to={GoTo.Art.Algorithms.Geometric}
+            title="Prim's MST"
+            imageSrc={minspanningtree}
+            to="/art/procgen/minspanningtree"
           />
         </WrapItem>
         <WrapItem>
@@ -74,8 +84,8 @@ const AlgorithmsHome = (props: IGeneratorThumbs) => {
         <WrapItem>
           <ArticlePreview
             title="Hatching"
-            imageSrc="/images/art/hatched/hatched_1.png"
-            to={GoTo.Art.Algorithms.Hatched}
+            imageSrc={clippedhatching}
+            to="/art/procgen/clippedhatching"
           />
         </WrapItem>
       </Wrap>
@@ -104,10 +114,13 @@ const AlgorithmsHome = (props: IGeneratorThumbs) => {
           />
         </WrapItem>
         <WrapItem>
+          <ArticlePreview title="Fog" imageSrc={fog} to="/art/procgen/fog" />
+        </WrapItem>
+        <WrapItem>
           <ArticlePreview
-            title="Watercolors"
-            imageSrc="/images/art/watercolors/fog_1.png"
-            to={GoTo.Art.Algorithms.Watercolors}
+            title="Radial Polygons"
+            imageSrc={radialpolygons}
+            to="/art/procgen/radialpolygons"
           />
         </WrapItem>
       </Wrap>
