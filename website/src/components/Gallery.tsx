@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import sortBy from 'lodash/sortBy';
 import PhotoGallery from 'react-photo-gallery';
 import { Image, Modal, ModalContent, ModalOverlay, useDisclosure } from '@chakra-ui/react';
+import hash from 'object-hash';
 
 export interface GalleryProps {
   landscapeUrls: GalleryItem[];
@@ -17,12 +18,14 @@ export interface GalleryItem {
 
 interface KeyedGalleryItem extends GalleryItem {
   id: number;
+  hash: string;
 }
 
 const urlToPhoto = (item: GalleryItem, index: number): KeyedGalleryItem => {
   const photo: KeyedGalleryItem = {
     ...item,
     id: index,
+    hash: hash(item.src),
   };
   return photo;
 };
@@ -40,7 +43,7 @@ const Gallery = (props: GalleryProps): JSX.Element => {
 
   const photos: KeyedGalleryItem[] = sortBy(
     [...landscapeUrls, ...portraitUrls, ...squareUrls].map(urlToPhoto),
-    ['rand'],
+    ['hash'],
   );
 
   return (

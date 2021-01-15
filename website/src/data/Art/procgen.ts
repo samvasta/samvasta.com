@@ -10,6 +10,7 @@ export const GenMinSpanningTree = 'minspanningtree';
 export const GenRadialPolygons = 'radialpolygons';
 export const GenTangles = 'tangles';
 export const GenTessellation = 'tessellation';
+export const GenTriangles = 'triangles';
 export const GenDelaunay = 'triangulation';
 export const GenWovenGrid = 'wovengrid';
 
@@ -26,6 +27,7 @@ export const AlgorithmNames = [
   GenRadialPolygons,
   GenTangles,
   GenTessellation,
+  GenTriangles,
   GenDelaunay,
   GenWovenGrid,
 ];

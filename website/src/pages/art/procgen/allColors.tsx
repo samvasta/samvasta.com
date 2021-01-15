@@ -1,6 +1,7 @@
 import { Container, Link, ListItem, OrderedList, Text } from '@chakra-ui/react';
 import ArticleHeading from 'components/ArticleHeading';
 import BasePage from 'components/BasePage';
+import Gallery from 'components/Gallery';
 import React from 'react';
 
 const ArtAlgAllColors = () => {
@@ -86,6 +87,24 @@ const ArtAlgAllColors = () => {
         The effect is that the individual &quot;pixels&quot; are more visible, and, more
         importantly, the algorithm takes much less time to run.
       </Text>
+
+      <ArticleHeading level={3}>Gallery</ArticleHeading>
+      <Gallery
+        landscapeUrls={[
+          '/images/art/all_colors/all_colors_1.png',
+          '/images/art/all_colors/all_colors_2.png',
+          '/images/art/all_colors/all_colors_3.png',
+          '/images/art/all_colors/all_colors_4.png',
+          // '/images/art/all_colors/all_colors_limited_range_1.png',
+          // '/images/art/all_colors/all_colors_limited_range_2.png',
+          // '/images/art/all_colors/all_colors_limited_range_3.png',
+          // '/images/art/all_colors/all_colors_limited_range_4.png',
+        ].map((x) => {
+          return { src: x, width: 16, height: 9 };
+        })}
+        portraitUrls={[]}
+        squareUrls={[]}
+      />
     </Container>
   );
 };

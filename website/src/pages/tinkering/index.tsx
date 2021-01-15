@@ -2,7 +2,6 @@ import { Box, Container, Wrap, WrapItem } from '@chakra-ui/react';
 import ArticlePreview from 'components/ArticlePreview';
 import ArticleHeading from 'components/ArticleHeading';
 import React from 'react';
-import { GoTo } from 'routes';
 import BasePage from 'components/BasePage';
 
 interface ArticleGroup {
@@ -22,12 +21,12 @@ const data: ArticleGroup[] = [
       {
         title: 'Wireless Lamp',
         imageSrc: '/images/tinkering/lamp/lamp1.jpg',
-        to: GoTo.Tinkering.Keyboard1,
+        to: '/tinkering/keyboard1',
       },
       {
         title: 'Fountain Pen Wrap',
         imageSrc: '/images/tinkering/penwrap/penwrap2.jpg',
-        to: GoTo.Tinkering.Keyboard1,
+        to: '/tinkering/keyboard1',
       },
     ],
   },
@@ -37,7 +36,7 @@ const data: ArticleGroup[] = [
       {
         title: 'Custom Keyboard',
         imageSrc: '/images/tinkering/keyboard1/TestFit1.jpg',
-        to: GoTo.Tinkering.Keyboard1,
+        to: '/tinkering/keyboard1',
       },
     ],
   },
@@ -47,7 +46,7 @@ const data: ArticleGroup[] = [
       {
         title: 'Custom Keyboard 2',
         imageSrc: '/images/tinkering/keyboard2/mcu.jpg',
-        to: GoTo.Tinkering.Keyboard2,
+        to: '/tinkering/keyboard2',
       },
     ],
   },
@@ -57,7 +56,7 @@ const data: ArticleGroup[] = [
       {
         title: 'Custom Keyboard 3',
         imageSrc: '/images/tinkering/keyboard2/bms2.jpg',
-        to: GoTo.Tinkering.Keyboard2,
+        to: '/tinkering/keyboard2',
       },
     ],
   },

@@ -12,6 +12,11 @@
 # below:
 .git
 .gitignore
+.vscode
+samvasta.code-workspace
 
 # Node.js dependencies:
 node_modules/
+
+docs
+views

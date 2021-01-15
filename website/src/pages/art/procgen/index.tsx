@@ -3,12 +3,10 @@ import fromPairs from 'lodash/fromPairs';
 import ArticleHeading from 'components/ArticleHeading';
 import React from 'react';
 import ArticlePreview from 'components/ArticlePreview';
-import { GoTo } from 'routes';
 import Link from 'components/Link';
 import BasePage from 'components/BasePage';
 import { getThumbnailUrl } from 'data/gcp';
 import { AlgorithmNames } from 'data/Art/procgen';
-import radialpolygons from './radialpolygons';
 
 interface IGeneratorThumbs {
   [generatorName: string]: string;
@@ -30,6 +28,7 @@ const AlgorithmsHome = (props: IGeneratorThumbs) => {
     clippedhatching,
     radialpolygons,
     minspanningtree,
+    triangles,
   } = props;
 
   return (
@@ -61,11 +60,7 @@ const AlgorithmsHome = (props: IGeneratorThumbs) => {
           />
         </WrapItem>
         <WrapItem>
-          <ArticlePreview
-            title="Triangles"
-            imageSrc="/images/art/triangles/triangles_1.png"
-            to={GoTo.Art.Algorithms.Triangles}
-          />
+          <ArticlePreview title="Triangles" imageSrc={triangles} to="/art/procgen/triangles" />
         </WrapItem>
       </Wrap>
 
@@ -160,21 +155,21 @@ const AlgorithmsHome = (props: IGeneratorThumbs) => {
           <ArticlePreview
             title="Randomness"
             imageSrc="/images/art/geometric/shapes_1.png"
-            to={GoTo.Art.Techniques.Randomness}
+            to="/art/procgen/techniques/random"
           />
         </WrapItem>
         <WrapItem>
           <ArticlePreview
             title="Color"
             imageSrc="/images/art/bezier/bezier_1.png"
-            to={GoTo.Art.Techniques.Color}
+            to="/art/procgen/techniques/color"
           />
         </WrapItem>
         <WrapItem>
           <ArticlePreview
             title="Midpoint Displacement"
             imageSrc="/images/art/techniques/midpoint_displacement.png"
-            to={GoTo.Art.Techniques.MidpointDisplacement}
+            to="/art/procgen/techniques/midpointdisplacement"
           />
         </WrapItem>
       </Wrap>

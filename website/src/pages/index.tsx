@@ -1,6 +1,5 @@
 import { Box, Heading, SimpleGrid, VStack } from '@chakra-ui/react';
 import React from 'react';
-import { GoTo } from 'routes';
 import LinkButton from 'components/Home/LinkButton';
 import BasePage from 'components/BasePage';
 import SocialLinks from 'components/SocialLinks';
@@ -30,16 +29,16 @@ const Home = () => {
             text="a fullstack developer"
           />
           <LinkButton
-            to={GoTo.Tinkering.Home}
+            to="/tinkering"
             hoverBackgroundImg='url("/images/tinkering/keyboard2/bms2.jpg")'
             text="a tinkerer"
           />
           <LinkButton
-            to={GoTo.Art.Home}
+            to="/art"
             hoverBackgroundImg='url("/images/art/all_colors/all_colors_4.png")'
             text="an algorithm artist"
           />
-          <LinkButton to={GoTo.Personal.Resume} text="sam vasta" />
+          <LinkButton to="/resume" text="sam vasta" />
         </VStack>
       </SimpleGrid>
 

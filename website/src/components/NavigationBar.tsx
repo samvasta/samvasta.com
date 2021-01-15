@@ -15,7 +15,6 @@ import {
   WrapItem,
 } from '@chakra-ui/react';
 import React from 'react';
-import { GoTo } from 'routes';
 import icons from 'theme/icons';
 import Link from './Link';
 import SocialLinks from './SocialLinks';
@@ -34,19 +33,19 @@ const NavigationBar = (props: NavigationBarProps): JSX.Element => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const navItems = [
-    <Link to={GoTo.Home} color={color} activeStyle={activeStyle}>
+    <Link to="/" color={color} activeStyle={activeStyle}>
       Home
     </Link>,
-    <Link to={GoTo.Home} color={color} activeStyle={activeStyle}>
+    <Link to="/fullstack" color={color} activeStyle={activeStyle}>
       Software
     </Link>,
-    <Link to={GoTo.Tinkering.Home} color={color} activeStyle={activeStyle}>
+    <Link to="/tinkering" color={color} activeStyle={activeStyle}>
       Tinkering
     </Link>,
-    <Link to={GoTo.Art.Home} color={color} activeStyle={activeStyle}>
+    <Link to="/art" color={color} activeStyle={activeStyle}>
       Art
     </Link>,
-    <Link to={GoTo.Personal.Resume} color={color} activeStyle={activeStyle}>
+    <Link to="/resume" color={color} activeStyle={activeStyle}>
       Resume
     </Link>,
   ];
