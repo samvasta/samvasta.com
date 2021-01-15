@@ -19,4 +19,9 @@ samvasta.code-workspace
 node_modules/
 
 docs
-views
+assets
+src
+.env.local
+.eslintrc.js
+.prettierrc.js
+.tsconfig.json
