@@ -8,7 +8,7 @@ import cpp from 'react-syntax-highlighter/dist/cjs/languages/hljs/cpp';
 SyntaxHighlighter.registerLanguage('plaintext', plaintext);
 SyntaxHighlighter.registerLanguage('cpp', cpp);
 
-export type Language = 'plaintext' | 'cpp';
+export type Language = 'plaintext' | 'cpp' | string;
 
 export interface CodeProps {
   language: Language;

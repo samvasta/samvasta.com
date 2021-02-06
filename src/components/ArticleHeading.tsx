@@ -7,17 +7,18 @@ const colors = ['blue.500', 'yellow.500', 'red.500', 'blue.500', 'yellow.500', '
 export type HeadingSize = 1 | 2 | 3 | 4 | 5 | 6;
 export interface DocumentHeadingProps extends HeadingProps {
   level?: HeadingSize;
+  id?: string;
 }
 
 const DocumentHeading = (props: DocumentHeadingProps) => {
-  const { level = 1, children, ...headingProps } = props;
+  const { level = 1, id, children, ...headingProps } = props;
 
   const size = sizes[level - 1];
   const color = colors[level - 1];
 
   return (
     <>
-      <Heading {...headingProps} alignSelf="start" size={size} pb="1rem">
+      <Heading {...headingProps} alignSelf="start" size={size} pb="1rem" id={id}>
         {children}
       </Heading>
       <Box bg={color} h={1} position="absolute" left={0} w="100%" mt="-1rem" zIndex={-1} />

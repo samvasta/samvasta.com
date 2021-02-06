@@ -17,7 +17,7 @@ const Link = (props: ILinkProps): JSX.Element => {
 
   return (
     <NextLink href={to}>
-      <ChakraLink {...linkProps} style={style}>
+      <ChakraLink href={to} {...linkProps} style={style}>
         {children}
       </ChakraLink>
     </NextLink>

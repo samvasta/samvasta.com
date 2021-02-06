@@ -37,7 +37,8 @@
     "./src/**/*.tsx",
     "./.eslintrc.js",
     "./prettierrc.js",
-    "./webpack/**.js"
+    "./webpack/**.js",
+    "./types/*"
   ],
   "exclude": []
 }
