@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from '@chakra-ui/react';
 
-export default ({ children }) => (
+const MdxInlineCode = ({ children }) => (
   <Text
     as="span"
     fontStyle="italic"
@@ -14,3 +14,5 @@ export default ({ children }) => (
     {children}
   </Text>
 );
+
+export default MdxInlineCode;

@@ -1,0 +1,214 @@
+import Article from 'layout/Article';
+import CaptionedImage from 'components/CaptionedImage';
+import {
+  Grid,
+  SimpleGrid,
+} from '@chakra-ui/react';
+import {MetaProps} from 'components/Meta';
+
+export const meta = {
+    title: 'test',
+};
+export const nav = {
+};
+
+
+export default ({children}) => <Article meta={meta} nav={nav}>{children}</Article>
+
+# Custom Keyboard Mk.II
+## Improving on the Original
+
+
+The original `Wing_it!` was a surprising success, but there is always room for
+improvement. Using the Mk. I as my daily driver quickly brought to light the deficiencies of
+my original design and got me thinking of an even better keyboard.
+
+
+### Keeping the Good
+
+There were two main features that I wanted to keep from the design of my original keyboard.
+
+- Comfortable key layout
+- Vertical scroll wheel
+
+#### Layout
+
+The general layout of the original `Wing_it!` fit my hands well. This wasn't
+a big surprise considering the amount of time I spent prototyping and refining the layout.
+To reduce the number of things that could go wrong, I decided to re-use my original CAD
+drawings so the Mk. II fits in the exact same footprint as the Mk. I.
+
+
+#### Vertical Scrolling
+
+The rotary encoder used for vertical scrolling in the original `Wing_it!` was
+effective and helpful. Plans for the Mk. II included a rotary encoder in an optional module.
+
+
+### Improving the Bad
+
+#### Firmware
+
+I made the decision to write my own custom firmware for the original `Wing_it!` keyboard.
+It worked well enough but updating it was time consuming, and the typing experience was not
+perfectly consistent.
+
+
+The next iteration needed to target [QMK](https://github.com/qmk/qmk_firmware),
+an open-source keyboard firmware. QMK would provide more stability and allow me to both
+configure the keyboard and develop new features more easily.
+
+
+#### Horizontal Scrolling
+
+The 2nd rotary encoder used for horizontal scrolling had one fatal flaw. Very few
+applications actually support horizontal scrolling. The dedicated horizontal scroll wheel
+was awesome when it worked, but I did not think it was worth keeping for Mk. II.
+
+
+#### Analog Thumbstick Mouse Controller
+
+The thumbstick in the middle of the original `Wing_it!` design was one of those
+"because I can" features. There were three main issues, all hardware limitations.
+
+
+First, the thumbstick components I received are not precision devices. Releasing the stick
+would cause it to spring back to center, but the area that the stick could eventually settle
+in (called the "dead zone") was too big. I ended up having to set the dead zone to
+cover 50% of both the X and Y axis.
+
+
+The second issue was exacerbated by the first. The analog-to-digital converters (ADC) I used
+were built into the microcontroller and were not precise enough to make up for the large
+dead zone.
+
+
+Finally, the thumbstick is difficult to move precisely. The stick has high "stiction" - it
+takes a lot of force to get moving - so by the time it's moving you have already pushed
+it against the edge of its restraining outer ring. It is also difficult to move the
+thumbstick at any angle off of the X/Y axes unless the stick is riding against that outer
+ring.
+
+
+The end result was that the thumbstick acted more like an 8-direction D-pad, nullifying the
+utility of the thumbstick. I did not giving up on the idea of controlling the mouse, but I
+did give up on that particular component, and the ADC embedded in the microcontroller.
+
+
+#### LCD Screen
+
+The LCD Screen actually worked really well. I did not end up using it to its fullest
+potential and it became a glorified num/caps lock indicator. So I decided the Mk. II would
+not feature a display. Instead a few discrete LEDs would indicate the caps lock and num lock
+states.
+
+
+### New Features
+
+Refining a successful design is nice but I enjoy inventing even more. There was a long list
+of new features I considered but here is what I settled on:
+
+- Wireless/Bluetooth connectivity
+- USB type-C
+- Capability for expansion module(s)
+- Not hand-wired
+
+## Hardware Design
+
+The new requirement of "not hand-wired" meant that I would need to design a custom printed
+circuit board (PCB). Learning how to design PCBs became the primary skill I acquired during
+the project. I chose to reuse the form-factor of the original, including the footprint and layout
+to reduce the complexity of the project.
+
+
+The new design removed some components like rotary encoders, the analog thumbstick and LCD display.
+Removing those components made room for new components like a battery, bluetooth adapters and
+other components that would replace the microcontroller from the old design.
+
+
+A new trend of using through-hole components had developed since I worked on the original
+`wing_it`. I liked the idea of being able to see all of the components that made
+the keyboard work, so I used a "skeleton" design for the top plate which would put the
+electronics on display. The skeleton design meant there would be less material to support
+the keys and the thin acrylic sheet from the Mk I. may not have been strong enough. That
+constraint drove the decision to build the Mk II. out of stainless steel, which has recently
+become more affordable to laser cut.
+
+
+<Grid gridTemplateColumns="1fr auto" columnGap={4}>
+<div>
+    The plan for Mk II. was another 5 layer stackup:
+</div>
+
+```
+  Layer Stackup
+┌─────────────────┐  # 1.2mm stainless steel top plate
+├─────────────────┤ 
+│                 │  # 3.8mm spacer
+├─────────────────┤  # 1.6mm PCB
+├─────────────────┤
+│                 │  # 3.8mm spacer
+├─────────────────┤
+└─────────────────┘  # 1.2mm stainless steel bottom plate
+```
+
+</Grid>
+
+
+The last piece was a clear 0.5mm then acrylic sheet that would cover the otherwise exposed
+pcb from accidental damage.
+
+
+## PCB Design
+
+A "not hand-wired" custom layout keyboard requires designing a custom PCB. Luckily there is an
+excellent [guide written by github user Ruiqi Mao](https://github.com/ruiqimao/keyboard-pcb-guide).
+After following the guide it was relatively simple to expand the simple example to the layout I had in mind.
+
+
+The decision to keep the electronic components visible also came with the added constraint
+of where I could place the components. That constraint meant I had to design the PCB
+backwards. Typically the schematic drives component placement which drives the size and
+shape of the PCB, but I started with a size and shape and had to figure out how to cram all
+of my components into that space. It turned into an exercise of breaking the entire keyboard
+into groups of components for each system, placing each group in a general area, then
+refining the layout to fit inside the footprint I had alloted myself.
+
+
+## Executing the Plan*
+<Text as="sup">*consider the keyboard was named 'wing it' for a reason</Text>
+
+- Learning PCB design
+- Laser cut design
+- No testing
+- MFG (all at once)
+
+
+## Outcome
+
+The outcome was a dissappointing paperweight made of steel and electrical components.
+
+### What Went Wrong
+
+- Some components used footprints that were expensive and/or difficult to solder
+    - messing up PCB meant having to start over
+    - Difficult to recover the expensive components from a bad pcb
+- Didn't test design
+    - BMS charged battery but didn't power other components
+    - MCU worked (but was easy to brick (overwrite bootloader))
+        - Replacing a bricked MCU meant replacing the entire pcb
+    - Row/Column mux and demux didn't use pull-up resistors!
+- USB and TRRS receptacles were too tall - didn't fit between pcb and top plate
+- Ordered everything at the same time
+    - components
+    - PCB
+    - Laser cut parts
+
+### Lessons Learned
+
+- Big PCBs are expensive
+- Test as you go
+    - Breadboard first, then small prototype PCB
+- MFG one thing at a time
+    - make sure it works, then mfg the next thing
+- Solder expensive components first

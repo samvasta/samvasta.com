@@ -20,16 +20,16 @@ module.exports = withMDX({
       "react-dom": "@hot-loader/react-dom"
     }
 
-    config.rules = [...config.rules, 
-      async function (src) {
-        const callback = this.async()
-        const {content, data} = matter(src)
-        const code = `export const frontMatter = ${stringifyObject(data)}
-        ${content}`
-        console.log(code);
-        return callback(null, code)
-      }
-    ]
+    // config.rules = [...config.rules, 
+      // async function (src) {
+      //   const callback = this.async()
+      //   const {content, data} = matter(src)
+      //   const code = `export const frontMatter = ${stringifyObject(data)}
+      //   ${content}`
+      //   console.log(code);
+      //   return callback(null, code)
+      // }
+    // ]
     
     return config
   },

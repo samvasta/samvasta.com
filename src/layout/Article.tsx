@@ -28,6 +28,7 @@ import MdxInlineCode from 'components/mdx/MdxInlineCode';
 import MdxLink from 'components/mdx/MdxLink';
 import Meta, { MetaProps } from 'components/Meta';
 import NavigationBar, { NavigationBarProps } from 'components/NavigationBar';
+import MdxTable from 'components/mdx/MdxTable';
 
 export const components = {
   p: MdxParagraph,
@@ -41,7 +42,7 @@ export const components = {
   ul: UnorderedList,
   ol: OrderedList,
   li: ListItem,
-  table: Table,
+  table: MdxTable,
   thead: Thead,
   tbody: Tbody,
   tr: Tr,

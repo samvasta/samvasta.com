@@ -16,9 +16,18 @@ const blobToGalleryItem = async (blob: File): Promise<GalleryItem> => {
 
 export default async function getGalleryUrls(generatorName: string): Promise<GalleryProps> {
   // Lists files in the bucket, filtered by a prefix
-  const [landscapeFiles] = await bucket.getFiles({ prefix: `${generatorName}/landscape` });
-  const [portraitFiles] = await bucket.getFiles({ prefix: `${generatorName}/portrait` });
-  const [squareFiles] = await bucket.getFiles({ prefix: `${generatorName}/square` });
+  const [landscapeFiles] = await bucket.getFiles({
+    prefix: `${generatorName}/landscape`,
+    maxResults: 5,
+  });
+  const [portraitFiles] = await bucket.getFiles({
+    prefix: `${generatorName}/portrait`,
+    maxResults: 5,
+  });
+  const [squareFiles] = await bucket.getFiles({
+    prefix: `${generatorName}/square`,
+    maxResults: 5,
+  });
 
   const landscapeUrls = await Promise.all(landscapeFiles.map(blobToGalleryItem));
   const portraitUrls = await Promise.all(portraitFiles.map(blobToGalleryItem));

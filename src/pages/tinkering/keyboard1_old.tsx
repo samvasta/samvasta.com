@@ -28,32 +28,37 @@ const Keyboard1 = () => {
       <ArticleHeading level={1}>Hand-Wired Custom Keybaord</ArticleHeading>
 
       <Text variant="para">
-        Building my own keyboard was the biggest &quot;tinkering&quot; project I had attempted at
-        the time. a while and learning from the attempts of others. When I decided to take on this
-        project I leaned on that acquired knowledge and did not spend too much time planning, so I
-        decided to call the keyboard the &quot;wing it&quot; keyboard.
+        As a software developer, I interact with my work almost entirely through my keyboard.
+        Painters use their own brushes and chefs prefer their own knives, so I wanted to build my
+        own keyboard. I am not the first to have the idea to build a keyboard from scratch. I had
+        been lurking in the mechanical keyboard community for a while and was familiar with the
+        general idea and processes. I relied on that acquired knowledge and existing resources from
+        the community. I did not spend very much time in the planning phase, so I decided to call
+        the keyboard the &quot;wing it&quot; keyboard. So far, building my own keyboard is the
+        biggest &quot;tinkering&quot; project I have ever attempted.
       </Text>
 
       <Text variant="para">
-        This project combined several disciplines; electrical engineering, 2D and 3D CAD, industrial
-        design, and software development. These skills are split between the hardware and software
-        parts of the project.
+        This project combined several disciplines - electrical engineering, 2D and 3D CAD,
+        industrial design, and software development. These skills are split between the hardware and
+        software parts of the project.
       </Text>
 
       <ArticleHeading level={2}>Hardware</ArticleHeading>
       <Text variant="para">
         For my first keyboard, I decided to use a hand-wired approach to connect the components, as
-        opposed to using a printed circuit boad (PCB). Other than an easier learning curve and lower
-        cost, the hand-wired design allowed me to start with the physical design. The first step was
-        finding a layout that I liked.
+        opposed to using a printed circuit boad (PCB). In addition to the easier learning curve and
+        lower cost, the hand-wired approach allowed me to start with the physical design. The first
+        step was finding a layout that I liked.
       </Text>
 
       <ArticleHeading level={3}>CAD &amp; Prototyping</ArticleHeading>
       <CaptionedImage src="/images/tinkering/keyboard1/cad1.png" caption="LibreCAD Layout" />
       <Text variant="para">
         I used a 2D CAD program called LibreCAD to lay out the key switches and other components
-        like the microcontroller and LCD screen. I then printed the CAD file, pasted it onto some
-        foamboard, and cut out holes for the key switches to get a sense of how the design felt.
+        like the microcontroller and LCD screen. I then printed the CAD file at 1:1 scale, pasted it
+        onto some foamboard, and cut out holes for the key switches to get a sense of how the design
+        felt.
       </Text>
 
       <CaptionedImage
@@ -64,7 +69,8 @@ const Keyboard1 = () => {
       <Text variant="para">
         Naturally I didn&apos;t get it perfect on the first attempt. Revisions include changing the
         vertical staggering on the inner-most column, changing the thumb cluster from one column of
-        3 keys to a 2x2 grid, and rearranging the other components.
+        3 keys to a 2x2 grid, and rearranging the other components. In total, it only took 3 tries
+        before I settled on a layout that I found comfortable.
       </Text>
 
       <CaptionedImage
@@ -94,10 +100,11 @@ const Keyboard1 = () => {
 
       <Grid gridTemplateColumns="1fr auto" columnGap={4}>
         <Text>
-          I chose a 5 layer design. The laser cutting service I used did not offer wooden materials
-          thick enough to provide enough structure, so I had to combine a wooden veneer with an
-          acrylic sheet to form the top plate. I also chose a clear acrylic for the bottom layer so
-          I could see the wires from below.
+          I chose a 5 layer design for the case. I liked the idea of wood grain on a keyboard but
+          the laser cutting service I used did not offer wooden materials thick enough to provide
+          enough structure. I had to combine a wooden veneer with an acrylic sheet to form a top
+          plate with enough rigidity. I also chose a clear acrylic for the bottom layer so I could
+          see the wires from below.
         </Text>
         <Code language="plaintext">
           {`      Layer Stackup
@@ -115,7 +122,7 @@ const Keyboard1 = () => {
       </Grid>
 
       <Text variant="para">
-        The only finishing step I did was apply a few coats of sealer to the bamboo veneer layer.
+        The only finishing step I did was apply a few coats of sealant to the bamboo veneer layer.
         The last step before adding the key switches was securing the thumbstick and buttons to the
         acrylic top layer with epoxy.
       </Text>
@@ -140,13 +147,14 @@ const Keyboard1 = () => {
         The rotary encoders turned out to be a big pain. Firstly, the holes in the top plate were
         designed to fit the shaft. It turned out that the shaft of the encoder was not long enough
         to go through both the acrylic and bamboo top plates. I ended up using a set of files to
-        expand the acrylic top plate&apos;s holes to fit the rectangular footprint of the encoder.
+        expand the holes in the acrylic top plate to fit the rectangular footprint of the encoder.
       </Text>
 
       <CaptionedImage src="/images/tinkering/keyboard1/Assembly3.jpg" caption="Rotary Encoder" />
       <Text variant="para">
-        Next, the encoders had a little nub that prevented them from sitting flush against a top
-        plate. That had to be removed with my flush cutters.
+        Next, the encoders had a little nub that I think is intended to help align the part in an
+        industrial assembly process, but the nub prevented the encoders from sitting flush against a
+        top plate. That had to be removed with my flush cutters.
       </Text>
       <Text variant="para">
         With all components in place, I could plan out how to connect everything. Note that the
@@ -157,8 +165,8 @@ const Keyboard1 = () => {
 
       <CaptionedImage src="/images/tinkering/keyboard1/wiring_guide.png" caption="Wiring Plans" />
       <Text variant="para">
-        Not shown in the plans are the connections from the Teensy to the rows and columns (you can
-        see them marked with colorful dots).
+        The plans hide some of the connections from the Teensy to the rows and columns but you can
+        see them marked with colorful dots.
       </Text>
 
       <CaptionedImage src="/images/tinkering/keyboard1/Assembly4.jpg" caption="Wiring Complete" />
@@ -182,9 +190,9 @@ const Keyboard1 = () => {
 
       <Text variant="para">
         There are 4 main capabilities of the keyboard that needed programming. The switch matrix,
-        the display, the encoders, and the thumbstick. The firmware works by polling each component
-        and sending an appropriate the appropriate key/mouse signals over USB at the end of the
-        polling cycle.
+        the display, the encoders, and the thumbstick. The firmware works by polling each
+        row/column, the rotary encoders, and the analog thumbstick. At the end of each polling
+        cycle, the appropriate key/mouse signals are sent over USB and the LCD display gets updated.
       </Text>
 
       <ArticleHeading level={3} id="switch-matrix">
@@ -199,8 +207,8 @@ const Keyboard1 = () => {
       <Grid templateColumns="1fr auto" columnGap={4}>
         <Text variant="para">
           The matrix works by &quot;turning on&quot; one row at a time and checking the state of
-          each column. You can see the matrix in the wiring guide I used. There are a lot of other
-          nuances to consider in the implementation, but this is a good mental model.
+          each column along the row. You can see the matrix in the wiring guide I used. There are a
+          lot of other nuances to consider in the implementation, but this is a good mental model.
         </Text>
 
         <div>
@@ -216,14 +224,15 @@ const Keyboard1 = () => {
       <Text variant="para">
         The display was not very difficult to get working. The hardware was sourced from Adafruit
         who also published an arduino library for the display on github. The only trick was to run
-        the display code on a different thread from the switch matrix, encoder and thumbstick code.
+        the display code on a different thread from the other components because the redraw routine
+        was significantly slowing down the polling cycle, causing missed keystrokes.
       </Text>
 
       <ArticleHeading level={3}>Encoders &amp; Gray Code</ArticleHeading>
       <Text variant="para">
         Most rotary encoders use{' '}
-        <Link href="https://en.wikipedia.org/wiki/Gray_code">gray code</Link> to communicate when
-        and in which direction they have been rotated. Gray code is an ordered sequence of codes
+        <Link href="https://en.wikipedia.org/wiki/Gray_code">gray code</Link> to communicate when,
+        and in which direction, they have been rotated. Gray code is an ordered sequence of codes
         (usually represented as binary) where each code differs from its immediate neighbors by only
         1 bit.
       </Text>
@@ -241,10 +250,11 @@ const Keyboard1 = () => {
       </Text>
 
       <Text variant="para">
-        So gray code is awesome because it is inherently robust. The disadvantage is that
-        programming a micro-controller (MCU), or reading code that other people have programmed to
-        interpret it, is way more work than it ought to be. And indeed, there is a standard function
-        that most people just copy/paste. Here it is:
+        Gray code is awesome because it is inherently robust. The disadvantage is that programming a
+        micro-controller (MCU), or reading code that other people have written, to interpret gray
+        code is way more work than it ought to be. Mostly this is due to the tendency for
+        programmers of embedded systems to prefer speed over readability. Gray code is common enough
+        that there is a standard function that most people just copy/paste. Here it is:
       </Text>
 
       <Code language="cpp">
@@ -267,8 +277,8 @@ const Keyboard1 = () => {
         Gross. But I had to write the firmware from scratch and I wanted to really understand how
         the code works, so I had the pleasure of trying to figure out what was going on. I ended up
         doing some light refactoring, but at the end of the day, this code needs to be as fast as
-        possible, so making it any more readable would probably make it less efficient. Here is what
-        I did:
+        possible, so after the refactoring I mostly reverted the code back to the more performant
+        but less readable state. Here is what I started wtih:
       </Text>
       <Code language="cpp">
         {`void scan_encoders(){
@@ -308,7 +318,7 @@ const Keyboard1 = () => {
 last_encoder_states[i] <<= 2;`}
       </Code>
 
-      <Text variant="para">But the real work in this function is done on this line:</Text>
+      <Text variant="para">The real work in this function is done on this line:</Text>
       <Code language="cpp">
         {`//look up value using state table
 encoder_values[i] += enc_states[last_encoder_states[i] & 0xf];`}
@@ -323,7 +333,7 @@ encoder_values[i] += enc_states[last_encoder_states[i] & 0xf];`}
         <Text variant="para">
           <b>Rule 1:</b> The encoder must have been rotated counter-clockwise if...
           <OrderedList ml={8} listStyleType="lower-alpha">
-            <ListItem>A has change and it is equal to B, or</ListItem>
+            <ListItem>A has changed and it is equal to B, or</ListItem>
             <ListItem>B has changed and it is opposite of A</ListItem>
           </OrderedList>
         </Text>
@@ -558,10 +568,13 @@ encoder_values[i] %= ENCODER_RESOLUTION;`}
       </Code>
 
       <Text variant="para">
-        The ENCODER_RESOLUTION is used to slow down and sort of &quot;smooth&quot; the result. It is
-        usually set to 2 or 4. If we read one clockwise rotation, did it really rotate or did the
-        encoder just get nudged a little bit? If we read four rotations, we can be reasonably sure
-        that the encoder did actually rotate.
+        The ENCODER_RESOLUTION is used to slow down and &quot;smooth&quot; the result. It is
+        typically set to 2 or 4. The idea is that the encoder is so sensitive that if we read one
+        clockwise rotation it is difficult to determine if the user really did rotate the encoder or
+        if something just nudged it enough to change states. The solution is to only register a
+        rotation when the encoder is far enough away from the last registered rotation. In other
+        words, if the encoder rotates once it might be a fluke but four times in the same direction
+        is most likely intentional.
       </Text>
 
       <ArticleHeading level={2}>Final Result</ArticleHeading>
