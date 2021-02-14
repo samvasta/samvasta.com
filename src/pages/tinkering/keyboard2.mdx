@@ -3,6 +3,7 @@ import CaptionedImage from 'components/CaptionedImage';
 import {
   Grid,
   SimpleGrid,
+  Text,
 } from '@chakra-ui/react';
 import {MetaProps} from 'components/Meta';
 
@@ -175,40 +176,95 @@ into groups of components for each system, placing each group in a general area,
 refining the layout to fit inside the footprint I had alloted myself.
 
 
-## Executing the Plan*
-<Text as="sup">*consider the keyboard was named 'wing it' for a reason</Text>
-
-- Learning PCB design
-- Laser cut design
-- No testing
-- MFG (all at once)
-
-
 ## Outcome
 
-The outcome was a dissappointing paperweight made of steel and electrical components.
+The outcome was a dissappointing paperweight made of steel and electrical components. Here's what went wrong:
 
-### What Went Wrong
+#### PCB Schematic Design Issues
 
-- Some components used footprints that were expensive and/or difficult to solder
-    - messing up PCB meant having to start over
-    - Difficult to recover the expensive components from a bad pcb
-- Didn't test design
-    - BMS charged battery but didn't power other components
-    - MCU worked (but was easy to brick (overwrite bootloader))
-        - Replacing a bricked MCU meant replacing the entire pcb
-    - Row/Column mux and demux didn't use pull-up resistors!
-- USB and TRRS receptacles were too tall - didn't fit between pcb and top plate
-- Ordered everything at the same time
-    - components
-    - PCB
-    - Laser cut parts
+Each main system of the schematic had at least 1 issue.
 
-### Lessons Learned
+##### Battery Management System Issues
 
-- Big PCBs are expensive
-- Test as you go
-    - Breadboard first, then small prototype PCB
-- MFG one thing at a time
-    - make sure it works, then mfg the next thing
-- Solder expensive components first
+The Battery Management System (BMS) actually worked well. I attribute this to the open-hardware design
+that I used. The issue was related to the part of the BMS that I designed - the BMS could not power other components.
+I haven't done enough investigation to figure out why yet.
+
+##### Microcontroller Issues
+
+The microcontroller unit (MCU) technically worked. However, the bootloader in the MCU was easy to overwrite with
+a small bug in software. If the firmware wrote to the wrong address in memory (and my firmware definitely did),
+the MCU would refuse to boot, essentially disabling the entire PCB.
+
+##### Key Switch Matrix Issues
+
+To reduce the number of I/O pins required from the MCU I decided to use a multiplexer and demultiplexer design for
+polling the switch matrix. To select a row, I used a 1:8 demultiplexer and to read the columns on the row I used an 8:3 multiplexer.
+What I failed to consider was the effect of "floating" pins on the multiplexing side.
+
+Unlike the discrete on/off states in software, the hardware input pins exist in a continuous spectrum between "high" and "low" voltage.
+In-between the high and low voltages, the pins are said to be "floating". The floating state is essentially an unknown voltage -
+it's *floating* between high (+5V) and low (0V, ground). This is why electrical engineers use "pull-up" and "pull-down" resistors.
+The purpose is to pull the floating lines up to 5V or down to ground.
+
+In conventional switch matrices, the rows and columns are connected directly so pull-up resistors are only required on the column pins.
+The demultiplexer and multiplexers in my design acted as a disconnection point. Although I had pull-up resistors on the column pins, I
+failed to realize that pull-up resistors were also needed on the row pins. The switch matrix failed because of that mistake.
+
+#### Component Choice Issues
+
+Before assembling the PCBs I had to think about the order of assembly. Some of the components
+were quite expensive or had footprints that made hand-soldering difficult. I tried to solder
+the difficult components before the expensive components, but there were so many opportunities
+for mistakes that 3 of my 5 boards were scrapped. The PCBs were not cheap, and it is difficult
+to remove components without a hot air gun, so scrapping an entire board and the expensive
+components that were stuck to it was a painful experience.
+
+#### Hardware Fit Issues
+
+The space between the top plate and PCB must be a very specific dimension because of the
+size of the key switches. It was difficult to find spacers of that exact height. The USB
+and TRRS receptacles were also too tall and ended up bending the top plate and PCB a little
+bit. It was only noticable when looking for it, but could have been avoided with more testing
+and a little bit of forethought.
+
+#### Planning Issues
+
+I chose not to test any part of the design before I ordered the pcb, laser cut parts
+and electrical components. In hind sight it seems obvious that nothing would work on the
+first attempt, and it even seemed obvious when I ordered everything at the same time. So
+when nothing worked I was left with a very expensive paperweight.
+
+
+## Lessons Learned
+
+#### Big PCBs are expensive
+
+Unless your aesthetic is "one giant PCB" it makes much more sense to break different subsystems into separate boards.
+
+This lesson is analogous to the monolithic vs microservice architecture decision. Physically splitting subsystems
+into their own boards will be significantly cheaper because many small boards is cheaper than one huge one. It will
+also let me more accurately track changes for each system, simplify the overall design, and most importantly allow me to upgrade one system
+without scrapping an entire PCB that was otherwise working perfectly.
+
+
+#### Test as you go
+
+As a software developer I am used to writing a lot of code without testing it, then investigating the issue when it inevitably fails.
+This is possible because it costs nothing to run a bit of code on my laptop. But physical things cost money.
+
+In future projects I will need to design and test each part of my project on breadboards first. I will probably even design small,
+isolated prototype PCBs before committing to a final design.
+
+#### MFG one thing at a time
+
+Similar to testing as I go, it is important to make sure the independent parts are correctly manufactured before ordering their dependent parts.
+
+
+#### Decouple Where Possible
+
+Another software practice that translates to other practices. If two components don't need to be related, then don't relate them.
+Keep components as independent as possible.
+
+It is difficult to find spacers of the exact height required to fit between the pcb and top plate, so I should not have designed
+the PCB to be part of the outer case.
