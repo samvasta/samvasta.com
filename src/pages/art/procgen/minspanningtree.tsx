@@ -2,15 +2,21 @@ import { Container, Text } from '@chakra-ui/react';
 import ArticleHeading from 'components/ArticleHeading';
 import BasePage from 'components/BasePage';
 import Gallery, { GalleryProps } from 'components/Gallery';
+// import GenerateImageButton from 'components/GenerateImageButton';
 import { GenMinSpanningTree } from 'data/Art/procgen';
 import getGalleryUrls from 'data/gcp';
 import { GetStaticProps } from 'next';
 import React from 'react';
+import dynamic from 'next/dynamic';
+
+const GenerateImageButton = dynamic(() => import('components/GenerateImageButton'));
 
 const ArtAlgMinSpanningTree = (props: GalleryProps) => {
   return (
     <Container variant="article">
       <ArticleHeading>Prim&apos;s Minimum Spanning Tree</ArticleHeading>
+
+      <GenerateImageButton generator={GenMinSpanningTree} genWidth={1024} genHeight={512} />
 
       <ArticleHeading level={3}>Process</ArticleHeading>
 
