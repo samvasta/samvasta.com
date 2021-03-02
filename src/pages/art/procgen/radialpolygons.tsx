@@ -2,7 +2,8 @@ import { Container, Text } from '@chakra-ui/react';
 import ArticleHeading from 'components/ArticleHeading';
 import BasePage from 'components/BasePage';
 import Gallery, { GalleryProps } from 'components/Gallery';
-import { GenClippedHatching, GenRadialPolygons } from 'data/Art/procgen';
+import GenerateImageButton from 'components/GenerateImageButton';
+import { GenRadialPolygons } from 'data/Art/procgen';
 import getGalleryUrls from 'data/gcp';
 import { GetStaticProps } from 'next';
 import React from 'react';
@@ -11,6 +12,8 @@ const ArtAlgRadialPolygons = (props: GalleryProps) => {
   return (
     <Container variant="article">
       <ArticleHeading>Radial Polygons</ArticleHeading>
+
+      <GenerateImageButton generator={GenRadialPolygons} />
 
       <ArticleHeading level={3}>Process</ArticleHeading>
 

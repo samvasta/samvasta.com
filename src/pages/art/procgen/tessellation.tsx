@@ -2,6 +2,7 @@ import { Container, Link, ListItem, OrderedList, Text, UnorderedList } from '@ch
 import ArticleHeading from 'components/ArticleHeading';
 import BasePage from 'components/BasePage';
 import Gallery, { GalleryProps } from 'components/Gallery';
+import GenerateImageButton from 'components/GenerateImageButton';
 import { GenTessellation } from 'data/Art/procgen';
 import getGalleryUrls from 'data/gcp';
 import { GetStaticProps } from 'next';
@@ -11,6 +12,7 @@ const ArtAlgTessellation = (props: GalleryProps) => {
   return (
     <Container variant="article">
       <ArticleHeading>Tessellation</ArticleHeading>
+      <GenerateImageButton generator={GenTessellation} />
       The{' '}
       <b>
         <i>Tesselation</i>
