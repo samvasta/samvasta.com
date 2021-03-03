@@ -2,6 +2,8 @@ import { Container, Text } from '@chakra-ui/react';
 import ArticleHeading from 'components/ArticleHeading';
 import BasePage from 'components/BasePage';
 import Gallery, { GalleryProps } from 'components/Gallery';
+import GenerateImageButton from 'components/GenerateImageButton';
+import Link from 'components/Link';
 import { GenWovenGrid } from 'data/Art/procgen';
 import getGalleryUrls from 'data/gcp';
 import { GetStaticProps } from 'next';
@@ -10,7 +12,10 @@ import React from 'react';
 const ArtAlgWovenGrid = (props: GalleryProps) => {
   return (
     <Container variant="article">
+      <Link to="/art/procgen/">Back to Procgen</Link>
       <ArticleHeading>Woven Grid</ArticleHeading>
+
+      <GenerateImageButton generator={GenWovenGrid} />
 
       <ArticleHeading level={3}>Process</ArticleHeading>
 

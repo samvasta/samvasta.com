@@ -1,6 +1,7 @@
-import { Container, Image, SimpleGrid, Text } from '@chakra-ui/react';
+import { Container, SimpleGrid, Text } from '@chakra-ui/react';
 import ArticleHeading from 'components/ArticleHeading';
 import React from 'react';
+import Image from 'components/Image';
 import Link from 'components/Link';
 import BasePage from 'components/BasePage';
 
@@ -10,14 +11,37 @@ const ArtHome = () => {
       <ArticleHeading level={1}>Art</ArticleHeading>
 
       <ArticleHeading level={3}>Procedural Generation</ArticleHeading>
-      <SimpleGrid columns={3} columnGap={4}>
-        <Image src="/images/art/geometric/shapes_3.png" alt="MSP" w="full" />
+      <SimpleGrid columns={{ base: 1, sm: 3 }} columnGap={4}>
         <Image
-          src="/images/art/all_colors/all_colors_limited_range_4.png"
-          alt="allcolors"
-          w="full"
+          img={{
+            src: '/images/art/geometric/shapes_3.png',
+            priority: true,
+            alt: 'MSP',
+            layout: 'fill',
+            objectFit: 'contain',
+          }}
+          box={{ w: 'full', h: 40 }}
         />
-        <Image src="/images/art/bezier/bezier_1.png" alt="bezier" w="full" />
+        <Image
+          img={{
+            src: '/images/art/all_colors/all_colors_limited_range_4.png',
+            priority: true,
+            alt: 'All Colors',
+            layout: 'fill',
+            objectFit: 'contain',
+          }}
+          box={{ w: 'full', h: 40, display: { base: 'none', sm: 'inherit' } }}
+        />
+        <Image
+          img={{
+            src: '/images/art/bezier/bezier_1.png',
+            priority: true,
+            alt: 'Bezier',
+            layout: 'fill',
+            objectFit: 'contain',
+          }}
+          box={{ w: 'full', h: 40, display: { base: 'none', sm: 'inherit' } }}
+        />
       </SimpleGrid>
       <Text variant="para">
         Procedural generation is a technique for generating random but valid data under a set of

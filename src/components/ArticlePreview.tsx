@@ -36,10 +36,12 @@ const ArticlePreview = (props: ArticlePreviewProps) => {
             box={{ w: '100%', h: '100%' }}
             img={{
               src: imageSrc,
-              layout: 'fill',
+              layout: 'responsive',
               objectFit: 'cover',
               quality: 100,
               alt: title,
+              width: 288,
+              height: 288,
             }}
           />
         </Square>
