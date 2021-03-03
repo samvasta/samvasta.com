@@ -66,7 +66,9 @@ const GenerateImageButton = (props: GenerateImageButtonProps) => {
       return;
     }
     setIsLoading(true);
-    const { data } = await axios.get(`/api/procgen/${generator}/${genWidth}/${genHeight}`);
+    const { data } = await axios.get(
+      `/api/procgen/?generator=${generator}&width=${genWidth}&height=${genHeight}`,
+    );
     if (data.url) {
       setSrc(data.url);
     }
