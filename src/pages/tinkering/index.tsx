@@ -56,7 +56,7 @@ const data: ArticleGroup[] = [
       {
         title: 'Custom Keyboard 3',
         imageSrc: '/images/tinkering/keyboard3/painted_test_fit_2.png',
-        to: '/tinkering/keyboard2',
+        to: '/tinkering/keyboard3',
       },
     ],
   },

@@ -10,9 +10,9 @@ const withMDX = require('@next/mdx')({
 
 module.exports = withMDX({
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
-  images: {
-    domains: ['storage.googleapis.com'],
-  },
+    // images: {
+    //   domains: ['storage.googleapis.com'],
+    // },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
 
     config.resolve.alias = {

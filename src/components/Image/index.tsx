@@ -11,7 +11,7 @@ const Image = (props: ImageProps) => {
   const { box, img } = props;
   return (
     <Box {...box} position="relative" overflow="hidden">
-      <NextImage {...img} />
+      <NextImage {...img} unoptimized />
     </Box>
   );
 };

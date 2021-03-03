@@ -26,7 +26,7 @@ const ArtHome = () => {
           img={{
             src: '/images/art/landscapelegacy_thumb.png',
             priority: true,
-            alt: 'MSP',
+            alt: 'Landscape',
             layout: 'fill',
             objectFit: 'contain',
           }}
@@ -36,7 +36,7 @@ const ArtHome = () => {
           img={{
             src: '/images/art/flowfield_thumb.png',
             priority: true,
-            alt: 'Bezier',
+            alt: 'Flow Field',
             layout: 'fill',
             objectFit: 'contain',
           }}

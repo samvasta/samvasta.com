@@ -58,7 +58,7 @@ const Resume = () => {
           <Image
             box={{ w: 40, h: 40, rounded: 'full' }}
             img={{
-              src: '/images/headshot.png',
+              src: '/images/headshot.jpg',
               layout: 'fill',
               objectFit: 'cover',
               quality: 100,
