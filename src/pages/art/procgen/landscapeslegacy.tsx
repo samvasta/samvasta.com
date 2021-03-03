@@ -2,6 +2,7 @@ import { Container, Text } from '@chakra-ui/react';
 import ArticleHeading from 'components/ArticleHeading';
 import BasePage from 'components/BasePage';
 import Gallery, { GalleryProps } from 'components/Gallery';
+import GenerateImageButton from 'components/GenerateImageButton';
 import { GenLandscapeLegacy } from 'data/Art/procgen';
 import getGalleryUrls from 'data/gcp';
 import { GetStaticProps } from 'next';
@@ -11,6 +12,9 @@ const ArtAlgLandscapes = (props: GalleryProps) => {
   return (
     <Container variant="article">
       <ArticleHeading>Landscapes (Original)</ArticleHeading>
+
+      <GenerateImageButton generator={GenLandscapeLegacy} />
+
       <Text variant="para">
         The Landscapes generator was the first image generated that I made. Each image presents a
         series of rolling hills, and an occasional tree, in a two-color scheme. The color gradient

@@ -8,6 +8,7 @@ import {
   IoRocket,
   IoBriefcase,
   IoHomeSharp,
+  IoSettings,
 } from 'react-icons/io5';
 import { GoCircuitBoard } from 'react-icons/go';
 import { GiCookingPot, GiStairs } from 'react-icons/gi';
@@ -40,6 +41,7 @@ export default {
   Levelup: FaLevelUpAlt,
   Home: IoHomeSharp,
   HamburgerMenu: IoMenu,
+  Settings: IoSettings,
 
   Csharp: SiCsharp,
   DotNet: DiDotnet,

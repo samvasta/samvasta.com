@@ -2,6 +2,7 @@ import { Container, Text } from '@chakra-ui/react';
 import ArticleHeading from 'components/ArticleHeading';
 import BasePage from 'components/BasePage';
 import Gallery, { GalleryProps } from 'components/Gallery';
+import GenerateImageButton from 'components/GenerateImageButton';
 import { GenBezier } from 'data/Art/procgen';
 import getGalleryUrls from 'data/gcp';
 import { GetStaticProps } from 'next';
@@ -11,6 +12,8 @@ const ArtAlgBezier = (props: GalleryProps) => {
   return (
     <Container variant="article">
       <ArticleHeading>Bezier</ArticleHeading>
+
+      <GenerateImageButton generator={GenBezier} />
 
       <ArticleHeading level={3}>Process</ArticleHeading>
 

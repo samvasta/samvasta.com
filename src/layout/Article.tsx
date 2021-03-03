@@ -110,7 +110,7 @@ export interface ArticleProps {
   children: any;
 }
 
-export default function BasePage<T>(props: ArticleProps) {
+export default function BasePage(props: ArticleProps): JSX.Element {
   const { children, meta, nav } = props;
   const finalMetaProps = { ...defaultMetaProps, ...meta };
 
