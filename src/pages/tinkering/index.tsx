@@ -20,12 +20,12 @@ const data: ArticleGroup[] = [
     articles: [
       {
         title: 'Wireless Lamp',
-        imageSrc: '/images/tinkering/lamp/lamp1.jpg',
+        imageSrc: '/images/tinkering/lamp/lamp1.png',
         to: '/tinkering/keyboard1',
       },
       {
         title: 'Fountain Pen Wrap',
-        imageSrc: '/images/tinkering/penwrap/penwrap2.jpg',
+        imageSrc: '/images/tinkering/penwrap/penwrap2.png',
         to: '/tinkering/keyboard1',
       },
     ],
@@ -35,7 +35,7 @@ const data: ArticleGroup[] = [
     articles: [
       {
         title: 'Custom Keyboard',
-        imageSrc: '/images/tinkering/keyboard1/TestFit1.jpg',
+        imageSrc: '/images/tinkering/keyboard1/TestFit1.png',
         to: '/tinkering/keyboard1',
       },
     ],
@@ -45,7 +45,7 @@ const data: ArticleGroup[] = [
     articles: [
       {
         title: 'Custom Keyboard 2',
-        imageSrc: '/images/tinkering/keyboard2/mcu.jpg',
+        imageSrc: '/images/tinkering/keyboard2/mcu.png',
         to: '/tinkering/keyboard2',
       },
     ],
@@ -55,7 +55,7 @@ const data: ArticleGroup[] = [
     articles: [
       {
         title: 'Custom Keyboard 3',
-        imageSrc: '/images/tinkering/keyboard2/bms2.jpg',
+        imageSrc: '/images/tinkering/keyboard3/painted_test_fit_2.png',
         to: '/tinkering/keyboard2',
       },
     ],

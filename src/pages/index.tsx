@@ -30,7 +30,7 @@ const Home = () => {
           />
           <LinkButton
             to="/tinkering"
-            hoverBackgroundImg='url("/images/tinkering/keyboard2/bms2.jpg")'
+            hoverBackgroundImg='url("/images/tinkering/keyboard2/bms2.png")'
             text="a tinkerer"
           />
           <LinkButton

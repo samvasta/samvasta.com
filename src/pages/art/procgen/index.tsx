@@ -154,14 +154,14 @@ const AlgorithmsHome = (props: IGeneratorThumbs) => {
         <WrapItem>
           <ArticlePreview
             title="Randomness"
-            imageSrc="/images/art/geometric/shapes_1.png"
+            imageSrc={landscapelegacy}
             to="/art/procgen/techniques/random"
           />
         </WrapItem>
         <WrapItem>
           <ArticlePreview
             title="Color"
-            imageSrc="/images/art/bezier/bezier_1.png"
+            imageSrc={tessellation}
             to="/art/procgen/techniques/color"
           />
         </WrapItem>

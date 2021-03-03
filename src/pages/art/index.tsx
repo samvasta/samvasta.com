@@ -1,4 +1,4 @@
-import { Container, SimpleGrid, Text } from '@chakra-ui/react';
+import { Container, SimpleGrid, Square, Text } from '@chakra-ui/react';
 import ArticleHeading from 'components/ArticleHeading';
 import React from 'react';
 import Image from 'components/Image';
@@ -14,7 +14,17 @@ const ArtHome = () => {
       <SimpleGrid columns={{ base: 1, sm: 3 }} columnGap={4}>
         <Image
           img={{
-            src: '/images/art/geometric/shapes_3.png',
+            src: '/images/art/all_colors/all_colors_3.png',
+            priority: true,
+            alt: 'All Colors',
+            layout: 'fill',
+            objectFit: 'cover',
+          }}
+          box={{ w: 'full', h: 40, display: { base: 'none', sm: 'inherit' } }}
+        />
+        <Image
+          img={{
+            src: '/images/art/landscapelegacy_thumb.png',
             priority: true,
             alt: 'MSP',
             layout: 'fill',
@@ -24,17 +34,7 @@ const ArtHome = () => {
         />
         <Image
           img={{
-            src: '/images/art/all_colors/all_colors_limited_range_4.png',
-            priority: true,
-            alt: 'All Colors',
-            layout: 'fill',
-            objectFit: 'contain',
-          }}
-          box={{ w: 'full', h: 40, display: { base: 'none', sm: 'inherit' } }}
-        />
-        <Image
-          img={{
-            src: '/images/art/bezier/bezier_1.png',
+            src: '/images/art/flowfield_thumb.png',
             priority: true,
             alt: 'Bezier',
             layout: 'fill',
